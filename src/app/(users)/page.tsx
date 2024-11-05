@@ -1,18 +1,28 @@
-import Header from "./header";
-import Section1 from "./section1";
-import Section2 from "./section2";
-import Section3 from "./section3";
-import Section4 from "./section4";
+import Banner from '@/components/home/Banner';
+import About from '@/components/home/about';
+import Contact from '@/components/home/contact';
+import Impact from '@/components/home/impact';
+import { Projects } from '@/components/home/projects';
+import Sections from '@/components/home/sections';
+import RequestForm from '@/components/shared/request-form';
 
+interface Props {
+	searchParams: Promise<{
+		contact?: string;
+	}>;
+}
 
-export default function Home() {
+export default async function Home(props: Props) {
+	const { contact } = await props.searchParams;
 	return (
 		<div>
-			<Header/>
-			<Section1/>
-			<Section2/>
-			<Section3/>
-			<Section4/>
+			<Banner />
+			<About />
+			<Impact />
+			<Contact />
+			<Projects />
+			<Sections />
+			<RequestForm open={!!contact} />
 		</div>
 	);
 }
