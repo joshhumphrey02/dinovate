@@ -6,7 +6,14 @@
 		"dev": "next dev --turbopack",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"seed": "prisma db seed",
+		"migrate": "bunx prisma migrate dev",
+		"prisma:migrate": "bunx prisma migrate dev",
+		"prisma:gen": "bunx prisma generate",
+		"prisma:deploy": "bunx prisma deploy",
+		"prisma:push": "bunx prisma db push",
+		"studio": "bunx prisma studio --port 5599"
 	},
 	"dependencies": {
 		"@aws-sdk/client-s3": "^3.669.0",
@@ -39,19 +46,42 @@
 		"@types/uuid": "^10.0.0",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
+		"cmdk": "^1.0.4",
+		"embla-carousel-react": "^8.3.1",
+		"framer-motion": "^11.11.11",
+		"google-libphonenumber": "^3.2.38",
+		"input-otp": "^1.4.1",
 		"lucide-react": "^0.454.0",
 		"next": "15.0.2",
+		"oslo": "^1.2.1",
 		"react": "19.0.0-rc-02c0e824-20241028",
 		"react-dom": "19.0.0-rc-02c0e824-20241028",
+		"react-images-uploading": "^3.1.7",
+		"react-intersection-observer": "^9.13.1",
+		"recharts": "^2.13.3",
+		"sonner": "^1.7.0",
 		"tailwind-merge": "^2.5.4",
-		"tailwindcss-animate": "^1.0.7"
+		"tailwindcss-animate": "^1.0.7",
+		"vaul": "^1.1.1",
+		"zod": "^3.23.8",
+		"zustand": "^5.0.1"
 	},
 	"devDependencies": {
-		"typescript": "^5",
+		"@types/google-libphonenumber": "^7.4.30",
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
 		"postcss": "^8",
-		"tailwindcss": "^3.4.1"
-	}
+		"prisma": "^5.21.1",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5"
+	},
+	"prisma": {
+		"seed": "bun run prisma/seed.ts"
+	},
+	"trustedDependencies": [
+		"@prisma/client",
+		"@prisma/engines",
+		"prisma"
+	]
 }

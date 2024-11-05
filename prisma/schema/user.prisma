@@ -1,0 +1,63 @@
+model User {
+  id                  String                @id @default(cuid())
+  firstName           String?               @db.VarChar(100)
+  lastName            String?               @db.VarChar(100)
+  email               String                @unique
+  phone               String?
+  password            String?
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  userType            UserType?
+  emailVerified       DateTime?
+  country             String?
+  sessions            AuthSession[]
+  images              Image[]
+  passwordResetTokens PasswordResetTokens[]
+  verificationTokens  VerificationToken[]
+}
+
+model AdminAllowedEmail {
+  id           String    @id @default(cuid())
+  uid          Int       @unique @default(autoincrement())
+  email        String    @unique
+  verifiedAt   DateTime?
+  allowedPages String[]
+  createdAt    DateTime  @default(now())
+}
+
+model AuthSession {
+  id        String    @id @default(cuid())
+  userId    String
+  expiresAt DateTime?
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  expiresAt DateTime
+  email     String
+  userId    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([email, token])
+}
+
+model PasswordResetTokens {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum UserType {
+  USER
+  STAFF
+  ADMIN
+  OWNER
+}
