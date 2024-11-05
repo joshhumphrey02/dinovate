@@ -6,6 +6,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { X } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
+import CloseIcon from '../Icons/close';
 
 const Sheet = SheetPrimitive.Root;
 
@@ -62,7 +63,7 @@ const SheetContent = React.forwardRef<
 >(
 	(
 		{
-			side = 'right',
+			side = 'left',
 			className,
 			overlay = false,
 			close = false,
@@ -79,8 +80,8 @@ const SheetContent = React.forwardRef<
 				{...props}>
 				{children}
 				{!close && (
-					<SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
-						<X className="h-4 w-4" />
+					<SheetPrimitive.Close className="absolute right-6 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+						<CloseIcon className="h-5 w-5" />
 						<span className="sr-only">Close</span>
 					</SheetPrimitive.Close>
 				)}
