@@ -7,7 +7,7 @@ import Link from 'next/link';
 import MenuIcon from '../Icons/menu';
 import CloseIcon from '../Icons/close';
 import Image from 'next/image';
-import Logo from '@/assets/logo-main.png';
+import Logo from '@/assets/logo-color.png';
 
 export default function Sidebar() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -56,15 +56,18 @@ export default function Sidebar() {
 				<div className="flex flex-col items-center h-full justify-center space-y-12">
 					<div className="grid sm:grid-cols-2 h-[80%] gap-16 items-center">
 						<div className="hidden sm:flex justify-end">
-							<div className=" bg-white w-fit px-8 py-16">
+							<Link
+								onClick={toggleSidebar}
+								href={'/'}
+								className=" w-[400px] h-[200px] ">
 								<Image
 									src={Logo}
-									width={220}
-									height={170}
-									className=" object-cover"
+									width={300}
+									height={200}
+									className=" object-cover w-full h-full "
 									alt="Logo"
 								/>
-							</div>
+							</Link>
 						</div>
 
 						{/* Menu Links */}

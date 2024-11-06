@@ -4,6 +4,7 @@ import Contact from '@/components/home/contact';
 import Impact from '@/components/home/impact';
 import { Projects } from '@/components/home/projects';
 import Sections from '@/components/home/sections';
+import Footer from '@/components/shared/footer';
 import RequestForm from '@/components/shared/request-form';
 
 interface Props {
@@ -25,6 +26,7 @@ export default async function Home(props: Props) {
 				<Sections />
 			</div>
 			<RequestForm open={!!contact} />
+			<Footer />
 		</div>
 	);
 }

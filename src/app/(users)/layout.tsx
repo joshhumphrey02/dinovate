@@ -1,4 +1,3 @@
-import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 import Loader from '@/components/shared/loader';
 import Prompt from '@/components/shared/prompt';
@@ -12,12 +11,9 @@ export default function HomeLayout({
 	return (
 		<div>
 			<Loader />
-			<div className="">
-				<Header />
-				<Sidebar />
-				{children}
-			</div>
-			<Footer />
+			<Header />
+			<Sidebar />
+			{children}
 			<Prompt />
 		</div>
 	);

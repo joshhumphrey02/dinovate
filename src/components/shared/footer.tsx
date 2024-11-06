@@ -15,36 +15,54 @@ import { ReactNode } from 'react';
 import LineIcon from '../Icons/line';
 import Link from 'next/link';
 import { animateScroll } from 'react-scroll';
+import { cn } from '@/lib/utils';
 
-export default function Footer() {
+interface Props {
+	isDark?: boolean;
+	className?: string;
+}
+
+export default function Footer(props: Props) {
+	const { isDark } = props;
 	const style = {
-		backgroundImage: 'url(/svg/footer-wave.svg)',
+		backgroundImage: `url(${
+			isDark ? '/svg/footer-yellow.webp' : '/svg/footer-wave.svg'
+		})`,
 	};
 	const options = {
 		duration: 2000,
 		smooth: 'easeInOutQuad',
 	};
 	return (
-		<footer className="space-y-8 relative pb-10">
+		<footer className="space-y-8 relative py-10">
 			<div className=" px-4 sm:px-[8rem] mx-auto space-y-8 max-w-[1350px]">
 				<div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
 					{footer.map((item) => (
 						<div key={item.title} className="flex flex-col gap-3">
 							<div className="space-y-1">
-								<h3 className="text-sm font-semibold text-gray-700">
-									{item.title}
-								</h3>
-								<LineIcon fill="#000" className="h-2" />
+								<h3 className="text-sm font-semibold">{item.title}</h3>
+								<LineIcon fill={isDark ? '#ffab00' : '#000'} className="h-2" />
 							</div>
 							<ul className="flex flex-col gap-1">
 								{item.links.map((link) => (
 									<li
 										key={link.label}
 										className="flex items-center text-sm font-lato gap-1">
-										{link?.icon && <span>{link.icon}</span>}
+										{link?.icon && (
+											<span
+												className={cn(
+													'text-gray-500 hover:text-gray-800',
+													isDark && 'text-white hover:text-tertiary/80'
+												)}>
+												{link.icon}
+											</span>
+										)}
 										<Link
 											href={link.href}
-											className="text-gray-500 hover:text-gray-800">
+											className={cn(
+												'text-gray-500 hover:text-gray-800',
+												isDark && 'text-white hover:text-tertiary/80'
+											)}>
 											{link.label}
 										</Link>
 									</li>
@@ -87,7 +105,7 @@ export default function Footer() {
 					onClick={() => animateScroll.scrollToTop(options)}
 					className=" p-3 text-black sm:text-white flex flex-col items-center gap-1 w-fit h-fit">
 					<span>
-						<ArrowUp className=" text-tertiary" />
+						<ArrowUp className={isDark ? 'text-black' : 'text-tertiary'} />
 					</span>
 					<span className=" text-xs">back to top</span>
 				</div>
@@ -158,22 +176,22 @@ const footer: FooterTop = [
 			{
 				label: 'House A2 Plot 37 Kado District, Abuja',
 				href: '#',
-				icon: <MapPin className="w-4 h-4 text-gray-500" />,
+				icon: <MapPin className={cn('w-4 h-4 text-gray-400')} />,
 			},
 			{
 				label: '+234 8166357463',
 				href: '#',
-				icon: <Phone className="w-4 h-4 text-gray-500" />,
+				icon: <Phone className={cn('w-4 h-4 text-gray-400')} />,
 			},
 			{
 				label: 'info@dinovate.com',
 				href: '#',
-				icon: <Mail className="w-4 h-4 text-gray-500" />,
+				icon: <Mail className={cn('w-4 h-4 text-gray-400')} />,
 			},
 			{
 				label: '9am to 6pm',
 				href: '#',
-				icon: <Clock className="w-4 h-4 text-gray-500" />,
+				icon: <Clock className={cn('w-4 h-4 text-gray-400')} />,
 			},
 		],
 	},

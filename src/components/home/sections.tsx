@@ -146,10 +146,10 @@ const data = [
 ];
 
 const partners = [
-	'undp_logo.webp',
-	'pind.jpg',
-	'WaterAid.png',
-	'who_logo.webp',
-	'iwmi.jpeg',
-	'mastercard.jpg',
+	'UNDP.png',
+	'PIND.png',
+	'IWMI.png',
+	'WATER AID.png',
+	'mastercard.png',
+	'WHO.png',
 ];
