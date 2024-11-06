@@ -14,14 +14,12 @@ import { PlusIcon } from 'lucide-react';
 import Link from 'next/link';
 
 type Props = {
-	searchParams: {
+	searchParams: Promise<{
 		account?: string;
-	};
+	}>;
 };
 export default async function page(props: Props) {
-	const {
-		searchParams: { account },
-	} = props;
+	const { account } = await props.searchParams;
 	const session = await validateRequest();
 	const superAdmins = process.env.WHITELISTED_EMAILS?.split(',') || [];
 	const admins = await prisma.adminAllowedEmail.findMany();

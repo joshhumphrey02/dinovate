@@ -4,13 +4,13 @@ import { getMessages } from '@/lib/actions/request-actions';
 import RequestDrawer from './components/request-details-drawer';
 
 type Props = {
-	searchParams: {
+	searchParams: Promise<{
 		tab?: string;
 		requestId?: string;
-	};
+	}>;
 };
 export default async function page(props: Props) {
-	const { searchParams } = props;
+	const searchParams = await props.searchParams;
 	const data = await getMessages();
 
 	return (

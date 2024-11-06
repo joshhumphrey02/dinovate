@@ -7,17 +7,17 @@ import { ProductAlert } from './components/product';
 import { getProductData, getProducts } from '@/lib/actions/product-actions';
 
 type Props = {
-	searchParams: {
+	searchParams: Promise<{
 		tab?: string;
 		orderBy?: string;
 		take?: string;
 		skip?: string;
 		productId?: string;
 		edit?: string;
-	};
+	}>;
 };
 export default async function Page(props: Props) {
-	const { searchParams } = props;
+	const searchParams = await props.searchParams;
 	const data = await getProducts({
 		orderBy: {
 			createdAt: 'desc',

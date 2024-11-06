@@ -7,17 +7,17 @@ import { PostAlert } from './components/post';
 import { getPostData, getPosts } from '@/lib/actions/blog-actions';
 
 type Props = {
-	searchParams: {
+	searchParams: Promise<{
 		tab?: string;
 		orderBy?: string;
 		take?: string;
 		skip?: string;
 		postId?: string;
 		edit?: string;
-	};
+	}>;
 };
 export default async function Page(props: Props) {
-	const { searchParams } = props;
+	const searchParams = await props.searchParams;
 	const data = await getPosts({
 		orderBy: {
 			createdAt: 'desc',
@@ -79,9 +79,9 @@ export default async function Page(props: Props) {
 				</EmptyState>
 			)}
 			<PostAlert
-				open={!!searchParams.postId}
-				postId={searchParams.postId}
-				edit={searchParams.edit}
+				open={!!searchParams?.postId}
+				postId={searchParams?.postId}
+				edit={searchParams?.edit}
 				post={postData}
 			/>
 		</div>
