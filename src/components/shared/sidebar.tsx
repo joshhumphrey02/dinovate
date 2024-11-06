@@ -25,8 +25,8 @@ export default function Sidebar() {
 					x: 0,
 					opacity: 1,
 					stagger: 0.2,
-					delay: 0.3,
-					duration: 0.6,
+					delay: 0.4,
+					duration: 0.8,
 					ease: 'power2.out',
 				}
 			);
@@ -48,19 +48,19 @@ export default function Sidebar() {
 				animate={{ x: isOpen ? 0 : '100%' }}
 				transition={{
 					type: 'spring',
-					stiffness: 80,
-					damping: 40,
-					duration: 0.6,
+					stiffness: 100,
+					damping: 30,
+					duration: 0.3,
 				}}
 				className={`fixed top-0 right-0 h-full w-full bg-gray-900 text-white p-8 z-40 shadow-lg`}>
 				<div className="flex flex-col items-center h-full justify-center space-y-12">
 					<div className="grid sm:grid-cols-2 h-[80%] gap-16 items-center">
 						<div className="hidden sm:flex justify-end">
-							<div className=" bg-white w-fit px-10 py-20">
+							<div className=" bg-white w-fit px-8 py-16">
 								<Image
 									src={Logo}
-									width={256}
-									height={208}
+									width={220}
+									height={170}
 									className=" object-cover"
 									alt="Logo"
 								/>
@@ -68,7 +68,7 @@ export default function Sidebar() {
 						</div>
 
 						{/* Menu Links */}
-						<nav className="flex flex-col items-center sm:items-start space-y-4 sm:space-y-2 font-oswald text-3xl sm:text-4xl font-light text-tertiary">
+						<nav className="flex flex-col items-center sm:items-start space-y-4 sm:space-y-3 xl:space-y-4 font-oswald text-3xl sm:text-3xl font-light text-tertiary">
 							{data.map((text, index) => (
 								<Link
 									key={text.title}
@@ -89,7 +89,7 @@ export default function Sidebar() {
 						</nav>
 					</div>
 					{/* Social Links */}
-					<div className="flex space-x-4 flex-1 items-center text-sm">
+					<div className="flex gap-4 sm:gap-8 flex-1 items-center text-sm">
 						{['Twitter', 'Instagram', 'LinkedIn', 'Facebook'].map(
 							(text, index) => (
 								<Link

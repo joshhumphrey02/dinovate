@@ -17,11 +17,13 @@ export default async function Home(props: Props) {
 	return (
 		<div>
 			<Banner />
-			<About />
-			<Impact />
-			<Contact />
-			<Projects />
-			<Sections />
+			<div className="max-w-[1350px] mx-auto">
+				<About />
+				<Impact />
+				<Contact />
+				<Projects />
+				<Sections />
+			</div>
 			<RequestForm open={!!contact} />
 		</div>
 	);

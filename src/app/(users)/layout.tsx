@@ -12,9 +12,11 @@ export default function HomeLayout({
 	return (
 		<div>
 			<Loader />
-			<Header />
-			<Sidebar />
-			{children}
+			<div className="">
+				<Header />
+				<Sidebar />
+				{children}
+			</div>
 			<Footer />
 			<Prompt />
 		</div>

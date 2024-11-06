@@ -51,7 +51,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body
-				className={`${geistSans.variable} ${lato.variable} ${oswald.variable} ${floodstd.variable} ${geistMono.variable} ${roboto.variable} antialiased max-w-[1350px] bg-[#f0f0f0] font-lato mx-auto`}>
+				className={`${geistSans.variable} ${lato.variable} ${oswald.variable} ${floodstd.variable} ${geistMono.variable} ${roboto.variable} antialiased bg-[#f0f0f0] font-lato mx-auto`}>
 				{children}
 			</body>
 		</html>

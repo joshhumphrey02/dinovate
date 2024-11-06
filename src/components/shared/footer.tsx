@@ -1,3 +1,4 @@
+'use client';
 import {
 	ArrowUp,
 	Clock,
@@ -13,14 +14,19 @@ import {
 import { ReactNode } from 'react';
 import LineIcon from '../Icons/line';
 import Link from 'next/link';
+import { animateScroll } from 'react-scroll';
 
 export default function Footer() {
 	const style = {
 		backgroundImage: 'url(/svg/footer-wave.svg)',
 	};
+	const options = {
+		duration: 2000,
+		smooth: 'easeInOutQuad',
+	};
 	return (
-		<footer className="space-y-8">
-			<div className=" px-4 sm:px-16 space-y-8">
+		<footer className="space-y-8 relative pb-10">
+			<div className=" px-4 sm:px-16 mx-auto space-y-8 max-w-[1350px]">
 				<div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
 					{footer.map((item) => (
 						<div key={item.title} className="flex flex-col gap-3">
@@ -60,34 +66,31 @@ export default function Footer() {
 						))}
 					</div>
 					<div className="space-y-1 flex flex-col items-center">
-						<h6>Dinovate Solutions</h6>
 						<p>
-							© copyright {new Date(Date.now()).getFullYear().toString()}{' '}
-							Dinovate Solutions.
+							© Copyright {new Date(Date.now()).getFullYear().toString()}{' '}
+							Dinovate Solutions
 						</p>
 						<p className="text-xs">Tel: +234 8166357463</p>
 						<a
 							href="http://meltechgrp.com"
 							target="_blank"
 							rel="noopener noreferrer">
-							<p className="text-[11px]">
-								Designed by Mel-Technologies and Solution Center
-							</p>
+							<p className="text-[9px]">Designed by Mel-Technologies</p>
 						</a>
 					</div>
 				</div>
 			</div>
 			<div
 				style={style}
-				className="w-full h-fit sm:h-[7rem] px-4 flex justify-end bg-no-repeat bg-cover">
-				<Link href="/">
-					<div className=" p-3 text-black sm:text-white flex flex-col items-center gap-1 w-fit h-fit">
-						<span>
-							<ArrowUp className=" text-tertiary" />
-						</span>
-						<span className=" text-xs">back to top</span>
-					</div>
-				</Link>
+				className=" absolute bottom-0 left-0  w-screen h-fit sm:h-[8rem] px-4 flex items-center justify-end bg-no-repeat bg-cover">
+				<div
+					onClick={() => animateScroll.scrollToTop(options)}
+					className=" p-3 text-black sm:text-white flex flex-col items-center gap-1 w-fit h-fit">
+					<span>
+						<ArrowUp className=" text-tertiary" />
+					</span>
+					<span className=" text-xs">back to top</span>
+				</div>
 			</div>
 		</footer>
 	);

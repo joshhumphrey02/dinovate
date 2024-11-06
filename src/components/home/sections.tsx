@@ -37,13 +37,13 @@ const Sections = () => {
 	}, []);
 	return (
 		<div className="pb-20 grid gap-16 ">
-			<div className="space-y-16">
+			<div className="flex flex-col gap-8 sm:gap-20">
 				<div className="grid sm:grid-cols-[30%,auto,17%]  gap-8">
-					<div className=" hidden sm:flex justify-end">
+					<div className=" hidden sm:flex justify-end pt-4">
 						<LineIcon />
 					</div>
-					<div className="px-4">
-						<h1 className="text-xl sm:text-3xl mb-7">
+					<div className="px-4 space-y-4">
+						<h1 className="text-xl sm:text-3xl">
 							IGNITING CHANGE WITH STRATEGIC COMMUNICATIONS
 						</h1>
 						<p className="text-md leading-relaxed mb-5">
@@ -54,7 +54,7 @@ const Sections = () => {
 						</p>
 					</div>
 				</div>
-				<div className=" grid grid-cols-2 sm:w-[80%] sm:mx-auto sm:grid-cols-3 gap-6 px-4 sm:px-20">
+				<div className=" grid grid-cols-2 sm:w-[80%] sm:mx-auto sm:grid-cols-3 gap-6 sm:gap-12 px-4 sm:px-20">
 					{data.map((item) => (
 						<Link ref={addToRefs} href={item.link} key={item.title}>
 							<div className="">
@@ -67,7 +67,7 @@ const Sections = () => {
 					))}
 				</div>
 			</div>
-			<div className=" space-y-10">
+			<div className=" space-y-16 pb-10">
 				<div className="grid sm:grid-cols-[30%,auto,17%]  gap-8">
 					<div className=" hidden sm:flex pt-4 justify-end">
 						<LineIcon />
