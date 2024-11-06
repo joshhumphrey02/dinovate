@@ -41,7 +41,7 @@ const Impact = () => {
 	}, []);
 
 	return (
-		<div className="grid sm:grid-cols-3 sm:justify-center gap-20 px-4 sm:px-16 py-10">
+		<div className="grid sm:grid-cols-3 sm:justify-center gap-12 px-4 sm:px-[8rem] py-10">
 			{data.map((i) => (
 				<div
 					key={i.title}
@@ -56,13 +56,13 @@ const Impact = () => {
 								src={i.image}
 								className="mb-4"
 							/>
-							<h2 className="text-3xl text-center font-bold text-amber-500 mb-4">
+							<h2 className="text-2xl sm:text-[2.2rem] leading-[1.2] text-center font-medium text-amber-500 mb-4">
 								<Link href={'#'} className="flex flex-col gap-y-3">
-									{i.title}
+									<span className=" uppercase font-oswald">{i.title}</span>
 									<ArrowIcon />
 								</Link>
 							</h2>
-							<p className="text-center line-clamp-4 text-md leading-relaxed">
+							<p className="text-center line-clamp-4 text-md leading-relaxed text-gray-500">
 								{i.des}
 							</p>
 						</CardContent>
@@ -77,7 +77,7 @@ export default Impact;
 
 const data = [
 	{
-		title: 'Creative Problem-Solvers with a Purpose',
+		title: 'Creative Problem-Solver',
 		des: `Our team is made up of passionate creatives and strategic thinkers who believe in using our talents for good. We collaborate with organizations, and communities to uncover the stories that need to be told. At Dinovate, every project is a partnership. We bring our expertise in communications, while you bring your deep knowledge of your cause. Together, we achieve outcomes that make a difference.
 `,
 		image: '/images/strategy.webp',

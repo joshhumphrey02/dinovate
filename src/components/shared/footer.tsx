@@ -26,7 +26,7 @@ export default function Footer() {
 	};
 	return (
 		<footer className="space-y-8 relative pb-10">
-			<div className=" px-4 sm:px-16 mx-auto space-y-8 max-w-[1350px]">
+			<div className=" px-4 sm:px-[8rem] mx-auto space-y-8 max-w-[1350px]">
 				<div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
 					{footer.map((item) => (
 						<div key={item.title} className="flex flex-col gap-3">
@@ -34,7 +34,7 @@ export default function Footer() {
 								<h3 className="text-sm font-semibold text-gray-700">
 									{item.title}
 								</h3>
-								<LineIcon className="h-2" />
+								<LineIcon fill="#000" className="h-2" />
 							</div>
 							<ul className="flex flex-col gap-1">
 								{item.links.map((link) => (

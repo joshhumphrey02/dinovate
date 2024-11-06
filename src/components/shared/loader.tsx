@@ -27,10 +27,7 @@ export default function Loader() {
 				duration: 2,
 				delay: 0.5,
 			}}
-			className=" absolute inset-0 z-50 grid grid-cols-[20vw,100vw]"
-			style={{ width: '140vw', height: '100vh' }}>
-			<div className="bg-black h-full" style={{ width: '40vw' }} />
-			<div className="bg-tertiary h-full" style={{ width: '100vw' }} />
-		</motion.div>
+			className=" fixed inset-0 bg-tertiary z-50 "
+			style={{ width: '140vw', height: '100vh' }}></motion.div>
 	);
 }

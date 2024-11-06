@@ -8,8 +8,8 @@ export function Projects() {
 	));
 
 	return (
-		<div className="w-full h-full py-20">
-			<h2 className="px-4 sm:px-20  text-xl md:text-3xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
+		<div className="w-full pl-4 sm:pl-[8rem] h-full py-20">
+			<h2 className="  text-xl md:text-3xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
 				OUR WORK (what We Do)
 			</h2>
 			<Carousel items={cards} />
