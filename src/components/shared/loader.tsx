@@ -22,9 +22,9 @@ export default function Loader() {
 			animate={{ x: '140vw' }}
 			transition={{
 				type: 'spring',
-				stiffness: 20,
-				damping: 70,
-				duration: 4,
+				stiffness: 50,
+				damping: 40,
+				duration: 2,
 				delay: 0.5,
 			}}
 			className=" absolute inset-0 z-50 grid grid-cols-[20vw,100vw]"
