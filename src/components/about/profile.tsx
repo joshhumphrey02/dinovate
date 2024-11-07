@@ -62,15 +62,15 @@ export default function Profile() {
 		<div>
 			<div className="grid sm:grid-cols-3 relative gap-4">
 				{mergedArray.map((t, i) => (
-					<div key={uniqueId()} ref={addToRefs}>
+					<div key={uniqueId()} ref={addToRefs} className=" relative">
 						{typeof t === 'string' ? (
-							<div>
-								<h1 className="text-4xl uppercase basis-[31%] font-oswald font-medium sm:text-5xl text-blue-600">
+							<div className="h-full flex items-center justify-center">
+								<h1 className="text-4xl select-none uppercase basis-[31%] font-oswald font-medium sm:text-5xl text-blue-600">
 									{t}
 								</h1>
 							</div>
 						) : (
-							<div className=" relative ">
+							<div className="relative">
 								<Sheet>
 									<div className=" relative basis-[31%]">
 										<div className="flex flex-col gap-1">
@@ -78,7 +78,7 @@ export default function Profile() {
 												<img
 													src={t.image}
 													alt={t.name}
-													className=" w-full sm:min-w-[15rem] aspect-square h-[21rem] sm:h-[19rem]"
+													className=" w-full object-cover h-[21rem] sm:h-[19rem]"
 												/>
 											</div>
 											<h4>{t.name}</h4>
