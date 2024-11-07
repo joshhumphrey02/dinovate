@@ -34,7 +34,7 @@ export default function Footer(props: Props) {
 		smooth: 'easeInOutQuad',
 	};
 	return (
-		<footer className="space-y-8 relative py-10">
+		<footer className="space-y-8 relative py-12">
 			<div className=" px-4 sm:px-[8rem] mx-auto space-y-8 max-w-[1350px]">
 				<div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
 					{footer.map((item) => (
@@ -84,7 +84,7 @@ export default function Footer(props: Props) {
 						))}
 					</div>
 					<div className="space-y-1 flex flex-col items-center">
-						<p>
+						<p className="text-xs">
 							© Copyright {new Date(Date.now()).getFullYear().toString()}{' '}
 							Dinovate Solutions
 						</p>

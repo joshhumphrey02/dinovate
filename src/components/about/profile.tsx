@@ -1,3 +1,4 @@
+'use client';
 import {
 	ArrowLeft,
 	Facebook,
@@ -17,84 +18,122 @@ import {
 } from '../ui/sheet';
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
+import { useEffect, useRef } from 'react';
+import { uniqueId } from 'lodash';
+
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Profile() {
+	const cardsRef = useRef<HTMLDivElement[]>([]);
+
+	const addToRefs = (el: any) => {
+		if (el && !cardsRef.current.includes(el)) {
+			cardsRef.current.push(el);
+		}
+	};
+	useEffect(() => {
+		gsap.fromTo(
+			cardsRef.current,
+			{ opacity: 0, y: 60 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 1,
+				stagger: 0.2,
+				ease: 'power3.out',
+				scrollTrigger: {
+					trigger: cardsRef.current,
+					start: 'top 80%',
+					end: 'bottom 20%',
+					toggleActions: 'play none none reset',
+				},
+			}
+		);
+	}, []);
+	const mergedArray = Array.from({
+		length: Math.max(text.length, data.length),
+	})
+		.flatMap((_, i) => [text[i], data[i]])
+		.filter(Boolean);
 	return (
 		<div>
 			<div className="grid sm:grid-cols-3 relative gap-4">
-				{text.map((t, i) => (
-					<>
-						<h1
-							key={t}
-							className="text-2xl h-fit basis-[31%] sm:text-5xl text-pink-700">
-							{t}
-						</h1>
-						<div key={data[i].name} className=" relative -mt-20">
-							<Sheet>
-								<div className=" relative basis-[31%]">
-									{/* <p className="absolute left-0 top-1/2 transform -translate-y-1/2 rotate-90  uppercase tracking-wide text-xs text-tertiary p-0">
-									{data[i].title}
-								</p> */}
-									<div className="flex flex-col gap-1">
-										<div>
-											<img
-												src={data[i].image}
-												alt={data[i].name}
-												className=" w-full sm:min-w-[15rem] h-[16.7rem]"
-											/>
-										</div>
-										<h4>{data[i].name}</h4>
-										<p className="text-xs text-tertiary">{data[i].title}</p>
-										<div className=" flex gap-2 items-center">
-											<span>
-												<Mail className="w-4 h-4" />
-											</span>
-											<span>
-												<Linkedin className="w-4 h-4" />
-											</span>
-											<SheetTrigger className=" uppercase w-fit text-pink-700 font-bold">
-												Bio
-											</SheetTrigger>
-										</div>
-									</div>
-								</div>
-								<SheetContent
-									side={'left'}
-									className={cn(
-										'px-4 space-y-4 w-full sm:min-w-[45vw] overflow-y-scroll min-h-screen'
-									)}>
-									<SheetHeader>
-										<SheetTitle className="">
-											<div className=" w-full flex justify-center">
+				{mergedArray.map((t, i) => (
+					<div key={uniqueId()} ref={addToRefs}>
+						{typeof t === 'string' ? (
+							<div>
+								<h1 className="text-4xl uppercase basis-[31%] font-oswald font-medium sm:text-5xl text-blue-600">
+									{t}
+								</h1>
+							</div>
+						) : (
+							<div className=" relative ">
+								<Sheet>
+									<div className=" relative basis-[31%]">
+										<div className="flex flex-col gap-1">
+											<div>
 												<img
-													src={data[i].image}
-													alt={data[i].name}
-													className=" w-[15rem] h-64"
+													src={t.image}
+													alt={t.name}
+													className=" w-full sm:min-w-[15rem] aspect-square h-[21rem] sm:h-[19rem]"
 												/>
 											</div>
-										</SheetTitle>
-									</SheetHeader>
-									<div
-										className={cn(
-											'grid relative gap-2 w-full sm:w-[65%] flex-col  mx-auto py-6'
-										)}>
-										<SheetClose className=" hidden sm:flex">
-											<Button variant={'link'}>
-												<div className="flex items-center justify-center p-6 bg-tertiary rounded-full z-[10000] fixed top-[45%] right-[52%] ">
-													<ArrowLeft strokeWidth={1} className="w-10 h-10" />
-												</div>
-											</Button>
-										</SheetClose>
-										<h4 className="text-xl sm:text-2xl text-tertiary">
-											{data[i].name}
-										</h4>
-										<h5>{data[i].title}</h5>
-										<p>{data[i].des}</p>
+											<h4>{t.name}</h4>
+											<p className="text-xs text-tertiary">{t.title}</p>
+											<div className=" flex gap-2 items-center">
+												<span>
+													<Mail className="w-4 h-4" />
+												</span>
+												<span>
+													<Linkedin className="w-4 h-4" />
+												</span>
+												<SheetTrigger className=" uppercase w-fit text-pink-700 font-bold">
+													Bio
+												</SheetTrigger>
+											</div>
+										</div>
 									</div>
-								</SheetContent>
-							</Sheet>
-						</div>
-					</>
+									<SheetContent
+										side={'left'}
+										className={cn(
+											'px-4 space-y-2 w-full sm:min-w-[45vw] overflow-y-scroll min-h-screen'
+										)}>
+										<SheetHeader>
+											<SheetTitle className="">
+												<div className=" w-full flex justify-center">
+													<img
+														src={t.image}
+														alt={t.name}
+														className=" w-[15rem] h-[17rem]"
+													/>
+												</div>
+											</SheetTitle>
+										</SheetHeader>
+										<div
+											className={cn(
+												'grid relative gap-2 w-full sm:w-[65%] flex-col  mx-auto py-6'
+											)}>
+											<SheetClose className=" hidden sm:flex">
+												<Button variant={'link'}>
+													<div className="flex items-center justify-center p-6 bg-tertiary rounded-full z-[10000] fixed top-[45%] right-[52%] ">
+														<ArrowLeft strokeWidth={1} className="w-10 h-10" />
+													</div>
+												</Button>
+											</SheetClose>
+											<h4 className="text-xl sm:text-2xl text-tertiary">
+												{t.name}
+											</h4>
+											<h5>{t.title}</h5>
+											<p>{t.des}</p>
+										</div>
+									</SheetContent>
+								</Sheet>
+							</div>
+						)}
+					</div>
 				))}
 			</div>
 		</div>
@@ -201,7 +240,7 @@ const data = [
 	{
 		name: 'Christine Akume-David',
 		title: 'Communication Specialist',
-		image: '/profiles/Christine-Akume.jpeg',
+		image: '/profiles/Christine-Akume-.jpeg',
 		des: 'Christine Akume-David is the communication Specialist at Dinovate Solutions, With almost a decade of diverse communication and leadership experience, she brings a distinctive skill set to the Dinovate team. Drawing from her background in media, filmmaking, and entrepreneurship. She excels in shaping compelling stories and informative content, leveraging her expertise in creative writing, copywriting, and business writing to ensure clarity and impact.',
 		social: [
 			{ icon: Facebook, link: '#' },
