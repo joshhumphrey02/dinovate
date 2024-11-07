@@ -12,10 +12,10 @@ import {
 	Twitter,
 } from 'lucide-react';
 import { ReactNode } from 'react';
-import LineIcon from '../Icons/line';
 import Link from 'next/link';
 import { animateScroll } from 'react-scroll';
 import { cn } from '@/lib/utils';
+import Line2 from '../Icons/line2';
 
 interface Props {
 	isDark?: boolean;
@@ -36,12 +36,20 @@ export default function Footer(props: Props) {
 	return (
 		<footer className="space-y-8 relative py-12">
 			<div className=" px-4 sm:px-[8rem] mx-auto space-y-8 max-w-[1350px]">
-				<div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+				<div className="grid sm:grid-cols-4 gap-6">
 					{footer.map((item) => (
 						<div key={item.title} className="flex flex-col gap-3">
 							<div className="space-y-1">
-								<h3 className="text-sm font-semibold">{item.title}</h3>
-								<LineIcon fill={isDark ? '#ffab00' : '#000'} className="h-2" />
+								<h3 className="text-sm sm:text-lg font-oswald uppercase font-normal">
+									{item.title}
+								</h3>
+								<span className=" ">
+									<img
+										src="/svg/line2.svg"
+										alt=" lines"
+										className="w-[100px] h-1 object-fit"
+									/>
+								</span>
 							</div>
 							<ul className="flex flex-col gap-1">
 								{item.links.map((link) => (
@@ -60,7 +68,7 @@ export default function Footer(props: Props) {
 										<Link
 											href={link.href}
 											className={cn(
-												'text-gray-500 hover:text-gray-800',
+												'text-gray-700 font-light hover:text-gray-800',
 												isDark && 'text-white hover:text-tertiary/80'
 											)}>
 											{link.label}
@@ -83,7 +91,7 @@ export default function Footer(props: Props) {
 							</Link>
 						))}
 					</div>
-					<div className="space-y-1 flex flex-col items-center">
+					<div className="space-y-2 flex flex-col items-center">
 						<p className="text-xs">
 							© Copyright {new Date(Date.now()).getFullYear().toString()}{' '}
 							Dinovate Solutions

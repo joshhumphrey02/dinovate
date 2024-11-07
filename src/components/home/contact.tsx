@@ -1,11 +1,47 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import CircleIcon from '../Icons/circle';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
+	const cardsRef = useRef<HTMLDivElement[]>([]);
+
+	const addToRefs = (el: any) => {
+		if (el && !cardsRef.current.includes(el)) {
+			cardsRef.current.push(el);
+		}
+	};
+
+	useEffect(() => {
+		cardsRef.current.forEach((card, index) => {
+			gsap.fromTo(
+				card,
+				{ opacity: 0, y: 80 },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 2,
+					stagger: 0.6 * index,
+					ease: 'power3.out',
+					scrollTrigger: {
+						trigger: card,
+						start: 'top 80%',
+						end: 'bottom 20%',
+						toggleActions: 'play none none reset',
+					},
+				}
+			);
+		});
+	}, []);
 	const router = useRouter();
 	return (
-		<div className="flex justify-center sm:py-10 select-none px-4 sm:px-16">
+		<div
+			ref={addToRefs}
+			className="flex justify-center sm:py-10 select-none px-4 sm:px-16">
 			<div
 				onClick={() =>
 					router.push('?contact=true', {

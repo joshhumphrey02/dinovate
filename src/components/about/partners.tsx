@@ -1,6 +1,6 @@
 export default function Partners() {
 	return (
-		<div className="grid sm:grid-cols-[45%,auto] gap-4">
+		<div className="grid sm:grid-cols-[45%,auto] py-6 sm:py-12 gap-4">
 			<div className="space-y-4 sm:space-y-8">
 				<h1 className="text-2xl sm:text-6xl text-tertiary">
 					We Partner, We Don’t Just Serve
@@ -16,7 +16,7 @@ export default function Partners() {
 			</div>
 			<div className=" flex sm:h-[30rem] items-center justify-center">
 				<img
-					src="/profiles/Dolapo.jpg"
+					src="/partner.jpg"
 					className=" w-[25rem] h-[25rem] object-cover"
 					alt="group"
 				/>

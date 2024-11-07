@@ -7,7 +7,7 @@ import Link from 'next/link';
 import MenuIcon from '../Icons/menu';
 import CloseIcon from '../Icons/close';
 import Image from 'next/image';
-import Logo from '@/assets/logo-color.png';
+import Logo from '@/assets/big-logo.png';
 
 export default function Sidebar() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -81,7 +81,7 @@ export default function Sidebar() {
 									ref={(el) => {
 										linksRef.current[index] = el;
 									}}>
-									<span className="group-hover:hidden transition-all">
+									<span className="group-hover:hidden font-oswald transition-all">
 										{text.title}
 									</span>
 									<span className="hidden text-white font-floodstd capitalize group-hover:flex transition-all">

@@ -37,7 +37,7 @@ export default function Profile() {
 	useEffect(() => {
 		gsap.fromTo(
 			cardsRef.current,
-			{ opacity: 0, y: 60 },
+			{ opacity: 0, y: 40 },
 			{
 				opacity: 1,
 				y: 0,
@@ -103,18 +103,18 @@ export default function Profile() {
 										)}>
 										<SheetHeader>
 											<SheetTitle className="">
-												<div className=" w-full flex justify-center">
+												<div className=" w-full flex justify-center sm:w-[60%] sm:mx-auto sm:justify-start">
 													<img
 														src={t.image}
 														alt={t.name}
-														className=" w-[15rem] h-[17rem]"
+														className="w-full max-w-[18rem] object-cover h-[21rem] sm:h-[19rem]"
 													/>
 												</div>
 											</SheetTitle>
 										</SheetHeader>
 										<div
 											className={cn(
-												'grid relative gap-2 w-full sm:w-[65%] flex-col  mx-auto py-6'
+												'grid relative gap-2 w-full sm:w-[60%] flex-col  mx-auto py-6 sm:py-0'
 											)}>
 											<SheetClose className=" hidden sm:flex">
 												<Button variant={'link'}>

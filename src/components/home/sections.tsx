@@ -5,6 +5,7 @@ import LineIcon from '../Icons/line';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { cn } from '@/lib/utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,7 +43,7 @@ const Sections = () => {
 					<div className=" hidden sm:flex justify-end pt-4">
 						<LineIcon fill="#000" />
 					</div>
-					<div className="px-4 space-y-4">
+					<div ref={addToRefs} className="px-4 space-y-4">
 						<h1 className="text-xl sm:text-2xl text-gray-600 font-normal">
 							IGNITING CHANGE WITH{' '}
 							<span className=" font-floodstd text-tertiary text-2xl sm:text-3xl px-px">
@@ -83,7 +84,7 @@ const Sections = () => {
 					<div className=" hidden sm:flex pt-4 justify-end">
 						<LineIcon fill="#000" />
 					</div>
-					<div className="px-4">
+					<div ref={addToRefs} className="px-4">
 						<p className="text-md leading-8 font-light mb-5">
 							We don’t see clients;{' '}
 							<span className="font-normal px-1">we see partners.</span> Every
@@ -101,12 +102,15 @@ const Sections = () => {
 					</div>
 				</div>
 				<div className="grid grid-cols-2 sm:grid-cols-3 gap-6 w-[70%] mx-auto">
-					{partners.map((item) => (
-						<div key={item}>
+					{partners.map((item, i) => (
+						<div ref={addToRefs} key={item}>
 							<img
 								src={`/partners/${item}`}
 								alt={item}
-								className="w-[100px] sm:w-[200px] bg-transparent object-cover mx-auto"
+								className={cn(
+									'w-[100px] sm:w-[180px] bg-transparent object-cover mx-auto',
+									i === 0 && 'w-[150px] h-[100px]'
+								)}
 							/>
 						</div>
 					))}
