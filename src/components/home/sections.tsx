@@ -62,7 +62,6 @@ const Sections = () => {
 							<span className=" font-normal px-1">
 								projects that drive real change.
 							</span>
-							Here are a few examples of our impact:
 						</p>
 					</div>
 				</div>
