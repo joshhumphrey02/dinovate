@@ -65,7 +65,7 @@ export default function Profile() {
 					<div key={uniqueId()} ref={addToRefs} className=" relative">
 						{typeof t === 'string' ? (
 							<div className="h-full flex items-center justify-center">
-								<h1 className="text-4xl select-none uppercase basis-[31%] font-oswald font-medium sm:text-5xl text-blue-600">
+								<h1 className="text-4xl select-none uppercase w-full md:basis-[31%] font-oswald font-medium sm:text-5xl text-blue-600">
 									{t}
 								</h1>
 							</div>
