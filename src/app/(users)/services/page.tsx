@@ -64,7 +64,7 @@ export default function Services() {
 	);
 }
 
-export const profilesData = [
+const profilesData = [
 	{
 		name: 'Temidayo Ibitoye',
 		title: 'CEO and founder',
