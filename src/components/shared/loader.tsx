@@ -27,7 +27,7 @@ export default function Loader() {
 				duration: 2,
 				delay: 0.5,
 			}}
-			className=" fixed inset-0 bg-tertiary z-50 "
+			className=" fixed inset-0 bg-tertiary z-50 h-screen "
 			style={{ width: '140vw', height: '100vh' }}></motion.div>
 	);
 }

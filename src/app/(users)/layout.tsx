@@ -14,7 +14,7 @@ export default function HomeLayout({
 			<Header />
 			<Sidebar />
 			{children}
-			<Prompt />
+			{/* <Prompt /> */}
 		</div>
 	);
 }

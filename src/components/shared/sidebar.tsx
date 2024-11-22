@@ -71,7 +71,7 @@ export default function Sidebar() {
 						</div>
 
 						{/* Menu Links */}
-						<nav className="flex flex-col items-center sm:items-start space-y-4 sm:space-y-3 xl:space-y-4 font-oswald text-3xl sm:text-3xl font-light text-tertiary">
+						<nav className="flex flex-col items-center justify-center sm:items-start space-y-4 sm:space-y-3 xl:space-y-4 font-oswald text-3xl sm:text-3xl 2xl:text-5xl font-light text-tertiary">
 							{data.map((text, index) => (
 								<Link
 									key={text.title}
@@ -115,9 +115,9 @@ export default function Sidebar() {
 }
 
 const data = [
-	{ title: 'PROJECTS', caption: "Impact we've driven" },
+	{ title: 'WORKS', caption: "Impact we've driven" },
+	{ title: 'ABOUT US', caption: 'Under the hood' },
 	{ title: 'SERVICES', caption: 'What we do' },
 	{ title: 'THE HUB', caption: 'Interesting content' },
-	{ title: 'ABOUT US', caption: 'Under the hood' },
 	{ title: 'CONTACT', caption: 'Ready to talk' },
 ];

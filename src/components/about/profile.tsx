@@ -54,9 +54,9 @@ export default function Profile() {
 		);
 	}, []);
 	const mergedArray = Array.from({
-		length: Math.max(text.length, data.length),
+		length: Math.max(text.length, profilesData.length),
 	})
-		.flatMap((_, i) => [text[i], data[i]])
+		.flatMap((_, i) => [text[i], profilesData[i]])
 		.filter(Boolean);
 	return (
 		<div>
@@ -78,7 +78,7 @@ export default function Profile() {
 												<img
 													src={t.image}
 													alt={t.name}
-													className=" w-full object-cover h-[21rem] sm:h-[19rem]"
+													className=" w-full object-cover h-[21rem] sm:h-[19rem] xl:h-[24rem]"
 												/>
 											</div>
 											<h4>{t.name}</h4>
@@ -140,7 +140,7 @@ export default function Profile() {
 	);
 }
 
-const data = [
+export const profilesData = [
 	{
 		name: 'Temidayo Ibitoye',
 		title: 'CEO and founder',

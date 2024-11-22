@@ -3,7 +3,7 @@ type SVGProps = React.SVGProps<SVGSVGElement>;
 
 const Line2: React.FC<SVGProps> = (props) => (
 	<svg xmlns="http://www.w3.org/2000/svg" width={288.685} height={8} {...props}>
-		<g fill="#ffab00" fillRule="evenodd">
+		<g fill={props.color || '#ffab00'} fillRule="evenodd">
 			<path
 				data-name="Path 1384"
 				d="M69.845.345h-.341c-.062-.237.17-.175.17-.345.146.021.192.146.171.345z"

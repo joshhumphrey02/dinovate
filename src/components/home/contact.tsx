@@ -20,16 +20,16 @@ export default function Contact() {
 		cardsRef.current.forEach((card, index) => {
 			gsap.fromTo(
 				card,
-				{ opacity: 0, y: 80 },
+				{ opacity: 0, y: 20 },
 				{
 					opacity: 1,
 					y: 0,
-					duration: 2,
+					duration: 1,
 					stagger: 0.6 * index,
 					ease: 'power3.out',
 					scrollTrigger: {
 						trigger: card,
-						start: 'top 80%',
+						start: 'top 90%',
 						end: 'bottom 20%',
 						toggleActions: 'play none none reset',
 					},

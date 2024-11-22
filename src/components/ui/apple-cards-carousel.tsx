@@ -12,6 +12,7 @@ import Image, { ImageProps } from 'next/image';
 import { useOutsideClick } from '@/hooks/use-outside-click';
 import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 import ArrowIcon from '../Icons/arrow';
+import { useRouter } from 'next/navigation';
 
 interface CarouselProps {
 	items: JSX.Element[];
@@ -22,7 +23,6 @@ type Card = {
 	src: string;
 	title: string;
 	des: string;
-	content: React.ReactNode;
 };
 
 export const CarouselContext = createContext<{
@@ -166,6 +166,7 @@ export const Card = ({
 	index: number;
 	layout?: boolean;
 }) => {
+	const router = useRouter();
 	const [open, setOpen] = useState(false);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const { onCardClose, currentIndex } = useContext(CarouselContext);
@@ -190,7 +191,7 @@ export const Card = ({
 	useOutsideClick(containerRef, () => handleClose());
 
 	const handleOpen = () => {
-		setOpen(true);
+		router.push('#');
 	};
 
 	const handleClose = () => {
@@ -200,7 +201,7 @@ export const Card = ({
 
 	return (
 		<>
-			<AnimatePresence>
+			{/* <AnimatePresence>
 				{open && (
 					<div className="fixed inset-0 h-screen z-50 overflow-auto">
 						<motion.div
@@ -231,11 +232,10 @@ export const Card = ({
 								className="text-2xl md:text-5xl font-semibold text-neutral-700 mt-4 dark:text-white">
 								{card.title}
 							</motion.p>
-							<div className="py-10">{card.content}</div>
 						</motion.div>
 					</div>
 				)}
-			</AnimatePresence>
+			</AnimatePresence> */}
 			<motion.button
 				layoutId={layout ? `card-${card.title}` : undefined}
 				onClick={handleOpen}
@@ -249,7 +249,7 @@ export const Card = ({
 					</motion.p>
 					<motion.p
 						layoutId={layout ? `des-${card.des}` : undefined}
-						className="text-white text-sm md:text-base font-medium font-sans text-left">
+						className="text-white line-clamp-2 text-sm md:text-base font-medium font-sans text-left">
 						{card.des}
 					</motion.p>
 				</div>
@@ -277,7 +277,7 @@ export const BlurImage = ({
 		<Image
 			className={cn(
 				'transition duration-300',
-				isLoading ? 'blur-sm' : 'blur-0',
+				isLoading ? 'blur-sm' : 'blur-none',
 				className
 			)}
 			onLoad={() => setLoading(false)}
@@ -287,7 +287,7 @@ export const BlurImage = ({
 			loading="lazy"
 			decoding="async"
 			blurDataURL={typeof src === 'string' ? src : undefined}
-			alt={alt ? alt : 'Background of a beautiful view'}
+			alt={alt ? alt : 'Background of a beautiful project'}
 			{...rest}
 		/>
 	);

@@ -5,7 +5,9 @@ export default function Banner() {
 	};
 	return (
 		<div>
-			<div style={style} className="w-full relative h-[20rem] sm:h-[40rem]">
+			<div
+				style={style}
+				className="w-full relative h-[20rem] sm:h-[40rem] xl:h-[50rem]">
 				<video
 					className=" w-full h-full object-cover"
 					autoPlay={true}

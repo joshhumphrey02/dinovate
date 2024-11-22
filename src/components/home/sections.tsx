@@ -24,7 +24,7 @@ const Sections = () => {
 			{
 				opacity: 1,
 				y: 0,
-				duration: 1.5,
+				duration: 0.5,
 				stagger: 0.4,
 				ease: 'power3.out',
 				scrollTrigger: {
@@ -65,7 +65,7 @@ const Sections = () => {
 						</p>
 					</div>
 				</div>
-				<div className=" grid grid-cols-2 sm:w-[80%] sm:mx-auto sm:grid-cols-3 gap-6 sm:gap-20 px-4 sm:px-20">
+				{/* <div className=" grid grid-cols-2 sm:w-[80%] sm:mx-auto sm:grid-cols-3 gap-6 sm:gap-20 px-4 sm:px-20">
 					{data.map((item) => (
 						<Link ref={addToRefs} href={item.link} key={item.title}>
 							<div className="space-y-6 flex flex-col h-full">
@@ -76,7 +76,7 @@ const Sections = () => {
 							</div>
 						</Link>
 					))}
-				</div>
+				</div> */}
 			</div>
 			<div className=" space-y-16 pb-10">
 				<div className="grid sm:grid-cols-[30%,auto,17%]  gap-8">
@@ -108,7 +108,7 @@ const Sections = () => {
 								alt={item}
 								className={cn(
 									'w-[100px] sm:w-[180px] bg-transparent object-cover mx-auto',
-									i === 0 && 'w-[150px] h-[100px]'
+									i === 0 && 'w-[150px] h-[50px] md:h-[100px]'
 								)}
 							/>
 						</div>
@@ -121,32 +121,32 @@ const Sections = () => {
 
 export default Sections;
 
-const data = [
-	{
-		title: 'MEDIA PRODUCTION',
-		link: '#',
-	},
-	{
-		title: 'STRATEGIC COMMUNICATION',
-		link: '#',
-	},
-	{
-		title: 'DESIGN AND BRANDING',
-		link: '#',
-	},
-	{
-		title: 'ADVOCACY',
-		link: '#',
-	},
-	{
-		title: 'CAPACITY BUILDING',
-		link: '#',
-	},
-	{
-		title: 'CREATIVE SPACES',
-		link: '#',
-	},
-];
+// const data = [
+// 	{
+// 		title: 'MEDIA PRODUCTION',
+// 		link: '#',
+// 	},
+// 	{
+// 		title: 'STRATEGIC COMMUNICATION',
+// 		link: '#',
+// 	},
+// 	{
+// 		title: 'DESIGN AND BRANDING',
+// 		link: '#',
+// 	},
+// 	{
+// 		title: 'ADVOCACY',
+// 		link: '#',
+// 	},
+// 	{
+// 		title: 'CAPACITY BUILDING',
+// 		link: '#',
+// 	},
+// 	{
+// 		title: 'CREATIVE SPACES',
+// 		link: '#',
+// 	},
+// ];
 
 const partners = [
 	'UNDP.png',
