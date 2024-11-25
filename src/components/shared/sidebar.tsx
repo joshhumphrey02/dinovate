@@ -7,7 +7,7 @@ import Link from 'next/link';
 import MenuIcon from '../Icons/menu';
 import CloseIcon from '../Icons/close';
 import Image from 'next/image';
-import Logo from '@/assets/big-logo.png';
+import Logo from '@/assets/main-logo.png';
 
 export default function Sidebar() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -59,10 +59,10 @@ export default function Sidebar() {
 							<Link
 								onClick={toggleSidebar}
 								href={'/'}
-								className=" w-[400px] h-[200px] ">
+								className=" w-[500px] h-[200px] ">
 								<Image
 									src={Logo}
-									width={300}
+									width={400}
 									height={200}
 									className=" object-cover w-full h-full "
 									alt="Logo"
@@ -71,20 +71,20 @@ export default function Sidebar() {
 						</div>
 
 						{/* Menu Links */}
-						<nav className="flex flex-col items-center justify-center sm:items-start space-y-4 sm:space-y-3 xl:space-y-4 font-oswald text-3xl sm:text-3xl 2xl:text-5xl font-light text-tertiary">
+						<nav className="flex flex-col items-center justify-center sm:items-start space-y-4 sm:space-y-3 xl:space-y-6 font-oswald text-3xl sm:text-3xl 2xl:text-5xl font-light text-tertiary">
 							{data.map((text, index) => (
 								<Link
 									key={text.title}
-									href={`/${text.title.toLowerCase().replace(' ', '-')}`}
-									onClick={toggleSidebar}
+									href={text.link}
+									onClick={() => text.title !== 'CONTACT' && toggleSidebar}
 									className="group "
 									ref={(el) => {
 										linksRef.current[index] = el;
 									}}>
-									<span className="group-hover:hidden font-oswald transition-all">
+									<span className="group-hover:hidden font-oswald transition-all duration-1000">
 										{text.title}
 									</span>
-									<span className="hidden text-white font-floodstd capitalize group-hover:flex transition-all">
+									<span className="hidden text-white font-floodstd capitalize group-hover:flex transition-all duration-1000">
 										{text.caption}
 									</span>
 								</Link>
@@ -115,9 +115,9 @@ export default function Sidebar() {
 }
 
 const data = [
-	{ title: 'WORKS', caption: "Impact we've driven" },
-	{ title: 'ABOUT US', caption: 'Under the hood' },
-	{ title: 'SERVICES', caption: 'What we do' },
-	{ title: 'THE HUB', caption: 'Interesting content' },
-	{ title: 'CONTACT', caption: 'Ready to talk' },
+	{ title: 'WORKS', caption: "Impact we've driven", link: 'works' },
+	{ title: 'ABOUT US', caption: 'Under the hood', link: 'about-us' },
+	{ title: 'SERVICES', caption: 'What we do', link: 'services' },
+	{ title: 'THE HUB', caption: 'Interesting content', link: 'the-hub' },
+	{ title: 'CONTACT', caption: 'Ready to talk', link: '?contact=true' },
 ];

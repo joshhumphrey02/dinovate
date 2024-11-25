@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import LineIcon from '../Icons/line';
-import Logo from '@/assets/logo-color.png';
+import Logo from '@/assets/main-logo.png';
 import Link from 'next/link';
 
 const Header = () => {
