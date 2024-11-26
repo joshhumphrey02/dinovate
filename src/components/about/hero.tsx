@@ -1,12 +1,15 @@
 import LineIcon from '../Icons/line';
+import Image from '../shared/image';
 
 export default function AboutHero() {
 	return (
-		<div className=" grid sm:grid-cols-[42%,auto] gap-3">
+		<div className=" grid sm:grid-cols-[45%,auto] gap-3">
 			<div className="flex flex-col gap-4 sm:gap-8">
-				<img
-					src="https://shapehistory.wpenginepowered.com/wp-content/uploads/2020/07/200707_about-us_header.jpg"
-					alt=""
+				<Image
+					src={'office2.jpg'}
+					bucketName="images"
+					alt={'office'}
+					className="h-[30rem] xl:h-[40rem]"
 				/>
 				<LineIcon />
 				<div>

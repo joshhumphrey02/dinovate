@@ -1,4 +1,4 @@
-model Posts {
+model Post {
   id        String   @id @default(cuid())
   title     String
   content   String
@@ -6,4 +6,6 @@ model Posts {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   images    Image[]
+  videos    Video[]
+  links     Link[]
 }

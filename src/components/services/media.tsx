@@ -1,7 +1,5 @@
-import feature1 from '@/assets/uploads/feature2.jpg';
-import feature3 from '@/assets/uploads/feature3.jpg';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from '../shared/image';
 
 export default function ServiceMedia() {
 	return (
@@ -32,16 +30,16 @@ export default function ServiceMedia() {
 							<div className="grid md:grid-cols-2 gap-6">
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature1}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'project6.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature3}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'project8.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 							</div>
@@ -56,19 +54,26 @@ export default function ServiceMedia() {
 							campaigns, documentaries or brand narratives.
 						</p>
 						<div>
-							<div className="grid md:grid-cols-2 gap-6">
+							<div className="grid md:grid-cols-3 gap-6">
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature1}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'office6.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature3}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'project5.jpg'}
+										bucketName="images"
+										alt={'documentries'}
+									/>
+								</div>
+								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
+									<Image
+										src={'iwmi1.jpeg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 							</div>
@@ -83,19 +88,26 @@ export default function ServiceMedia() {
 							facilitating meaningful conversations.
 						</p>
 						<div>
-							<div className="grid md:grid-cols-2 gap-6">
+							<div className="grid md:grid-cols-3 gap-4">
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature1}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'office7.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature3}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'office8.jpg'}
+										bucketName="images"
+										alt={'documentries'}
+									/>
+								</div>
+								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
+									<Image
+										src={'project3.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 							</div>

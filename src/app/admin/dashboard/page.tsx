@@ -10,7 +10,7 @@ import { getMessages } from '@/lib/actions/request-actions';
 import { getDashboardData } from '@/lib/actions';
 import { validateRequest } from '@/lib/lucia/validate-request';
 import { redirect } from 'next/navigation';
-import { getProducts } from '@/lib/actions/product-actions';
+import { getProjects } from '@/lib/actions/project-actions';
 
 export const metadata: Metadata = {
 	title: 'AGCOMS Dashboard',
@@ -24,7 +24,7 @@ export default async function Dashboard() {
 	}
 	const data = await getMessages();
 	const info = await getDashboardData();
-	const products = await getProducts({
+	const products = await getProjects({
 		take: 4,
 		orderBy: {
 			createdAt: 'desc',

@@ -10,14 +10,14 @@ import Link from 'next/link';
 import NewProduct from './new-product';
 import { toast } from 'sonner';
 import { cn, uniqueId } from '@/lib/utils';
-import { deleteProduct, ProductType } from '@/lib/actions/product-actions';
+import { deleteProduct, ProjectType } from '@/lib/actions/project-actions';
 import Image from '@/components/shared/image';
 import HtmlText from '@/components/shared/html-text';
 
 type Props = {
 	open: boolean;
 	productId?: string;
-	product: ProductType;
+	product: ProjectType;
 	edit?: string;
 };
 
@@ -51,7 +51,6 @@ export function ProductAlert({ open, product, productId, edit }: Props) {
 													src={im.url}
 													alt={product.name}
 													bucketName="images"
-													folderName="product-images"
 												/>
 											</div>
 										))}

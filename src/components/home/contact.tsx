@@ -49,7 +49,7 @@ export default function Contact() {
 					})
 				}
 				className=" relative cursor-pointer w-full sm:w-1/2">
-				<h2 className=" select-none absolute top-[40%] left-[20%] text-2xl sm:text-5xl font-floodstd ">
+				<h2 className=" select-none absolute top-[40%] left-[16%] text-2xl sm:text-5xl font-floodstd ">
 					Send us a brief
 				</h2>
 				<div className="w-full h-full">

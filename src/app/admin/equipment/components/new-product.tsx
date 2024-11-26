@@ -29,7 +29,7 @@ import { Loader, Trash, Plus } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import ProductCategorySelect from '@/components/shared/select-product-category';
 import ImageUploader from '@/components/shared/image-uploader';
-import { createProduct, ProductType } from '@/lib/actions/product-actions';
+import { createProduct, ProjectType } from '@/lib/actions/project-actions';
 // import SpecsGroupSelect from '@/components/shared/select-spec-group';
 const TextEditor = dynamic(() => import('@/components/shared/text-editor'), {
 	ssr: false,
@@ -53,7 +53,7 @@ const ImgsSchema = ProductFormSchema.pick({
 	images: true,
 });
 
-const NewProduct = (props: { product?: ProductType }) => {
+const NewProduct = (props: { product?: ProjectType }) => {
 	const { product } = props;
 	const [step, setStep] = React.useState(1);
 	const [loading, setLoading] = React.useState(false);
@@ -524,7 +524,6 @@ function Images({ form }: FormProps) {
 					<FormControl>
 						<ImageUploader
 							bucketName="images"
-							folderName="product-images"
 							images={form.getValues('images') as any}
 							saveImages={(image) => form.setValue('images', image)}
 						/>

@@ -5,21 +5,62 @@ import { ActionResponse } from '.';
 import prisma from '../prisma';
 import { ProductFormInput, ProductFormSchema } from '../validators/auth';
 
-export async function getProducts(args: {
+export async function getProjects(args: {
 	cursor?: string;
 	take: number;
-	skip: number;
+	skip?: number;
 	orderBy: {
 		createdAt: 'asc' | 'desc';
 	};
+	search?: string;
 }) {
 	try {
-		const { take, skip, orderBy } = args;
-		const products = await prisma.products.findMany({
+		const { take, skip, orderBy, search } = args;
+		const searchKey = search && search !== 'all' ? search : null;
+		const projects = await prisma.project.findMany({
 			...(args.cursor && { cursor: { id: args.cursor } }),
+			...(searchKey && {
+				where: {
+					category: {
+						slug: searchKey,
+					},
+				},
+			}),
 			take,
 			orderBy,
 			include: {
+				category: {
+					select: {
+						name: true,
+						slug: true,
+					},
+				},
+				images: {
+					select: {
+						url: true,
+					},
+					take: 1,
+				},
+			},
+		});
+		return projects;
+	} catch (error) {
+		console.error(error);
+		return [];
+	}
+}
+export type ProjectsType = Awaited<ReturnType<typeof getProjects>>;
+export async function getProjectData(projectId?: string) {
+	try {
+		if (!projectId) return null;
+		const project = await prisma.project.findUnique({
+			where: { id: projectId },
+			select: {
+				id: true,
+				name: true,
+				description: true,
+				createdAt: true,
+				updatedAt: true,
 				category: {
 					select: {
 						name: true,
@@ -34,65 +75,13 @@ export async function getProducts(args: {
 				},
 			},
 		});
-		return products;
-	} catch (error) {
-		console.error(error);
-		return [];
-	}
-}
-export type ProductsType = Awaited<ReturnType<typeof getProducts>>;
-export async function getProductData(productId?: string) {
-	try {
-		if (!productId) return null;
-		const product = await prisma.products.findUnique({
-			where: { id: productId },
-			select: {
-				id: true,
-				name: true,
-				description: true,
-				price: true,
-				createdAt: true,
-				category: {
-					select: {
-						name: true,
-						slug: true,
-						products: {
-							select: {
-								id: true,
-								name: true,
-								description: true,
-								images: {
-									select: {
-										url: true,
-									},
-									take: 1,
-								},
-								category: {
-									select: {
-										name: true,
-										slug: true,
-									},
-								},
-							},
-							take: 6,
-							orderBy: {
-								createdAt: 'desc',
-							},
-						},
-					},
-				},
-				images: {
-					select: { url: true },
-				},
-			},
-		});
-		return product;
+		return project;
 	} catch (error) {
 		console.log(error);
 		return null;
 	}
 }
-export type ProductType = Awaited<ReturnType<typeof getProductData>>;
+export type ProjectType = Awaited<ReturnType<typeof getProjectData>>;
 
 export async function createProduct(
 	_: any,
@@ -113,7 +102,7 @@ export async function createProduct(
 		}
 		const { id, images, name, description, category } = data;
 		if (id) {
-			await prisma.products.update({
+			await prisma.project.update({
 				where: {
 					id,
 				},
@@ -177,64 +166,55 @@ export async function createProduct(
 					// 	: {}),
 				},
 			});
-			revalidatePath('/admin/products');
+			revalidatePath('/admin/project');
 			return {
 				data: true,
 			};
 		} else {
-			await prisma.products.create({
-				data: {
-					name,
-					description,
-					category: {
-						connect: {
-							name: category,
-						},
-					},
-					// ...(subCategory
-					// 	? {
-					// 			subcategory: {
-					// 				connect: {
-					// 					name: subCategory,
-					// 				},
-					// 			},
-					// 	  }
-					// 	: {}),
-					...(images
-						? {
-								images: {
-									create: images.map(({ url }) => ({ url })),
-								},
-						  }
-						: {}),
-					// ...(features?.length
-					// 	? {
-					// 			features: {
-					// 				create: features.map(({ name, content }) => ({
-					// 					name,
-					// 					content,
-					// 				})),
-					// 			},
-					// 	  }
-					// 	: {}),
-					// ...(specs?.length
-					// 	? {
-					// 			specs: {
-					// 				create: specs.map(({ name, content, group }) => ({
-					// 					name,
-					// 					content,
-					// 					spec: {
-					// 						connect: {
-					// 							name: group,
-					// 						},
-					// 					},
-					// 				})),
-					// 			},
-					// 	  }
-					// 	: {}),
-				},
-			});
-			revalidatePath('/admin/products');
+			// await prisma.project.create({
+			// 	data: {
+			// 		name,
+			// 		description,
+			// 		category: {
+			// 			connect: {
+			// 				name: category,
+			// 			},
+			// 		},
+			// 		...(images
+			// 			? {
+			// 					images: {
+			// 						create: images.map(({ url }) => ({ url })),
+			// 					},
+			// 			  }
+			// 			: {}),
+			// 		// ...(features?.length
+			// 		// 	? {
+			// 		// 			features: {
+			// 		// 				create: features.map(({ name, content }) => ({
+			// 		// 					name,
+			// 		// 					content,
+			// 		// 				})),
+			// 		// 			},
+			// 		// 	  }
+			// 		// 	: {}),
+			// 		// ...(specs?.length
+			// 		// 	? {
+			// 		// 			specs: {
+			// 		// 				create: specs.map(({ name, content, group }) => ({
+			// 		// 					name,
+			// 		// 					content,
+			// 		// 					spec: {
+			// 		// 						connect: {
+			// 		// 							name: group,
+			// 		// 						},
+			// 		// 					},
+			// 		// 				})),
+			// 		// 			},
+			// 		// 	  }
+			// 		// 	: {}),
+			// 	},
+			// });
+			revalidatePath('/admin/project');
 			return {
 				data: true,
 			};
@@ -247,13 +227,13 @@ export async function createProduct(
 	}
 }
 
-export async function deleteProduct(productId: string) {
+export async function deleteProduct(projectId: string) {
 	try {
-		if (!productId) return false;
-		await prisma.products.delete({
-			where: { id: productId },
+		if (!projectId) return false;
+		await prisma.project.delete({
+			where: { id: projectId },
 		});
-		revalidatePath('/admin/products');
+		revalidatePath('/admin/project');
 		return true;
 	} catch (error) {
 		console.log(error);

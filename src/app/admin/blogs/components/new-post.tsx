@@ -149,7 +149,6 @@ const NewPost = (props: { post?: PostType }) => {
 										<FormControl>
 											<ImageUploader
 												bucketName="images"
-												folderName="blog-images"
 												images={form.getValues('images') as ImageType[]}
 												saveImages={(image) => form.setValue('images', image)}
 											/>

@@ -24,7 +24,6 @@ function RecentBlogs({ data }: RecentProps) {
 								className="rounded-md"
 								alt={b.title}
 								bucketName="images"
-								folderName="blog-images"
 							/>
 						</div>
 						<div className="flex flex-col gap-1 px-3 py-2">

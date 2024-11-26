@@ -15,20 +15,16 @@ interface Props {
 	className?: string;
 	images: ImageType[];
 	bucketName: string;
-	folderName: string;
 }
 
 export default function ImageUploader({
 	saveImages,
 	images,
 	bucketName,
-	folderName,
 }: Props) {
 	const maxNumber = 4;
-	const { uploadImages, deleteImage, loading, getImageUrl } = useImageHandler(
-		bucketName,
-		folderName
-	);
+	const { uploadImages, deleteImage, loading, getImageUrl } =
+		useImageHandler(bucketName);
 	async function handleUpload(images: ImageListType) {
 		const formData = new FormData();
 		images.forEach((image) => {

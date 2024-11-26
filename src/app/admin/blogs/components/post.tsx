@@ -51,7 +51,6 @@ export function PostAlert({ open, post, postId, edit }: Props) {
 														src={im.url}
 														alt={post.title}
 														bucketName="images"
-														folderName="blog-images"
 													/>
 												</div>
 											))}

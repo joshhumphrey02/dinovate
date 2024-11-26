@@ -1,12 +1,12 @@
 import HtmlText from '@/components/shared/html-text';
 import Image from '@/components/shared/image';
 import { Card } from '@/components/ui/card';
-import { ProductsType } from '@/lib/actions/product-actions';
+import { ProjectsType } from '@/lib/actions/project-actions';
 import { format } from 'date-fns';
 import Link from 'next/link';
 
 interface RecentProps {
-	data: ProductsType;
+	data: ProjectsType;
 }
 
 function RecentProducts({ data }: RecentProps) {
@@ -23,7 +23,6 @@ function RecentProducts({ data }: RecentProps) {
 								className="rounded-md"
 								alt={b.name}
 								bucketName="images"
-								folderName="product-images"
 							/>
 						</div>
 						<div className="flex flex-col gap-1 px-3 py-2">

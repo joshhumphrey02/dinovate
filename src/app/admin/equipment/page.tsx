@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react';
 import { AlertTriggerButton } from '@/components/shared/alert-wrapper';
 import RecentProducts from './components/recent-products';
 import { ProductAlert } from './components/product';
-import { getProductData, getProducts } from '@/lib/actions/product-actions';
+import { getProjectData, getProjects } from '@/lib/actions/project-actions';
 
 type Props = {
 	searchParams: Promise<{
@@ -18,14 +18,14 @@ type Props = {
 };
 export default async function Page(props: Props) {
 	const searchParams = await props.searchParams;
-	const data = await getProducts({
+	const data = await getProjects({
 		orderBy: {
 			createdAt: 'desc',
 		},
 		take: 20,
 		skip: 0,
 	});
-	const productData = await getProductData(searchParams.productId);
+	const productData = await getProjectData(searchParams.productId);
 	return (
 		<div className="w-full h-full py-8 space-y-6">
 			<div>

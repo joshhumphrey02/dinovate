@@ -23,21 +23,16 @@ type UseImageStorageHook = {
 	loading: boolean;
 	getImageUrl: (key: string) => string;
 };
-export const getImageUrl = (
-	key: string,
-	bucketName: string,
-	folderName: string
-) => {
-	return `https://gwaoeuzdusyotbrfqkki.supabase.co/storage/v1/object/public/${bucketName}/${folderName}/${key}`;
+export const getImageUrl = (key: string, bucketName: string) => {
+	return `https://allqifpbgdkegredrspm.supabase.co/storage/v1/object/public/${bucketName}/${key}`;
 };
 export default function useImageHandler(
-	bucketName: string,
-	folderName: string
+	bucketName: string
 ): UseImageStorageHook {
 	const [loading, setLoading] = useState<boolean>(false);
 
 	const getImageUrl = (key: string) => {
-		return `https://gwaoeuzdusyotbrfqkki.supabase.co/storage/v1/object/public/${bucketName}/${folderName}/${key}`;
+		return `https://allqifpbgdkegredrspm.supabase.co/storage/v1/object/public/${bucketName}/${key}`;
 	};
 	const uploadImages = useCallback(
 		async (formData: FormData): Promise<UploadResponse> => {
@@ -47,12 +42,12 @@ export default function useImageHandler(
 				const responses = await Promise.all(
 					images.map(async (image) => {
 						if (!image) return;
-						const key = `${folderName}/${image.name}`;
+						const key = `${image.name}`;
 						const uploadCommand = new PutObjectCommand({
 							Bucket: bucketName,
 							Key: key,
 							Body: image,
-							ContentType: `image/${image.type}`,
+							ContentType: `images/${image.type}`,
 						});
 						await storageClient.send(uploadCommand);
 						return { url: image.name };
@@ -79,7 +74,7 @@ export default function useImageHandler(
 			try {
 				const deleteCommand = new DeleteObjectCommand({
 					Bucket: bucketName,
-					Key: `${folderName}/${key}`,
+					Key: `${key}`,
 				});
 				const response = await storageClient.send(deleteCommand);
 				setLoading(false);

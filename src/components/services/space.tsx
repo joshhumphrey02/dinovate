@@ -1,6 +1,6 @@
 import feature1 from '@/assets/uploads/feature2.jpg';
 import feature3 from '@/assets/uploads/feature3.jpg';
-import Image from 'next/image';
+import Image from '../shared/image';
 
 export default function ServiceSpace() {
 	return (
@@ -28,19 +28,26 @@ export default function ServiceSpace() {
 							recording.
 						</p>
 						<div>
-							<div className="grid md:grid-cols-2 gap-6">
+							<div className="grid md:grid-cols-3 gap-6">
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature1}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'office9.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature3}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'office7.jpg'}
+										bucketName="images"
+										alt={'documentries'}
+									/>
+								</div>
+								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
+									<Image
+										src={'office8.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 							</div>
@@ -55,19 +62,26 @@ export default function ServiceSpace() {
 							meetings.
 						</p>
 						<div>
-							<div className="grid md:grid-cols-2 gap-6">
+							<div className="grid md:grid-cols-3 gap-6">
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature1}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'office10.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature3}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'office11.jpg'}
+										bucketName="images"
+										alt={'documentries'}
+									/>
+								</div>
+								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
+									<Image
+										src={'office5.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 							</div>
@@ -88,16 +102,16 @@ export default function ServiceSpace() {
 							<div className="grid md:grid-cols-2 gap-6">
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature1}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'office4.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature3}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'office12.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 							</div>
@@ -120,16 +134,16 @@ export default function ServiceSpace() {
 							<div className="grid md:grid-cols-2 gap-6">
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature1}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'office2.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={feature3}
-										alt="Feature Images"
-										className=" object-cover w-full h-48 md:h-80 bg-center"
+										src={'office3.jpg'}
+										bucketName="images"
+										alt={'documentries'}
 									/>
 								</div>
 							</div>

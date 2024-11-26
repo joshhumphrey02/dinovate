@@ -1,3 +1,5 @@
+import Image from '../shared/image';
+
 export default function Partners() {
 	return (
 		<div className="grid sm:grid-cols-[45%,auto] py-6 sm:py-12 gap-4">
@@ -14,12 +16,8 @@ export default function Partners() {
 					one story at a time.
 				</p>
 			</div>
-			<div className=" flex sm:h-[30rem] items-center justify-center">
-				<img
-					src="/partner.jpg"
-					className=" w-[25rem] h-[25rem] object-cover"
-					alt="group"
-				/>
+			<div className=" flex w-full mx-auto xl:w-[30rem] sm:h-[30rem] items-center justify-center">
+				<Image src={'office10.jpg'} bucketName="images" alt={'office'} />
 			</div>
 		</div>
 	);

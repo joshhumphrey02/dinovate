@@ -76,7 +76,7 @@ export default function Sidebar() {
 								<Link
 									key={text.title}
 									href={text.link}
-									onClick={() => text.title !== 'CONTACT' && toggleSidebar}
+									onClick={() => text.title !== 'CONTACT' && toggleSidebar()}
 									className="group "
 									ref={(el) => {
 										linksRef.current[index] = el;
@@ -93,20 +93,23 @@ export default function Sidebar() {
 					</div>
 					{/* Social Links */}
 					<div className="flex gap-4 sm:gap-8 flex-1 items-center text-sm">
-						{['Twitter', 'Instagram', 'LinkedIn', 'Facebook'].map(
-							(text, index) => (
-								<Link
-									key={text}
-									className="hover:text-tertiary transition-colors"
-									href={`https://${text.toLowerCase()}.com`}
-									onClick={toggleSidebar}
-									ref={(el) => {
-										linksRef.current[index + 5] = el;
-									}}>
-									{text}
-								</Link>
-							)
-						)}
+						{[
+							{ name: 'Twitter', link: '#' },
+							{ name: 'Instagram', link: '#' },
+							{ name: 'LinkedIn', link: '#' },
+							{ name: 'Facebook', link: '#' },
+						].map((text, index) => (
+							<Link
+								key={text.name}
+								className="hover:text-tertiary transition-colors"
+								href={text.link}
+								onClick={toggleSidebar}
+								ref={(el) => {
+									linksRef.current[index + 5] = el;
+								}}>
+								{text.name}
+							</Link>
+						))}
 					</div>
 				</div>
 			</motion.div>

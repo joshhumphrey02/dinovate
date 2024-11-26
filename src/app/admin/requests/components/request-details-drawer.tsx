@@ -47,7 +47,7 @@ export default function RequestDrawer(props: SplitsDetailsProps) {
 								<CardContent className="space-y-3 px-4 py-1">
 									<TextWrapper title="Phone number">
 										<span className="text-sm lowercase font-normal">
-											{request?.phone || ''}
+											{request?.phonePhone || ''}
 										</span>
 									</TextWrapper>
 									<TextWrapper title="Date created">
@@ -60,7 +60,7 @@ export default function RequestDrawer(props: SplitsDetailsProps) {
 									</TextWrapper>
 									<TextWrapper title="Address">
 										<span className="text-sm lowercase font-normal">
-											{request?.town || ''}
+											{request?.location || ''}
 										</span>
 									</TextWrapper>
 								</CardContent>

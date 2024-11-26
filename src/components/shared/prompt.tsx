@@ -1,13 +1,13 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
 import MilkIcon from '../Icons/milk';
 import { Button } from '../ui/button';
 import CloseIcon from '../Icons/close';
+import useStore from '@/lib/stores';
 
 export default function Prompt() {
-	const [isOpen, setIsOpen] = useState(false);
-	const toggleSidebar = () => setIsOpen(!isOpen);
+	const { prompt, setPrompt } = useStore();
+	const toggleSidebar = () => setPrompt(true);
 	const style = {
 		backgroundImage: `url(/svg/cookie.svg)`,
 		backgroundRepeat: 'no-repeat',
@@ -16,7 +16,7 @@ export default function Prompt() {
 		<div
 			className={cn(
 				'fixed z-40 -bottom-4 -right-4 w-full h-full flex justify-end items-end',
-				isOpen && 'hidden'
+				prompt && 'hidden'
 			)}>
 			<div className=" text-white relative px-8 w-[20rem] sm:w-[30rem] flex flex-col justify-end items-center gap-4 h-[27rem] sm:h-[40rem]">
 				<div

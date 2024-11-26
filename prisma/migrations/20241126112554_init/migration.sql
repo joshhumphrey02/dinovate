@@ -1,8 +1,17 @@
+-- CreateExtension
+CREATE EXTENSION IF NOT EXISTS "postgis";
+
+-- CreateEnum
+CREATE TYPE "Role" AS ENUM ('ADMIN', 'USER', 'STAFF', 'MANAGER', 'SUPERVISOR', 'HR_OFFICER', 'FINANCE_OFFICER', 'MARKETING_OFFICER', 'TECHNICAL_OFFICER', 'SALES_OFFICER', 'OPERATIONS_OFFICER');
+
+-- CreateEnum
+CREATE TYPE "SocialType" AS ENUM ('FACEBOOK', 'LINKEDIN', 'TWITTER', 'INSTAGRAM', 'GITHUB');
+
 -- CreateEnum
 CREATE TYPE "UserType" AS ENUM ('USER', 'STAFF', 'ADMIN', 'OWNER');
 
 -- CreateTable
-CREATE TABLE "Posts" (
+CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
@@ -10,33 +19,32 @@ CREATE TABLE "Posts" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Posts_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "ProductCategories" (
+CREATE TABLE "ProjectCategory" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "description" TEXT,
-    "brochureLink" TEXT,
 
-    CONSTRAINT "ProductCategories_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ProjectCategory_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Products" (
+CREATE TABLE "Project" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "organization" TEXT NOT NULL,
+    "benefits" TEXT[],
     "description" TEXT NOT NULL,
-    "price" DOUBLE PRECISION,
     "categoryId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Products_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Project_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -44,12 +52,9 @@ CREATE TABLE "Message" (
     "id" TEXT NOT NULL,
     "fullName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "town" TEXT NOT NULL,
+    "location" TEXT NOT NULL,
     "message" TEXT NOT NULL,
-    "phone" TEXT NOT NULL,
-    "intlPhone" TEXT,
-    "country" TEXT,
-    "countryCode" TEXT,
+    "phonePhone" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -60,15 +65,60 @@ CREATE TABLE "Message" (
 CREATE TABLE "Image" (
     "id" TEXT NOT NULL,
     "url" TEXT NOT NULL,
-    "productId" TEXT,
+    "projectId" TEXT,
     "userId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "postId" TEXT,
-    "productCategoryId" TEXT,
-    "productSubCategoryId" TEXT,
 
     CONSTRAINT "Image_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Video" (
+    "id" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "projectId" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "postId" TEXT,
+
+    CONSTRAINT "Video_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Link" (
+    "id" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "projectId" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "postId" TEXT,
+
+    CONSTRAINT "Link_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Staff" (
+    "id" TEXT NOT NULL,
+    "fullName" TEXT NOT NULL,
+    "role" "Role" NOT NULL DEFAULT 'STAFF',
+    "title" TEXT NOT NULL,
+    "description" TEXT,
+    "imageId" TEXT,
+
+    CONSTRAINT "Staff_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Social" (
+    "id" TEXT NOT NULL,
+    "staffId" TEXT NOT NULL,
+    "link" TEXT NOT NULL,
+    "socialType" "SocialType" NOT NULL,
+    "socialValue" TEXT NOT NULL,
+
+    CONSTRAINT "Social_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -135,16 +185,25 @@ CREATE TABLE "PasswordResetTokens" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ProductCategories_name_key" ON "ProductCategories"("name");
+CREATE UNIQUE INDEX "ProjectCategory_name_key" ON "ProjectCategory"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ProductCategories_slug_key" ON "ProductCategories"("slug");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Products_name_key" ON "Products"("name");
+CREATE UNIQUE INDEX "ProjectCategory_slug_key" ON "ProjectCategory"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Image_url_key" ON "Image"("url");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Video_url_key" ON "Video"("url");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Link_url_key" ON "Link"("url");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Staff_fullName_key" ON "Staff"("fullName");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Staff_imageId_key" ON "Staff"("imageId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
@@ -165,19 +224,34 @@ CREATE UNIQUE INDEX "VerificationToken_email_token_key" ON "VerificationToken"("
 CREATE UNIQUE INDEX "PasswordResetTokens_token_key" ON "PasswordResetTokens"("token");
 
 -- AddForeignKey
-ALTER TABLE "Products" ADD CONSTRAINT "Products_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "ProductCategories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Project" ADD CONSTRAINT "Project_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "ProjectCategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Image" ADD CONSTRAINT "Image_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Posts"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Image" ADD CONSTRAINT "Image_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Image" ADD CONSTRAINT "Image_productCategoryId_fkey" FOREIGN KEY ("productCategoryId") REFERENCES "ProductCategories"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Image" ADD CONSTRAINT "Image_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Products"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Image" ADD CONSTRAINT "Image_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Image" ADD CONSTRAINT "Image_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Video" ADD CONSTRAINT "Video_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Video" ADD CONSTRAINT "Video_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Link" ADD CONSTRAINT "Link_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Link" ADD CONSTRAINT "Link_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Staff" ADD CONSTRAINT "Staff_imageId_fkey" FOREIGN KEY ("imageId") REFERENCES "Image"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Social" ADD CONSTRAINT "Social_staffId_fkey" FOREIGN KEY ("staffId") REFERENCES "Staff"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "AuthSession" ADD CONSTRAINT "AuthSession_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

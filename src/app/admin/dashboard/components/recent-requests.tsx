@@ -38,7 +38,7 @@ export default function RecentRequests(props: {
 								<td>
 									{format(new Date(new Date(r.createdAt)), 'MMM dd, yyyy')}
 								</td>
-								<td>{r.phone}</td>
+								<td>{r.phonePhone}</td>
 							</tr>
 						))}
 					</tbody>

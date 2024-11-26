@@ -1,4 +1,8 @@
+'use client';
+import { getImageUrl } from '@/hooks/use-image-handler';
+
 export default function Banner() {
+	const url = getImageUrl('banner-video.mp4', 'images');
 	const style = {
 		borderImage:
 			'linear-gradient(to bottom, rgba(0, 0, 0, .4), rgba(0, 0, 0,.5)) fill 1',
@@ -14,7 +18,7 @@ export default function Banner() {
 					loop
 					muted
 					playsInline>
-					<source src="/banner-video.mp4" type="video/mp4" />
+					<source src={url} type="video/mp4" />
 				</video>
 			</div>
 		</div>

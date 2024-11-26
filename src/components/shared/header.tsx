@@ -10,7 +10,11 @@ const Header = () => {
 				<Link href={'/'} className="flex items-center gap-1 md:gap-4">
 					<LineIcon className=" w-8 md:w-[80px]" />
 					<div className="space-y-1">
-						<Image src={Logo} className="w-20 md:w-32 h-9 md:h-12" alt="logo" />
+						<Image
+							src={Logo}
+							className="w-20 md:w-32 h-9 md:h-12 xl:w-40 xl:h-16"
+							alt="logo"
+						/>
 					</div>
 				</Link>
 			</div>

@@ -28,8 +28,8 @@ export async function saveRequest(
 				fullName,
 				email,
 				message,
-				town,
-				phone,
+				phonePhone: phone,
+				location: town,
 			},
 		});
 		return {
@@ -52,8 +52,8 @@ export async function getMessages() {
 				fullName: true,
 				email: true,
 				message: true,
-				town: true,
-				phone: true,
+				location: true,
+				phonePhone: true,
 			},
 			take: 6,
 			orderBy: { createdAt: 'desc' },

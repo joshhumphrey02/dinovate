@@ -6,6 +6,7 @@ import { Projects } from '@/components/home/projects';
 import Sections from '@/components/home/sections';
 import Footer from '@/components/shared/footer';
 import RequestForm from '@/components/shared/request-form';
+import { getProjects } from '@/lib/actions/project-actions';
 
 interface Props {
 	searchParams: Promise<{
@@ -15,6 +16,12 @@ interface Props {
 
 export default async function Home(props: Props) {
 	const { contact } = await props.searchParams;
+	const projects = await getProjects({
+		take: 10,
+		orderBy: {
+			createdAt: 'asc',
+		},
+	});
 	return (
 		<div>
 			<Banner />
@@ -22,7 +29,7 @@ export default async function Home(props: Props) {
 				<About />
 				<Impact />
 				<Contact />
-				<Projects />
+				<Projects data={projects} />
 				<Sections />
 			</div>
 			<RequestForm open={!!contact} />

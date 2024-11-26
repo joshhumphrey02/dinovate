@@ -8,35 +8,52 @@ datasource db {
   provider   = "postgresql"
   url        = env("POSTGRES_URL")
   directUrl  = env("DIRECT_URL")
-  extensions = [postgis, uuid_ossp(map: "uuid-ossp", schema: "extensions")]
+  extensions = [postgis]
 }
 
 model Message {
-  id          String   @id @default(cuid())
-  fullName    String
-  email       String
-  town        String
-  message     String
-  phone       String
-  intlPhone   String?
-  country     String?
-  countryCode String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(cuid())
+  fullName   String
+  email      String
+  location   String
+  message    String
+  phonePhone String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Image {
-  id                   String             @id @default(cuid())
-  url                  String             @unique
-  productId            String?
-  userId               String?
-  createdAt            DateTime           @default(now())
-  updatedAt            DateTime           @updatedAt
-  postId               String?
-  productCategoryId    String?
-  productSubCategoryId String?
-  post                 Posts?             @relation(fields: [postId], references: [id], onDelete: Cascade)
-  productCategory      ProductCategories? @relation(fields: [productCategoryId], references: [id], onDelete: Cascade)
-  product              Products?          @relation(fields: [productId], references: [id], onDelete: Cascade)
-  user                 User?              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String   @id @default(cuid())
+  url       String   @unique
+  projectId String?
+  userId    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  postId    String?
+  staff     Staff?
+  post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Video {
+  id        String   @id @default(cuid())
+  url       String   @unique
+  projectId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  postId    String?
+  post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Link {
+  id        String   @id @default(cuid())
+  url       String   @unique
+  projectId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  postId    String?
+  post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }

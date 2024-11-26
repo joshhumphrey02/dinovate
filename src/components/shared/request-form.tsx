@@ -20,6 +20,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { FormWrapper, useFormToggle } from '@/components/shared/form-wrapper';
 import { saveRequest } from '@/lib/actions/request-actions';
 import { SheetDescription, SheetHeader, SheetTitle } from '../ui/sheet';
+import { Textarea } from '../ui/text-area';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement> & {
 	open: boolean;
@@ -67,7 +68,7 @@ export default function RequestForm({
 				className=" px-8 sm:px-20 "
 				formKey={'contact'}
 				formValue="true">
-				<SheetHeader>
+				<SheetHeader className="xl:px-10">
 					<SheetTitle className=" text-tertiary text-lg">
 						We Partner, We Don’t Just Serve
 					</SheetTitle>
@@ -152,12 +153,12 @@ export default function RequestForm({
 									name="town"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel className=" text-sm">Location</FormLabel>
+											<FormLabel className=" text-sm">Address</FormLabel>
 											<FormControl>
 												<Input
 													className=" border-transparent px-0 h-8 rounded-none border-b border-b-black focus-visible:ring-0 focus-visible:ring-offset-0"
 													type="text"
-													placeholder="Please enter your location"
+													placeholder="Please enter your Address"
 													{...field}
 												/>
 											</FormControl>
@@ -174,9 +175,8 @@ export default function RequestForm({
 												Message<sup className="text-red-500">*</sup>
 											</FormLabel>
 											<FormControl>
-												<Input
-													className=" border-transparent px-0 h-8 rounded-none border-b border-b-black focus-visible:ring-0 focus-visible:ring-offset-0"
-													type="text"
+												<Textarea
+													className="  px-0 rounded-none border border-black focus-visible:ring-0 focus-visible:ring-offset-0"
 													placeholder="Please enter your message"
 													{...field}
 												/>
@@ -217,7 +217,7 @@ export default function RequestForm({
 								/>
 								<Button
 									disabled={loading}
-									className="mt-4 bg-blue-600 text-white hover:border transition-colors duration-700 hover:border-blue-600 hover:text-black hover:bg-transparent"
+									className="mt-4 bg-blue-700 text-white hover:border transition-colors duration-700 hover:border-blue-600 hover:text-black hover:bg-transparent"
 									type="submit">
 									{loading && <Loader className="mr-2 h-4 w-4 animate-spin" />}
 									Continue

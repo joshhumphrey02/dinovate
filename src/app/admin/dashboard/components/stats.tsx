@@ -1,11 +1,11 @@
 import { Card } from '@/components/ui/card';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
-import { ProductsType } from '@/lib/actions/product-actions';
+import { ProjectsType } from '@/lib/actions/project-actions';
 import Image from '@/components/shared/image';
 import { format } from 'date-fns';
 
 interface Props {
-	data: ProductsType;
+	data: ProjectsType;
 }
 
 function Stats(props: Props) {
@@ -34,7 +34,6 @@ function Stats(props: Props) {
 								className="rounded-md"
 								alt={b.name}
 								bucketName="images"
-								folderName="product-images"
 							/>
 						</div>
 					</Card>

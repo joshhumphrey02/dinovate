@@ -1,0 +1,41 @@
+model Staff {
+  id          String   @id @default(cuid())
+  fullName    String   @unique
+  role        Role     @default(STAFF)
+  title       String
+  description String?
+  socials     Social[]
+  imageId     String?  @unique
+  image       Image?   @relation(fields: [imageId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  ADMIN
+  USER
+  STAFF
+  MANAGER
+  SUPERVISOR
+  HR_OFFICER
+  FINANCE_OFFICER
+  MARKETING_OFFICER
+  TECHNICAL_OFFICER
+  SALES_OFFICER
+  OPERATIONS_OFFICER
+}
+
+model Social {
+  id          String     @id @default(cuid())
+  staffId     String
+  staff       Staff      @relation(fields: [staffId], references: [id])
+  link        String
+  socialType  SocialType
+  socialValue String
+}
+
+enum SocialType {
+  FACEBOOK
+  LINKEDIN
+  TWITTER
+  INSTAGRAM
+  GITHUB
+}

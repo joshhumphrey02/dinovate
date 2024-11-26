@@ -15,7 +15,7 @@ export async function getPosts(args: {
 }) {
 	try {
 		const { take, skip, orderBy } = args;
-		const posts = await prisma.posts.findMany({
+		const posts = await prisma.post.findMany({
 			...(args.cursor && { cursor: { id: args.cursor } }),
 			take,
 			orderBy,
@@ -39,7 +39,7 @@ export type PostsType = Awaited<ReturnType<typeof getPosts>>;
 export async function getPostData(postId?: string) {
 	try {
 		if (!postId) return null;
-		const post = await prisma.posts.findUnique({
+		const post = await prisma.post.findUnique({
 			where: { id: postId },
 			select: {
 				id: true,
@@ -80,7 +80,7 @@ export async function createPost(
 		}
 		const { id, images, title, content, category } = data;
 		if (id) {
-			await prisma.posts.update({
+			await prisma.post.update({
 				where: {
 					id,
 				},
@@ -108,7 +108,7 @@ export async function createPost(
 				data: true,
 			};
 		} else {
-			await prisma.posts.create({
+			await prisma.post.create({
 				data: {
 					...(images
 						? {
@@ -137,7 +137,7 @@ export async function createPost(
 export async function DeletePost(postId: string) {
 	try {
 		if (!postId) return false;
-		await prisma.posts.delete({
+		await prisma.post.delete({
 			where: { id: postId },
 		});
 		revalidatePath('/admin/blog');

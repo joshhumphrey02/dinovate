@@ -28,7 +28,7 @@ export const columns: ColumnDef<RequestType[0]>[] = [
 		filterFn: (row, id, value) => {
 			const feature = row.original;
 			const fullName = feature.fullName || '';
-			const phone = feature.phone || '';
+			const phone = feature.phonePhone || '';
 
 			const email = feature.email || '';
 			const newRegex = new RegExp(value, 'ig');
@@ -59,7 +59,7 @@ export const columns: ColumnDef<RequestType[0]>[] = [
 			const feature = row.original;
 			return (
 				<div>
-					<span className=" lowercase">{feature.phone}</span>
+					<span className=" lowercase">{feature.phonePhone}</span>
 				</div>
 			);
 		},

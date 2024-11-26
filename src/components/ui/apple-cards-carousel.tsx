@@ -8,11 +8,11 @@ import React, {
 } from 'react';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
-import Image, { ImageProps } from 'next/image';
 import { useOutsideClick } from '@/hooks/use-outside-click';
 import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 import ArrowIcon from '../Icons/arrow';
 import { useRouter } from 'next/navigation';
+import Image from '../shared/image';
 
 interface CarouselProps {
 	items: JSX.Element[];
@@ -23,6 +23,7 @@ type Card = {
 	src: string;
 	title: string;
 	des: string;
+	link: string;
 };
 
 export const CarouselContext = createContext<{
@@ -191,7 +192,7 @@ export const Card = ({
 	useOutsideClick(containerRef, () => handleClose());
 
 	const handleOpen = () => {
-		router.push('#');
+		router.push(`/works/${card.link}`);
 	};
 
 	const handleClose = () => {
@@ -253,42 +254,13 @@ export const Card = ({
 						{card.des}
 					</motion.p>
 				</div>
-				<BlurImage
+				<Image
 					src={card.src}
 					alt={card.title}
-					fill
+					bucketName="images"
 					className="object-cover absolute z-10 inset-0"
 				/>
 			</motion.button>
 		</>
-	);
-};
-
-export const BlurImage = ({
-	height,
-	width,
-	src,
-	className,
-	alt,
-	...rest
-}: ImageProps) => {
-	const [isLoading, setLoading] = useState(true);
-	return (
-		<Image
-			className={cn(
-				'transition duration-300',
-				isLoading ? 'blur-sm' : 'blur-none',
-				className
-			)}
-			onLoad={() => setLoading(false)}
-			src={src}
-			width={width}
-			height={height}
-			loading="lazy"
-			decoding="async"
-			blurDataURL={typeof src === 'string' ? src : undefined}
-			alt={alt ? alt : 'Background of a beautiful project'}
-			{...rest}
-		/>
 	);
 };
