@@ -40,7 +40,7 @@ const lato = Lato({
 
 export const metadata: Metadata = {
 	title: 'Dinovate',
-	description: 'Dinovate website',
+	description: 'Dinovate home page',
 };
 
 export default function RootLayout({
