@@ -3,6 +3,7 @@ import { useState, useCallback } from 'react';
 import { DeleteObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import { storageClient } from '@/lib/supabase/storage';
 import { ImageType } from '@/components/shared/image-uploader';
+import prisma from '@/lib/prisma';
 
 type UploadResponse = {
 	data?: ImageType[];
@@ -78,6 +79,7 @@ export default function useImageHandler(
 				});
 				const response = await storageClient.send(deleteCommand);
 				setLoading(false);
+				await deleteImage(key);
 				return { data: response?.DeleteMarker };
 			} catch (error) {
 				setLoading(false);

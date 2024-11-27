@@ -22,7 +22,7 @@ export default function ImageUploader({
 	images,
 	bucketName,
 }: Props) {
-	const maxNumber = 4;
+	const maxNumber = 6;
 	const { uploadImages, deleteImage, loading, getImageUrl } =
 		useImageHandler(bucketName);
 	async function handleUpload(images: ImageListType) {

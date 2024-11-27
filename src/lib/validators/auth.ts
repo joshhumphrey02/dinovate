@@ -69,20 +69,11 @@ export const PostFormSchema = z.object({
 });
 export type PostFormInput = z.infer<typeof PostFormSchema>;
 
-export const Feature = z.object({
-	name: z.string().min(2, {
+export const videos = z.object({
+	url: z.string().min(2, {
 		message: 'Name must be at least 2 characters.',
 	}),
-	content: z.string().min(5, {
-		message: 'description must be at least 5 characters.',
-	}),
 	id: z.string().optional(),
-});
-export const Spec = z.object({
-	name: z.string().min(2, {
-		message: 'Specification name must be at least 2 characters.',
-	}),
-	contents: z.array(Feature),
 });
 
 export const ProductFormSchema = z.object({
@@ -97,12 +88,11 @@ export const ProductFormSchema = z.object({
 	category: z.string().min(2, {
 		message: 'Please select a category',
 	}),
-	// subCategory: z.string().optional(),
 	images: z.array(ImageType).min(1, {
 		message: 'Upload at least one image',
 	}),
-	// features: z.array(Feature).optional(),
-	// specs: z.array(Spec).optional(),
+	videos: z.array(videos).optional(),
+	organization: z.string().optional(),
 });
 
 export type ProductFormInput = z.infer<typeof ProductFormSchema>;

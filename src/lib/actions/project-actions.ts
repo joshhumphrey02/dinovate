@@ -61,6 +61,7 @@ export async function getProjectData(projectId?: string) {
 				description: true,
 				createdAt: true,
 				updatedAt: true,
+				organization: true,
 				category: {
 					select: {
 						name: true,
@@ -71,7 +72,13 @@ export async function getProjectData(projectId?: string) {
 					select: {
 						url: true,
 					},
-					take: 2,
+					take: 5,
+				},
+				videos: {
+					select: {
+						url: true,
+						id: true,
+					},
 				},
 			},
 		});
@@ -100,7 +107,8 @@ export async function createProduct(
 				},
 			};
 		}
-		const { id, images, name, description, category } = data;
+		const { id, images, name, description, category, videos, organization } =
+			data;
 		if (id) {
 			await prisma.project.update({
 				where: {
@@ -114,15 +122,6 @@ export async function createProduct(
 							name: category,
 						},
 					},
-					// ...(subCategory
-					// 	? {
-					// 			subcategory: {
-					// 				connect: {
-					// 					name: subCategory,
-					// 				},
-					// 			},
-					// 	  }
-					// 	: {}),
 					...(images?.length
 						? {
 								images: {
@@ -137,33 +136,15 @@ export async function createProduct(
 								},
 						  }
 						: {}),
-					// ...(features?.length
-					// 	? {
-					// 			features: {
-					// 				deleteMany: {},
-					// 				create: features.map(({ name, content }) => ({
-					// 					name,
-					// 					content,
-					// 				})),
-					// 			},
-					// 	  }
-					// 	: {}),
-					// ...(specs?.length
-					// 	? {
-					// 			specs: {
-					// 				deleteMany: {},
-					// 				create: specs.map(({ name, content, group }) => ({
-					// 					name,
-					// 					content,
-					// 					spec: {
-					// 						connect: {
-					// 							name: group,
-					// 						},
-					// 					},
-					// 				})),
-					// 			},
-					// 	  }
-					// 	: {}),
+					...(videos?.length
+						? {
+								videos: {
+									create: videos.map(({ url }) => ({
+										url,
+									})),
+								},
+						  }
+						: {}),
 				},
 			});
 			revalidatePath('/admin/project');
@@ -171,49 +152,34 @@ export async function createProduct(
 				data: true,
 			};
 		} else {
-			// await prisma.project.create({
-			// 	data: {
-			// 		name,
-			// 		description,
-			// 		category: {
-			// 			connect: {
-			// 				name: category,
-			// 			},
-			// 		},
-			// 		...(images
-			// 			? {
-			// 					images: {
-			// 						create: images.map(({ url }) => ({ url })),
-			// 					},
-			// 			  }
-			// 			: {}),
-			// 		// ...(features?.length
-			// 		// 	? {
-			// 		// 			features: {
-			// 		// 				create: features.map(({ name, content }) => ({
-			// 		// 					name,
-			// 		// 					content,
-			// 		// 				})),
-			// 		// 			},
-			// 		// 	  }
-			// 		// 	: {}),
-			// 		// ...(specs?.length
-			// 		// 	? {
-			// 		// 			specs: {
-			// 		// 				create: specs.map(({ name, content, group }) => ({
-			// 		// 					name,
-			// 		// 					content,
-			// 		// 					spec: {
-			// 		// 						connect: {
-			// 		// 							name: group,
-			// 		// 						},
-			// 		// 					},
-			// 		// 				})),
-			// 		// 			},
-			// 		// 	  }
-			// 		// 	: {}),
-			// 	},
-			// });
+			await prisma.project.create({
+				data: {
+					name,
+					description,
+					organization: organization || 'Dinovate',
+					category: {
+						connect: {
+							name: category,
+						},
+					},
+					...(images
+						? {
+								images: {
+									create: images.map(({ url }) => ({ url })),
+								},
+						  }
+						: {}),
+					...(videos?.length
+						? {
+								videos: {
+									create: videos.map(({ url }) => ({
+										url,
+									})),
+								},
+						  }
+						: {}),
+				},
+			});
 			revalidatePath('/admin/project');
 			return {
 				data: true,
@@ -233,6 +199,30 @@ export async function deleteProduct(projectId: string) {
 		await prisma.project.delete({
 			where: { id: projectId },
 		});
+		revalidatePath('/admin/project');
+		return true;
+	} catch (error) {
+		console.log(error);
+		return false;
+	}
+}
+export async function deleteImage(url: string) {
+	try {
+		if (!url) return false;
+		const exist = await prisma.image.findFirst({
+			where: {
+				url,
+			},
+			select: {
+				id: true,
+			},
+		});
+		if (exist)
+			await prisma.image.delete({
+				where: {
+					id: exist.id,
+				},
+			});
 		revalidatePath('/admin/project');
 		return true;
 	} catch (error) {

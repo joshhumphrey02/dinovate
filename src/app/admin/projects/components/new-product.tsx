@@ -1,6 +1,12 @@
 'use client';
 
-import React, { useActionState, useEffect, useMemo, useState } from 'react';
+import React, {
+	useActionState,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+} from 'react';
 import { Button } from '@/components/ui/button';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -32,7 +38,6 @@ import dynamic from 'next/dynamic';
 import ProductCategorySelect from '@/components/shared/select-product-category';
 import ImageUploader from '@/components/shared/image-uploader';
 import { createProduct, ProjectType } from '@/lib/actions/project-actions';
-// import SpecsGroupSelect from '@/components/shared/select-spec-group';
 const TextEditor = dynamic(() => import('@/components/shared/text-editor'), {
 	ssr: true,
 });
@@ -42,15 +47,13 @@ const BasicSchema = ProductFormSchema.pick({
 	price: true,
 	name: true,
 	category: true,
+	organization: true,
 });
 
-// const FeatsSchema = ProductFormSchema.pick({
-// 	features: true,
-// });
+const VideoSchema = ProductFormSchema.pick({
+	videos: true,
+});
 
-// const SpecsSchema = ProductFormSchema.pick({
-// 	specs: true,
-// });
 const ImgsSchema = ProductFormSchema.pick({
 	images: true,
 });
@@ -67,24 +70,31 @@ const NewProduct = (props: { project?: ProjectType }) => {
 			description: project?.description || '',
 			category: project?.category?.name || '',
 			images: project?.images || [],
-			// specs: project?.specs || [],
+			videos: project?.videos || [],
+			organization: project?.organization || 'Dinovate',
 		},
 	});
 	function handleNext() {
 		if (step === 1) {
 			let parsed = BasicSchema.safeParse(form.getValues());
 			if (!parsed.success) return;
-			form.trigger(['name', 'category', 'price', 'description']);
+			form.trigger([
+				'name',
+				'category',
+				'price',
+				'description',
+				'organization',
+			]);
 		}
-		// if (step === 2) {
-		// 	let parsed = FeatsSchema.safeParse(form.getValues());
-		// 	if (!parsed.success) return form.trigger(['features']);
-		// }
+		if (step === 2) {
+			let parsed = VideoSchema.safeParse(form.getValues());
+			if (!parsed.success) return form.trigger(['videos']);
+		}
 		// if (step === 3) {
 		// 	let parsed = SpecsSchema.safeParse(form.getValues());
 		// 	if (!parsed.success) return form.trigger(['specs']);
 		// }
-		if (step === 2) {
+		if (step === 3) {
 			let parsed = ImgsSchema.safeParse(form.getValues());
 			if (!parsed.success) return form.trigger(['images']);
 		}
@@ -92,7 +102,7 @@ const NewProduct = (props: { project?: ProjectType }) => {
 		setStep((prev) => prev + 1);
 	}
 	const progress = useMemo(() => {
-		return step * 50;
+		return step * 33;
 	}, [step]);
 	const dismissAlert = useAlertToggle();
 	const [state, dispatch] = useActionState(createProduct, undefined);
@@ -142,7 +152,7 @@ const NewProduct = (props: { project?: ProjectType }) => {
 				<div className="space-y-4">
 					<h2 className="space-x-3">
 						<span className="text-xl font-medium">
-							{project?.id ? 'Update Product' : 'Add New Product'}
+							{project?.id ? 'Update project' : 'Add New project'}
 						</span>
 					</h2>
 				</div>
@@ -152,9 +162,9 @@ const NewProduct = (props: { project?: ProjectType }) => {
 						<form onSubmit={form.handleSubmit(handleSubmit)}>
 							<div className="grid gap-4">
 								{step === 1 && <Basic form={form} />}
-								{/* {step === 2 && <Features form={form} />} */}
+								{step === 2 && <Videos form={form} />}
 								{/* {step === 3 && <Specifications form={form} />} */}
-								{step >= 2 && <Images form={form} />}
+								{step >= 3 && <Images form={form} />}
 
 								<Controls
 									loading={loading}
@@ -206,9 +216,9 @@ function Controls(props: ControlProps) {
 				disabled={loading}
 				onClick={handleNext}
 				className=" flex-1"
-				type={step > 2 ? 'submit' : 'button'}>
+				type={step > 3 ? 'submit' : 'button'}>
 				{loading && <Loader className="mr-2 h-4 w-4 animate-spin" />}
-				{step > 1 ? (project?.id ? 'Update' : 'Save') : 'Next'}
+				{step > 2 ? (project?.id ? 'Update' : 'Save') : 'Next'}
 			</Button>
 		</AlertDialogFooter>
 	);
@@ -264,25 +274,6 @@ function Basic({ form }: FormProps) {
 						</FormItem>
 					)}
 				/>
-				{/* <FormField
-					control={form.control}
-					name="subCategory"
-					render={() => (
-						<FormItem>
-							<FormLabel>Sub category</FormLabel>
-							<FormControl>
-								<ProductSubCategorySelect
-									category={form.getValues('category')}
-									name={form.getValues('subCategory') ?? ''}
-									onValueChange={(name) => {
-										form.setValue('subCategory', name);
-									}}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)} 
-				/> */}
 			</div>
 
 			<FormField
@@ -306,102 +297,90 @@ function Basic({ form }: FormProps) {
 	);
 }
 
-// function Features({ form }: FormProps) {
-// 	const { fields, append, remove } = useFieldArray({
-// 		control: form.control,
-// 		name: 'features',
-// 	});
-// 	const { errors } = form.formState;
-// 	const [currentFeat, setCurrentFeat] = useState('0');
-// 	return (
-// 		<div className="grid gap-4">
-// 			<div className="flex justify-between">
-// 				<div className="space-y-1">
-// 					<h3 className="text-sm sm:text-base font-medium">Product features</h3>
-// 					<p className="text-xs font-medium">Add at least one feature</p>
-// 				</div>
-// 			</div>
-// 			<Accordion
-// 				type="single"
-// 				value={currentFeat}
-// 				onValueChange={setCurrentFeat}
-// 				className="w-full grid gap-4">
-// 				{fields.map((field, index) => (
-// 					<AccordionItem className="" key={field.id} value={index.toString()}>
-// 						<AccordionTrigger className="w-full text-sm hover:no-underline">
-// 							Feature {index + 1}
-// 						</AccordionTrigger>
-// 						<AccordionContent className="space-y-2">
-// 							<FormField
-// 								control={form.control}
-// 								name={`features.${index}.name`}
-// 								render={({ field }) => (
-// 									<FormItem>
-// 										<FormControl>
-// 											<Input
-// 												className="rounded-none focus-visible:ring-0 focus-visible:ring-transparent"
-// 												placeholder="Feature name"
-// 												{...field}
-// 											/>
-// 										</FormControl>
-// 										<FormMessage />
-// 									</FormItem>
-// 								)}
-// 							/>
-// 							<FormField
-// 								control={form.control}
-// 								name={`features.${index}.content`}
-// 								render={({ field }) => (
-// 									<FormItem>
-// 										<FormControl>
-// 											<TextEditor placeholder="Feature content" {...field} />
-// 										</FormControl>
-// 										<FormMessage />
-// 									</FormItem>
-// 								)}
-// 							/>
-// 							<div className="flex justify-end items-center gap-3">
-// 								<Button
-// 									variant="ghost"
-// 									type="button"
-// 									onClick={() => {
-// 										setCurrentFeat(
-// 											(parseInt(currentFeat) > 0
-// 												? parseInt(currentFeat) - 1
-// 												: parseInt(currentFeat)
-// 											).toString()
-// 										);
-// 										remove(index);
-// 									}}>
-// 									<Trash className="h-5 w-5 text-destructive" />
-// 								</Button>
-// 								{fields.length - 1 == index && (
-// 									<Button
-// 										type="button"
-// 										variant="outline"
-// 										className="text-blue-500 px-2 py-1 h-6 border-blue-600"
-// 										onClick={() => {
-// 											append(
-// 												{ name: '', content: '' },
-// 												{
-// 													shouldFocus: true,
-// 												}
-// 											);
-// 											setCurrentFeat((parseInt(currentFeat) + 1).toString());
-// 										}}>
-// 										<Plus className="h-5 w-5 mr-2" />
-// 										New
-// 									</Button>
-// 								)}
-// 							</div>
-// 						</AccordionContent>
-// 					</AccordionItem>
-// 				))}
-// 			</Accordion>
-// 			<FormMessage>{errors.features?.message}</FormMessage>
-// 		</div>
-// 	);
-// }
+function Videos({ form }: FormProps) {
+	const InputRef = useRef<HTMLInputElement>(null);
+	const [video, setVideo] = React.useState('');
+	const [videos, setVideos] = React.useState<{ url: string }[]>([]);
+	const { errors } = form.formState;
+	const handleAddVideo = () => {
+		if (video.trim()) {
+			const newVideo = { url: video.trim() };
+			const newVideos = [...videos, newVideo];
+			setVideos(newVideos); // Add video to the list
+			form.setValue('videos', newVideos); // Update form state
+			setVideo(''); // Clear input
+		}
+	};
+
+	const handleRemoveVideo = (url: string) => {
+		const updatedVideos = videos.filter((v) => v.url !== url);
+		setVideos(updatedVideos); // Update state
+		form.setValue('videos', updatedVideos); // Update form state
+	};
+	useEffect(() => {
+		console.log(form.getValues('videos'));
+		form.getValues('videos') && setVideos(form.getValues('videos'));
+	}, [form.getValues('videos')]);
+	return (
+		<div className="grid gap-4">
+			<div className="flex justify-between">
+				<div className="space-y-1">
+					<h3 className="text-sm sm:text-base font-medium">
+						Project video links
+					</h3>
+					<p className="text-xs font-medium">Optional</p>
+				</div>
+			</div>
+			<div className="grid gap-4">
+				<div className="flex gap-3">
+					<Input
+						ref={InputRef}
+						type="text"
+						placeholder="Video link"
+						value={video}
+						onChange={(e) => setVideo(e.target.value)}
+						name="video-link"
+					/>
+					<Button
+						size="sm"
+						type="button"
+						onClick={handleAddVideo}
+						className="flex gap-1 items-center disabled:opacity-80"
+						disabled={!video.trim()} // Disable if input is empty
+					>
+						Add video link
+					</Button>
+				</div>
+				<div className="flex flex-wrap gap-4">
+					{videos.map((videoItem) => (
+						<div key={videoItem.url} className="grid gap-1">
+							<div className="relative w-[400px] h-[225px] overflow-hidden">
+								<iframe
+									width="400"
+									height="225"
+									src={videoItem.url}
+									className="absolute left-0 top-0 w-full h-full"
+									title="YouTube video player"
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+									allowFullScreen></iframe>
+							</div>
+							<div className="flex gap-3">
+								<Button
+									size="sm"
+									type="button"
+									className="flex gap-1 disabled:opacity-80 items-center"
+									onClick={() => handleRemoveVideo(videoItem.url)}>
+									Remove
+								</Button>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+			<FormMessage>{errors.videos?.message}</FormMessage>
+		</div>
+	);
+}
 // function Specifications({ form }: FormProps) {
 // 	const { fields, append, remove } = useFieldArray({
 // 		control: form.control,
@@ -528,7 +507,7 @@ function Images({ form }: FormProps) {
 			render={({ field }) => (
 				<FormItem>
 					<FormLabel className="text-base font-medium">
-						Product images
+						Project images
 					</FormLabel>
 					<FormControl>
 						<ImageUploader

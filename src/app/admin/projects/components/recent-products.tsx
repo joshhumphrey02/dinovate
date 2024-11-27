@@ -32,10 +32,10 @@ function RecentProducts({ data }: RecentProps) {
 							<Link
 								href={`/admin/projects/?projectId=${b.id}`}
 								className="space-y-2">
-								<h2 className="text-sm">{b.name}</h2>
+								<h2 className="text-base md:text-lg">{b.name}</h2>
 								<HtmlText
 									text={b.description}
-									className="text-xs line-clamp-4 font-semibold"
+									className="text-xs line-clamp-2 font-semibold"
 								/>
 							</Link>
 						</div>
