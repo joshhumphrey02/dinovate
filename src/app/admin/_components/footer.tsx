@@ -4,7 +4,7 @@ const Footer = () => {
 	return (
 		<div className=" flex items-center flex-col md:flex-row justify-between my-4 px-2 md:px-8">
 			<p className="text-gray-600 text-center text-sm md:text-base py-2">
-				© {new Date().getFullYear()} AGCOMS. All rights reserved.
+				© {new Date().getFullYear()} DINOVATE. All rights reserved.
 			</p>
 			<a
 				href="https://meltechgrp.com"

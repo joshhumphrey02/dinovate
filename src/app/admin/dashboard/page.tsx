@@ -13,8 +13,8 @@ import { redirect } from 'next/navigation';
 import { getProjects } from '@/lib/actions/project-actions';
 
 export const metadata: Metadata = {
-	title: 'AGCOMS Dashboard',
-	description: 'Dashboard of AGCOMS',
+	title: 'Dinovate Dashboard',
+	description: 'Dashboard of Dinovate',
 };
 
 export default async function Dashboard() {
@@ -24,7 +24,7 @@ export default async function Dashboard() {
 	}
 	const data = await getMessages();
 	const info = await getDashboardData();
-	const products = await getProjects({
+	const projects = await getProjects({
 		take: 4,
 		orderBy: {
 			createdAt: 'desc',
@@ -33,8 +33,8 @@ export default async function Dashboard() {
 	});
 	const grpahCardData = [
 		{
-			title: 'Total Equipment',
-			value: info.equipment,
+			title: 'Total Projects',
+			value: info.project,
 			image: g1,
 		},
 		{
@@ -63,7 +63,7 @@ export default async function Dashboard() {
 								Hello {user.firstName} {user.lastName} 👋
 							</h1>
 							<h4 className=" font-[RobotoLight] mt-1.5 lg:text-sm text-xs">
-								Create and manage AGCOMS activities!
+								Create and manage DINOVATE activities!
 							</h4>
 						</div>
 					</div>
@@ -78,7 +78,7 @@ export default async function Dashboard() {
 						</div>
 						<div className="grid grid-cols-1 sm:grid-cols-[60%,auto]  gap-2.5 sm:gap-4">
 							<RecentRequests requests={data} className=" " />
-							<Stats data={products} />
+							<Stats data={projects} />
 						</div>
 					</div>
 				</div>

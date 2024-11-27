@@ -53,7 +53,7 @@ export type ProjectsType = Awaited<ReturnType<typeof getProjects>>;
 export async function getProjectData(projectId?: string) {
 	try {
 		if (!projectId) return null;
-		const project = await prisma.project.findUnique({
+		const project = await prisma.project.findFirst({
 			where: { id: projectId },
 			select: {
 				id: true,

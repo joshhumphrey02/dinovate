@@ -43,7 +43,7 @@ export default function RecentRequests(props: {
 						))}
 					</tbody>
 				</table>
-				{!requests && (
+				{requests.length == 0 && (
 					<EmptyState
 						className="border-0 shadow-none"
 						title="No available data"

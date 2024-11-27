@@ -16,8 +16,8 @@ export default async function page(props: Props) {
 	return (
 		<div className="w-full h-full py-4 space-y-8">
 			<div className="space-y-2">
-				<h1 className=" text-lg sm:text-2xl font-medium">Quotation Requests</h1>
-				<p className="text-gray-500">View all pending quotation requests.</p>
+				<h1 className=" text-lg sm:text-2xl font-medium">Requests</h1>
+				<p className="text-gray-500">View all pending requests.</p>
 			</div>
 			<Card className="w-full divide-y max-w-[22rem] sm:max-w-full">
 				<div className="p-6 flex">

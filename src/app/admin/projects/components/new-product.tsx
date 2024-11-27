@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useActionState, useEffect, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,11 +20,13 @@ import {
 } from '@/components/ui/accordion';
 import { Progress } from '@/components/ui/progress';
 import { ProductFormInput, ProductFormSchema } from '@/lib/validators/auth';
-import { useFormState } from 'react-dom';
 import { Input } from '@/components/ui/input';
 import { useAlertToggle } from '@/components/shared/alert-wrapper';
 import { toast } from 'sonner';
-import { AlertDialogFooter } from '@/components/ui/alert-dialog';
+import {
+	AlertDialogFooter,
+	AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { Loader, Trash, Plus } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import ProductCategorySelect from '@/components/shared/select-product-category';
@@ -32,7 +34,7 @@ import ImageUploader from '@/components/shared/image-uploader';
 import { createProduct, ProjectType } from '@/lib/actions/project-actions';
 // import SpecsGroupSelect from '@/components/shared/select-spec-group';
 const TextEditor = dynamic(() => import('@/components/shared/text-editor'), {
-	ssr: false,
+	ssr: true,
 });
 
 const BasicSchema = ProductFormSchema.pick({
@@ -53,19 +55,19 @@ const ImgsSchema = ProductFormSchema.pick({
 	images: true,
 });
 
-const NewProduct = (props: { product?: ProjectType }) => {
-	const { product } = props;
+const NewProduct = (props: { project?: ProjectType }) => {
+	const { project } = props;
 	const [step, setStep] = React.useState(1);
 	const [loading, setLoading] = React.useState(false);
 	const form = useForm<ProductFormInput>({
 		resolver: zodResolver(ProductFormSchema),
 		defaultValues: {
-			id: product?.id,
-			name: product?.name || '',
-			description: product?.description || '',
-			category: product?.category?.name || '',
-			images: product?.images || [],
-			// specs: product?.specs || [],
+			id: project?.id,
+			name: project?.name || '',
+			description: project?.description || '',
+			category: project?.category?.name || '',
+			images: project?.images || [],
+			// specs: project?.specs || [],
 		},
 	});
 	function handleNext() {
@@ -93,11 +95,13 @@ const NewProduct = (props: { product?: ProjectType }) => {
 		return step * 50;
 	}, [step]);
 	const dismissAlert = useAlertToggle();
-	const [state, dispatch] = useFormState(createProduct, undefined);
+	const [state, dispatch] = useActionState(createProduct, undefined);
 
 	async function handleSubmit(data: ProductFormInput) {
 		setLoading(true);
-		return dispatch(data);
+		React.startTransition(() => {
+			dispatch(data);
+		});
 	}
 	form.watch();
 	useEffect(() => {
@@ -117,14 +121,14 @@ const NewProduct = (props: { product?: ProjectType }) => {
 		if (state?.data) {
 			setLoading(false);
 			toast.success(
-				product?.id
-					? 'Product updated successfully'
-					: 'Product created successfully'
+				project?.id
+					? 'Project updated successfully'
+					: 'Project created successfully'
 			);
 			form.reset();
-			return product
+			return project
 				? dismissAlert('edit', 'true')
-				: dismissAlert('productId', 'new');
+				: dismissAlert('projectId', 'new');
 		}
 	}, [state?.formError, state?.fieldError, state?.data]);
 	return (
@@ -138,10 +142,11 @@ const NewProduct = (props: { product?: ProjectType }) => {
 				<div className="space-y-4">
 					<h2 className="space-x-3">
 						<span className="text-xl font-medium">
-							{product?.id ? 'Update Product' : 'Add New Product'}
+							{project?.id ? 'Update Product' : 'Add New Product'}
 						</span>
 					</h2>
 				</div>
+				<AlertDialogTitle></AlertDialogTitle>
 				<div className="my-4">
 					<Form {...form}>
 						<form onSubmit={form.handleSubmit(handleSubmit)}>
@@ -154,7 +159,7 @@ const NewProduct = (props: { product?: ProjectType }) => {
 								<Controls
 									loading={loading}
 									handleNext={handleNext}
-									product={product}
+									project={project}
 									dismissAlert={dismissAlert}
 									step={step}
 									setStep={() => setStep((prev) => prev - 1)}
@@ -175,12 +180,12 @@ interface ControlProps {
 	setStep: () => void;
 	loading: boolean;
 	dismissAlert: any;
-	product?: any;
+	project?: any;
 	handleNext: any;
 }
 
 function Controls(props: ControlProps) {
-	const { step, setStep, loading, handleNext, dismissAlert, product } = props;
+	const { step, setStep, loading, handleNext, dismissAlert, project } = props;
 	return (
 		<AlertDialogFooter className="w-full flex flex-row gap-3 mt-3 ">
 			<Button
@@ -188,9 +193,9 @@ function Controls(props: ControlProps) {
 				onClick={(e) => {
 					e.preventDefault();
 					if (step > 1) return setStep();
-					step == 1 && product
+					step == 1 && project
 						? dismissAlert('edit', 'true')
-						: dismissAlert('productId', 'new');
+						: dismissAlert('projectId', 'new');
 				}}
 				className="flex-1"
 				variant={'outline'}
@@ -203,7 +208,7 @@ function Controls(props: ControlProps) {
 				className=" flex-1"
 				type={step > 2 ? 'submit' : 'button'}>
 				{loading && <Loader className="mr-2 h-4 w-4 animate-spin" />}
-				{step > 1 ? (product?.id ? 'Update' : 'Save') : 'Next'}
+				{step > 1 ? (project?.id ? 'Update' : 'Save') : 'Next'}
 			</Button>
 		</AlertDialogFooter>
 	);
@@ -232,7 +237,7 @@ function Basic({ form }: FormProps) {
 				name="name"
 				render={({ field }) => (
 					<FormItem>
-						<FormLabel>Product name</FormLabel>
+						<FormLabel>Project name</FormLabel>
 						<FormControl>
 							<Input type="text" placeholder="Product name" {...field} />
 						</FormControl>
@@ -276,7 +281,7 @@ function Basic({ form }: FormProps) {
 							</FormControl>
 							<FormMessage />
 						</FormItem>
-					)}
+					)} 
 				/> */}
 			</div>
 
@@ -287,7 +292,11 @@ function Basic({ form }: FormProps) {
 					<FormItem>
 						<FormLabel>Product description</FormLabel>
 						<FormControl>
-							<TextEditor placeholder="Product description" {...field} />
+							<TextEditor
+								placeholder="Product description"
+								value={form.getValues('description')}
+								onChange={(value) => form.setValue('description', value)}
+							/>
 						</FormControl>
 						<FormMessage />
 					</FormItem>

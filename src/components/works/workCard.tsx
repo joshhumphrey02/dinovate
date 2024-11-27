@@ -36,7 +36,9 @@ export default function WorkCard(props: WprkCardProps) {
 					<p className="pt-4 line-clamp-2 md:w-1/2">{description}</p>
 					<div className="pt-5">
 						<Link href={`/works/${id}`}>
-							<Button>View Project</Button>
+							<Button variant={'outline'} className=" bg-tertiary font-bold">
+								View Project
+							</Button>
 						</Link>
 					</div>
 				</div>

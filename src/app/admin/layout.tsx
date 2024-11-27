@@ -15,7 +15,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 		return redirect('/auth/login');
 	}
 	return (
-		<div className="grid min-h-screen w-full sm:grid-cols-[220px_1fr] lg:grid-cols-[250px_1fr] gap-3  overflow-x-hidden">
+		<div className="grid min-h-screen w-full sm:grid-cols-[220px_1fr] lg:grid-cols-[250px_1fr] gap-3 xl:max-w-[1350px] mx-auto  overflow-x-hidden">
 			<MainNav {...user} className="hidden md:block" />
 			<div className="flex flex-col relative">
 				<Header {...user} />

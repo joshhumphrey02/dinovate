@@ -16,7 +16,6 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { AuthLoginInput, AuthLoginSchema } from '@/lib/validators/auth';
-import { useFormState } from 'react-dom';
 import { toast } from 'sonner';
 import { Loader } from 'lucide-react';
 import { login } from '@/lib/actions/auth';
@@ -35,10 +34,12 @@ export default function AuthLoginForm({
 		},
 	});
 	const [loading, setLoading] = React.useState(false);
-	const [state, dispatch] = useFormState(login, undefined);
+	const [state, dispatch] = React.useActionState(login, undefined);
 	async function handleSubmit(data: AuthLoginInput) {
 		setLoading(true);
-		dispatch(data);
+		React.startTransition(() => {
+			dispatch(data);
+		});
 	}
 	React.useEffect(() => {
 		if (state?.formError) {

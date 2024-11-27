@@ -58,7 +58,7 @@ export async function getMessages() {
 			take: 6,
 			orderBy: { createdAt: 'desc' },
 		});
-		return requests;
+		return requests || [];
 	} catch (error) {
 		console.log(error);
 		return [];

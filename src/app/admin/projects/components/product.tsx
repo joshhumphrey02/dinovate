@@ -7,49 +7,51 @@ import { format } from 'date-fns';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import NewProduct from './new-product';
+import NewProject from './new-product';
 import { toast } from 'sonner';
 import { cn, uniqueId } from '@/lib/utils';
 import { deleteProduct, ProjectType } from '@/lib/actions/project-actions';
 import Image from '@/components/shared/image';
 import HtmlText from '@/components/shared/html-text';
+import { AlertDialogTitle } from '@/components/ui/alert-dialog';
 
 type Props = {
 	open: boolean;
-	productId?: string;
-	product: ProjectType;
+	projectId?: string;
+	project: ProjectType;
 	edit?: string;
 };
 
-export function ProductAlert({ open, product, productId, edit }: Props) {
+export function ProductAlert({ open, project, projectId, edit }: Props) {
 	return (
 		<AlertWrapper
-			alertKey="productId"
-			alertValue={productId || 'new'}
+			alertKey="projectId"
+			alertValue={projectId || 'new'}
 			open={open}
 			className={cn(
 				'sm:min-w-[56rem] overflow-scroll max-h-screen sm:w-[75vw]',
-				productId === 'new' || edit === 'true' ? 'px-0 py-0' : ''
+				projectId === 'new' || edit === 'true' ? 'px-0 py-0' : ''
 			)}>
+			<AlertDialogTitle></AlertDialogTitle>
 			<div className="overflow-y-scroll">
-				{productId === 'new' || edit === 'true' ? (
-					<NewProduct product={product} />
+				{projectId === 'new' || edit === 'true' ? (
+					<NewProject project={project} />
 				) : (
 					<>
 						<div className="space-y-4">
-							<h2 className="text-xl">Product Details</h2>
+							<h2 className="text-xl">Project Details</h2>
 						</div>
 						<div className=" mt-1">
 							<div className="w-full">
 								<div className="flex flex-col gap-5 py-3">
 									<div className="grid sm:grid-cols-3 gap-4">
-										{product?.images.map((im) => (
+										{project?.images.map((im) => (
 											<div
 												key={uniqueId()}
 												className="flex justify-center w-full h-32 items-center">
 												<Image
 													src={im.url}
-													alt={product.name}
+													alt={project.name}
 													bucketName="images"
 												/>
 											</div>
@@ -59,63 +61,63 @@ export function ProductAlert({ open, product, productId, edit }: Props) {
 										<CardContent className="space-y-4 px-4 py-1">
 											<div className="flex justify-between items-center w-full text-sm">
 												<span className="text-gray-500">Title:</span>
-												<span>{product?.name || ''}</span>
+												<span>{project?.name || ''}</span>
 											</div>
 											<div className="flex justify-between items-center w-full text-sm">
 												<span className="text-gray-500">Date created:</span>
 												<time className="text-sm text-gray-500 ml-auto">
-													{product?.createdAt
+													{project?.createdAt
 														? format(
-																new Date(product.createdAt),
+																new Date(project.createdAt),
 																'MMM dd, yyyy'
 														  )
 														: ''}
 												</time>
 											</div>
 											<div className="flex justify-between items-center w-full text-sm">
-												<span className="text-gray-500">product ID:</span>
-												<span>{product?.id || ''}</span>
+												<span className="text-gray-500">project ID:</span>
+												<span>{project?.id || ''}</span>
 											</div>
 											<div className="flex justify-between items-center w-full text-sm">
 												<span className="text-gray-500">Category:</span>
-												<span>{product?.category?.name || ''}</span>
+												<span>{project?.category?.name || ''}</span>
 											</div>
 										</CardContent>
 									</Card>
 									<Card className="px-4 py-2">
 										<HtmlText
-											text={product?.description ?? ''}
+											text={project?.description ?? ''}
 											className="text-xs font-semibold"
 										/>
 									</Card>
 									<div className="flex gap-4 items-center">
 										<Link
-											href={`?productId=${product?.id}&edit=true`}
+											href={`?projectId=${project?.id}&edit=true`}
 											className="">
 											<Button
 												className=" border-2"
 												variant={'outline'}
 												size={'lg'}>
-												Edit Product
+												Edit Project
 											</Button>
 										</Link>
 										<AlertTriggerButton
-											alertKey="productId"
-											alertValue={product?.id || 'new'}
+											alertKey="projectId"
+											alertValue={project?.id || 'new'}
 											className="px-8 py-2">
 											Cancel
 										</AlertTriggerButton>
 										<AlertTriggerButton
 											onClick={async () => {
-												const res = await deleteProduct(product?.id || '');
+												const res = await deleteProduct(project?.id || '');
 												if (!res) {
 													toast.error('Please try again');
 												} else {
-													toast.success('Product deleted successfully');
+													toast.success('Project deleted successfully');
 												}
 											}}
-											alertKey="productId"
-											alertValue={product?.id || 'new'}
+											alertKey="projectId"
+											alertValue={project?.id || 'new'}
 											className="px-8 py-2">
 											Delete
 										</AlertTriggerButton>

@@ -20,18 +20,18 @@ export default async function AuthLayout({
 							className="mr-2 h-6 w-6">
 							<path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
 						</svg>
-						Agcoms
+						Dinovate
 					</div>
 					<div className="relative z-20 mt-auto">
 						<blockquote className="space-y-2">
-							<p className="text-lg">“Power Your Progress With AGCOMS.”</p>
+							<p className="text-lg">"Impact through Storytelling.”</p>
 							<footer className="text-sm">
 								<cite className="not-italic"></cite>
 							</footer>
 						</blockquote>
 					</div>
 				</div>
-				<div className="lg:p-8 w-full">{children}</div>
+				<div className=" w-full">{children}</div>
 			</div>
 		</>
 	);

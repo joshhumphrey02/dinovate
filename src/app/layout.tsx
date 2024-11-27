@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Roboto, Oswald, Lato } from 'next/font/google';
 import './globals.css';
+import { Toaster } from 'sonner';
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -53,6 +54,7 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${lato.variable} ${oswald.variable} ${floodstd.variable} ${geistMono.variable} ${roboto.variable} antialiased bg-[#f0f0f0] font-lato mx-auto`}>
 				{children}
+				<Toaster />
 			</body>
 		</html>
 	);

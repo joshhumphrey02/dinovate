@@ -67,6 +67,16 @@ const config: Config = {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)',
 			},
+			transitionDuration: {
+				'2000': '2000ms',
+				'3000': '3000ms',
+				'4000': '4000ms',
+				'5000': '5000ms',
+				'6000': '6000ms',
+			},
+			animation: {
+				'spin-slow': 'spin 8s linear infinite',
+			},
 		},
 	},
 	plugins: [require('tailwindcss-animate')],

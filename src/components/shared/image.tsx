@@ -11,6 +11,7 @@ type Props = Omit<ImageProps, 'width' | 'height'> & {
 	alt: string;
 	scale?: boolean;
 	zoomIn?: boolean;
+	containerClassName?: string;
 };
 
 const Image = ({
@@ -20,6 +21,7 @@ const Image = ({
 	bucketName,
 	scale,
 	zoomIn,
+	containerClassName,
 	...props
 }: Props) => {
 	const { getImageUrl } = useImageHandler(bucketName);
@@ -28,25 +30,29 @@ const Image = ({
 		() => (
 			<div
 				className={cn(
-					'w-full overflow-hidden group relative h-full object-cover',
-					className
+					'w-full overflow-hidden group transition duration-300 relative h-full object-cover',
+					!src && 'blur-sm',
+					containerClassName
 				)}>
-				<Img
-					{...props}
-					src={getImageUrl(src)}
-					onLoad={() => setLoading(false)}
-					alt={alt || 'Background of a beautiful project'}
-					fill={true}
-					loading="lazy"
-					decoding="async"
-					blurDataURL={typeof src === 'string' ? src : undefined}
-					className={cn(
-						' object-cover transition duration-300 w-full h-full',
-						isLoading ? 'blur-sm' : 'blur-none',
-						scale && 'group-hover:scale-110 transition-all duration-3000',
-						zoomIn && 'group-hover:scale-90 group-hover:object-scale-contain'
-					)}
-				/>
+				{src && (
+					<Img
+						{...props}
+						src={getImageUrl(src)}
+						onLoad={() => setLoading(false)}
+						alt={alt || 'Background of a beautiful project'}
+						fill={true}
+						loading="lazy"
+						decoding="async"
+						blurDataURL={typeof src === 'string' ? src : undefined}
+						className={cn(
+							' object-cover transition  duration-1000 w-full h-full',
+							isLoading ? 'blur-sm' : 'blur-none',
+							scale && 'group-hover:scale-110 transition-all duration-3000',
+							zoomIn && 'group-hover:scale-90 group-hover:object-scale-contain',
+							className
+						)}
+					/>
+				)}
 			</div>
 		),
 		[props]

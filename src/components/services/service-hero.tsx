@@ -6,12 +6,14 @@ export default function ServiceHero() {
 		<div className="flex flex-col gap-12">
 			<div className=" grid md:grid-cols-[42%,auto] gap-3">
 				<div className="flex flex-col gap-4 md:gap-8">
-					<Image
-						src={'feature1.jpg'}
-						bucketName="images"
-						alt={'Feature Images'}
-						scale={true}
-					/>
+					<div className=" h-[20rem] w-full md:h-[25rem] xl:h-[40rem]">
+						<Image
+							src={'feature1.jpg'}
+							bucketName="images"
+							alt={'Feature Images'}
+							className="w-full h-full object-contain"
+						/>
+					</div>
 					<LineIcon />
 					<div>
 						<p className=" leading-8">

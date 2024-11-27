@@ -40,11 +40,11 @@ export default async function page(props: Props) {
 					<div className="">
 						<h4 className="font-medium text-sm">Account email address</h4>
 					</div>
-					<div className=" sm:place-self-start space-y-4 pr-6">
+					<div className="  space-y-4 pr-6">
 						{emails.map((email: any) => (
 							<div key={email} className="flex space-x-4 items-center">
 								<Input
-									className="w-full disabled:bg-gray-50 border-gray-300"
+									className="w-full md:w-[26rem] disabled:bg-gray-50 border-gray-300"
 									defaultValue={email}
 									disabled
 									readOnly

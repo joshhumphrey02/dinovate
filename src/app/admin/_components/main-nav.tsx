@@ -1,6 +1,6 @@
 'use client';
 import { cn } from '@/lib/utils';
-import Logo from '@/assets/logo-color.png';
+import Logo from '@/assets/main-logo.png';
 import { getSectionRoutes } from '@/components/constants';
 import LinkItem from './link-item';
 import Link from 'next/link';

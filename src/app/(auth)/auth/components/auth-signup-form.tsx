@@ -19,7 +19,6 @@ import {
 	AuthSignupFormInput,
 	AuthSignupFormSchema,
 } from '@/lib/validators/auth';
-import { useFormState } from 'react-dom';
 import { signup } from '@/lib/actions/auth';
 import { Loader } from 'lucide-react';
 import { toast } from 'sonner';
@@ -41,11 +40,13 @@ export default function AuthSignupForm({
 		},
 	});
 	const [loading, setLoading] = React.useState(false);
-	const [state, dispatch] = useFormState(signup, undefined);
+	const [state, dispatch, isPending] = React.useActionState(signup, undefined);
 
 	async function handleSubmit(data: AuthSignupFormInput) {
 		setLoading(true);
-		dispatch(data);
+		React.startTransition(() => {
+			dispatch(data);
+		});
 	}
 	React.useEffect(() => {
 		if (state?.formError) {
@@ -155,21 +156,6 @@ export default function AuthSignupForm({
 					</form>
 				</Form>
 			</div>
-			<p className="px-8 text-center text-sm text-muted-foreground">
-				By clicking continue, you agree to our{' '}
-				<Link
-					href="/terms"
-					className="underline underline-offset-4 hover:text-primary">
-					Terms of Service
-				</Link>{' '}
-				and{' '}
-				<Link
-					href="/privacy"
-					className="underline underline-offset-4 hover:text-primary">
-					Privacy Policy
-				</Link>
-				.
-			</p>
 		</>
 	);
 }

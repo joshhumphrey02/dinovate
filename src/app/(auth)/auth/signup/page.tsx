@@ -5,8 +5,8 @@ import { validateRequest } from '@/lib/lucia/validate-request';
 import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
-	title: 'Agcoms - Sign Up',
-	description: 'Sign up to Agcoms to start adding your products.',
+	title: 'Dinovate - Sign Up',
+	description: 'Sign up to Dinovate to start adding your projects.',
 };
 
 export default async function SignupPage() {
@@ -15,7 +15,7 @@ export default async function SignupPage() {
 		redirect('/admin/dashboard');
 	}
 	return (
-		<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+		<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[450px]">
 			<div className="flex flex-col space-y-2 text-center">
 				<h1 className="text-2xl font-semibold tracking-tight">
 					Let’s get started

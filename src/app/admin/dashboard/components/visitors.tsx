@@ -13,7 +13,7 @@ function Visitors(props: Props) {
 	return (
 		<Card className="w-full h-60 sm:h-full px-4 py-4">
 			<div className="flex h-auto justify-between items-center">
-				<h2 className="text-sm text-gray-500">Agcoms data</h2>
+				<h2 className="text-sm text-gray-500">Dinovate data</h2>
 				<DotsHorizontalIcon className="h-6 w-6 font-bold text-gray-300" />
 			</div>
 			<div className="flex-1 h-[80%]">
@@ -84,7 +84,7 @@ type Colors = {
 	[K in keyof DashboardData]: string;
 };
 const colors: Colors = {
-	equipment: 'bg-[#0b1058]',
+	project: 'bg-[#0b1058]',
 	admins: 'bg-[#a9be99]',
 	posts: 'bg-[#dad3cc]',
 	requests: 'bg-[#c09f80]',

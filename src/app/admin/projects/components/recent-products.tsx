@@ -19,7 +19,7 @@ function RecentProducts({ data }: RecentProps) {
 						className=" bg-transparent h-96 w-full bg-white  gap-1 grid grid-rows-[60%,auto]">
 						<div className="w-full">
 							<Image
-								src={b.images[0].url}
+								src={b.images[0]?.url}
 								className="rounded-md"
 								alt={b.name}
 								bucketName="images"
@@ -30,7 +30,7 @@ function RecentProducts({ data }: RecentProps) {
 								{format(new Date(b.createdAt), 'MMM d, yyyy,  hh:mm a')}
 							</time>
 							<Link
-								href={`/admin/equipment/?productId=${b.id}`}
+								href={`/admin/projects/?projectId=${b.id}`}
 								className="space-y-2">
 								<h2 className="text-sm">{b.name}</h2>
 								<HtmlText
