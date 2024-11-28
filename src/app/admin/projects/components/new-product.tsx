@@ -346,8 +346,7 @@ function Videos({ form }: FormProps) {
 						type="button"
 						onClick={handleAddVideo}
 						className="flex gap-1 items-center disabled:opacity-80"
-						disabled={!video.trim()} // Disable if input is empty
-					>
+						disabled={!video.trim()}>
 						Add video link
 					</Button>
 				</div>
