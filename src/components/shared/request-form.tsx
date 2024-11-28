@@ -176,7 +176,7 @@ export default function RequestForm({
 											</FormLabel>
 											<FormControl>
 												<Textarea
-													className="  px-0 rounded-none border border-black focus-visible:ring-0 focus-visible:ring-offset-0"
+													className="  px-2 md:px-0 rounded-none border border-black focus-visible:ring-0 focus-visible:ring-offset-0"
 													placeholder="Please enter your message"
 													{...field}
 												/>
@@ -185,7 +185,7 @@ export default function RequestForm({
 										</FormItem>
 									)}
 								/>
-								<FormField
+								{/* <FormField
 									control={form.control}
 									name="allowMarketing"
 									render={() => (
@@ -214,7 +214,7 @@ export default function RequestForm({
 											<FormMessage />
 										</FormItem>
 									)}
-								/>
+								/> */}
 								<Button
 									disabled={loading}
 									className="mt-4 bg-blue-700 text-white hover:border transition-colors duration-700 hover:border-blue-600 hover:text-black hover:bg-transparent"

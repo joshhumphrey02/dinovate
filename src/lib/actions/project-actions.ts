@@ -72,7 +72,6 @@ export async function getProjectData(projectId?: string) {
 					select: {
 						url: true,
 					},
-					take: 5,
 				},
 				videos: {
 					select: {
@@ -110,42 +109,49 @@ export async function createProduct(
 		const { id, images, name, description, category, videos, organization } =
 			data;
 		if (id) {
-			await prisma.project.update({
-				where: {
-					id,
-				},
-				data: {
-					name,
-					description,
-					category: {
-						connect: {
-							name: category,
-						},
+			await prisma.$transaction(async (tx) => {
+				await tx.video.deleteMany({
+					where: {
+						projectId: id,
 					},
-					...(images?.length
-						? {
-								images: {
-									connectOrCreate: images.map(({ url }) => ({
-										where: {
+				});
+				await tx.image.deleteMany({
+					where: {
+						projectId: id,
+					},
+				});
+				await tx.project.update({
+					where: {
+						id,
+					},
+					data: {
+						name,
+						description,
+						category: {
+							connect: {
+								name: category,
+							},
+						},
+						...(images?.length
+							? {
+									images: {
+										create: images.map(({ url }) => ({
 											url,
-										},
-										create: {
+										})),
+									},
+							  }
+							: {}),
+						...(videos?.length
+							? {
+									videos: {
+										create: videos.map(({ url }) => ({
 											url,
-										},
-									})),
-								},
-						  }
-						: {}),
-					...(videos?.length
-						? {
-								videos: {
-									create: videos.map(({ url }) => ({
-										url,
-									})),
-								},
-						  }
-						: {}),
-				},
+										})),
+									},
+							  }
+							: {}),
+					},
+				});
 			});
 			revalidatePath('/admin/project');
 			return {
@@ -207,6 +213,30 @@ export async function deleteProduct(projectId: string) {
 	}
 }
 export async function deleteImage(url: string) {
+	try {
+		if (!url) return false;
+		const exist = await prisma.image.findFirst({
+			where: {
+				url,
+			},
+			select: {
+				id: true,
+			},
+		});
+		if (exist)
+			await prisma.image.delete({
+				where: {
+					id: exist.id,
+				},
+			});
+		revalidatePath('/admin/project');
+		return true;
+	} catch (error) {
+		console.log(error);
+		return false;
+	}
+}
+export async function deleteVideo(url: string) {
 	try {
 		if (!url) return false;
 		const exist = await prisma.image.findFirst({

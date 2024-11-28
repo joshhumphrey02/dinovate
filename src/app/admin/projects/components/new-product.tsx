@@ -342,7 +342,7 @@ function Videos({ form }: FormProps) {
 						name="video-link"
 					/>
 					<Button
-						size="sm"
+						size="lg"
 						type="button"
 						onClick={handleAddVideo}
 						className="flex gap-1 items-center disabled:opacity-80"

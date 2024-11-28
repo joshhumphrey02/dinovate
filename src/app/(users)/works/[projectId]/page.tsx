@@ -36,32 +36,62 @@ export default async function Project(props: Props) {
 				</div>
 			) : (
 				<div className=" flex flex-col gap-8">
-					<div className={'w-full h-[80vh] md:h-[70vh] bg-gray-200'}>
+					<div className={'w-screen h-[50vh] md:h-[80vh] bg-gray-200'}>
 						{data.images.length && (
 							<Image
 								src={data.images[0]?.url}
 								bucketName="images"
 								alt={data.name}
-								className=" h-full w-full"
+								className=" h-full w-full md:object-center"
 							/>
 						)}
 					</div>
-					<div className=" md:w-[70%] mx-auto py-10 md:py-20 flex flex-col gap-8">
-						<div className=" space-y-10">
-							<h1 className="text-5xl md:text-7xl text-tertiary md:w-[60%] md:leading-[5rem] font-oswald font-bold">
+					<div className=" md:w-[70%] mx-auto px-4 py-6 md:py-20 flex flex-col gap-8">
+						<div className=" md:pb-10">
+							<h1 className="text-4xl md:text-7xl text-tertiary md:w-[60%] xl:w-[70%] md:leading-[5rem] font-oswald font-bold">
 								{data.name}
 							</h1>
-							<p className="text-base md:text-lg md:w-1/2 font-normal md:leading-[2rem] font-lato">
-								{data.description}
-							</p>
 						</div>
-						<div className=" grid md:grid-cols-2 gap-4">
+						<div className=" grid md:grid-cols-[45%,auto] gap-6 md:gap-0 ">
+							<div className=" row-start-2 md:row-start-1">
+								<p className=" flex gap-2 items-start">
+									<span className=" text-base text-black/80">Partner:</span>{' '}
+									<span className=" text-black font-bold text-sm">
+										{data.organization}
+									</span>
+								</p>
+								<p className=" flex gap-2 items-center">
+									<span className=" text-base text-black/80">Sector:</span>{' '}
+									<span className=" text-black font-bold text-sm">
+										{data.category.name}
+									</span>
+								</p>
+							</div>
+							<div className=" space-y-10">
+								<p className="text-base md:text-lg  font-normal md:leading-[2rem] font-lato">
+									{data.description}
+								</p>
+							</div>
+						</div>
+						<div className=" py-10">
+							{data.videos.length > 0 && (
+								<div className=" w-full h-[20rem] md:w-[90%] md:h-[40rem] mx-auto ">
+									<iframe
+										src={data.videos[0].url}
+										title={data.name + 'YouTube video'}
+										className="w-full h-full"
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+										allowFullScreen></iframe>
+								</div>
+							)}
+						</div>
+						<div className=" flex gap-6 overflow-auto max-w-sm md:max-w-full">
 							{data.images.length &&
-								data.images.map((img) => {
+								data.images.reverse().map((img) => {
 									return (
 										<div
 											key={uniqueId()}
-											className="w-full h-[350px] md:h-[30rem]">
+											className="w-[300px] h-[300px] shrink-0 rounded-xl overflow-hidden md:w-[20rem] md:h-[20rem]">
 											<Image
 												src={img.url}
 												bucketName="images"
@@ -80,7 +110,7 @@ export default async function Project(props: Props) {
 								<Link
 									href={'?contact=true'}
 									scroll={false}
-									className=" w-40 h-40 rounded-full bg-blue-700 hover:bg-tertiary transition-all duration-700 p-4 text-white flex flex-col justify-center items-center gap-2">
+									className=" w-32 md:w-40 h-32 md:h-40 rounded-full bg-blue-700 hover:bg-tertiary transition-all duration-700 p-4 text-white flex flex-col justify-center items-center gap-2">
 									<Mail />
 									<p className=" text-sm text-center">
 										Click here to message us
@@ -93,7 +123,7 @@ export default async function Project(props: Props) {
 									them a message.
 								</p>
 							</div>
-							<div className="flex flex-wrap justify-center gap-8">
+							<div className="flex flex-wrap justify-center gap-6 md:gap-8">
 								{profiles.map((t, i) => (
 									<Link key={uniqueId()} href={'?contact=true'} scroll={false}>
 										<div className=" w-32 h-32 border-2 border-tertiary group relative overflow-hidden rounded-full ">
