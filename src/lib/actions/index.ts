@@ -73,3 +73,26 @@ export async function getDashboardData() {
 }
 
 export type DashboardData = Awaited<ReturnType<typeof getDashboardData>>;
+
+interface VProps {
+	take?: number;
+}
+
+export async function getVideos() {
+	// const { take } = props;
+	try {
+		const videos = await prisma.video.findMany({
+			select: {
+				id: true,
+				url: true,
+				createdAt: true,
+			},
+			orderBy: { createdAt: 'desc' },
+			take: 6,
+		});
+		return videos || [];
+	} catch (error) {
+		console.log(error);
+		return [];
+	}
+}
