@@ -109,49 +109,43 @@ export async function createProduct(
 		const { id, images, name, description, category, videos, organization } =
 			data;
 		if (id) {
-			await prisma.$transaction(async (tx) => {
-				await tx.video.deleteMany({
-					where: {
-						projectId: id,
-					},
-				});
-				await tx.image.deleteMany({
-					where: {
-						projectId: id,
-					},
-				});
-				await tx.project.update({
-					where: {
-						id,
-					},
-					data: {
-						name,
-						description,
-						category: {
-							connect: {
-								name: category,
-							},
+			await prisma.project.update({
+				where: {
+					id,
+				},
+				data: {
+					name,
+					description,
+					category: {
+						connect: {
+							name: category,
 						},
-						...(images?.length
-							? {
-									images: {
-										create: images.map(({ url }) => ({
-											url,
-										})),
-									},
-							  }
-							: {}),
-						...(videos?.length
-							? {
-									videos: {
-										create: videos.map(({ url }) => ({
-											url,
-										})),
-									},
-							  }
-							: {}),
 					},
-				});
+					...(images?.length
+						? {
+								images: {
+									connectOrCreate: images.map(({ url }) => ({
+										where: {
+											url,
+										},
+										create: {
+											url,
+										},
+									})),
+								},
+						  }
+						: {}),
+					...(videos?.length
+						? {
+								videos: {
+									deleteMany: {},
+									create: videos.map(({ url }) => ({
+										url,
+									})),
+								},
+						  }
+						: {}),
+				},
 			});
 			revalidatePath('/admin/project');
 			return {
@@ -168,10 +162,17 @@ export async function createProduct(
 							name: category,
 						},
 					},
-					...(images
+					...(images?.length
 						? {
 								images: {
-									create: images.map(({ url }) => ({ url })),
+									connectOrCreate: images.map(({ url }) => ({
+										where: {
+											url,
+										},
+										create: {
+											url,
+										},
+									})),
 								},
 						  }
 						: {}),
@@ -221,12 +222,20 @@ export async function deleteImage(url: string) {
 			},
 			select: {
 				id: true,
+				projectId: true,
 			},
 		});
-		if (exist)
-			await prisma.image.delete({
+		if (exist?.projectId)
+			await prisma.project.update({
 				where: {
-					id: exist.id,
+					id: exist.projectId,
+				},
+				data: {
+					images: {
+						delete: {
+							id: exist.id,
+						},
+					},
 				},
 			});
 		revalidatePath('/admin/project');

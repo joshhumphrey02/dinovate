@@ -6,7 +6,7 @@ import Header from './_components/header';
 import { validateRequest } from '@/lib/lucia/validate-request';
 
 export const metadata: Metadata = {
-	title: 'AGCOMS Admin',
+	title: 'Dinovate Admin',
 };
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

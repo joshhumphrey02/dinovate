@@ -274,6 +274,19 @@ function Basic({ form }: FormProps) {
 						</FormItem>
 					)}
 				/>
+				<FormField
+					control={form.control}
+					name="organization"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Organization</FormLabel>
+							<FormControl>
+								<Input type="text" placeholder="Organization name" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 			</div>
 
 			<FormField

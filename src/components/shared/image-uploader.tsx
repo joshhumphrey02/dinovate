@@ -25,14 +25,17 @@ export default function ImageUploader({
 	const maxNumber = 6;
 	const { uploadImages, deleteImage, loading, getImageUrl } =
 		useImageHandler(bucketName);
-	async function handleUpload(images: ImageListType) {
+	async function handleUpload(imagesD: ImageListType) {
 		const formData = new FormData();
-		images.forEach((image) => {
+		imagesD.forEach((image) => {
 			image?.file && formData.append('image', image.file);
 		});
 		let res = await uploadImages(formData);
 		if (res.error) return toast.error(res.error);
-		res?.data && saveImages(res.data);
+		if (res.data) {
+			const prev = [...images, ...res.data];
+			res?.data && saveImages(prev);
+		}
 	}
 	async function handleDelete(key: string) {
 		const res = await deleteImage(key);
