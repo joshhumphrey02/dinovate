@@ -9,6 +9,7 @@ import { getProfileData } from '@/lib/actions';
 import Line2 from '@/components/Icons/line2';
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
+import HtmlText from '@/components/shared/html-text';
 
 interface Props {
 	params: Promise<{
@@ -68,9 +69,11 @@ export default async function Project(props: Props) {
 								</p>
 							</div>
 							<div className=" space-y-10">
-								<p className="text-base md:text-lg  font-normal md:leading-[2rem] font-lato">
-									{data.description}
-								</p>
+								<HtmlText
+									text={data.description}
+									color="white"
+									className="text-base md:text-lg  font-normal md:leading-[2rem] font-lato"
+								/>
 							</div>
 						</div>
 						<div className=" py-10">

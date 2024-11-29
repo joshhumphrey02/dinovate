@@ -13,6 +13,7 @@ import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 import ArrowIcon from '../Icons/arrow';
 import { useRouter } from 'next/navigation';
 import Image from '../shared/image';
+import HtmlText from '../shared/html-text';
 
 interface CarouselProps {
 	items: JSX.Element[];
@@ -251,7 +252,11 @@ export const Card = ({
 					<motion.p
 						layoutId={layout ? `des-${card.des}` : undefined}
 						className="text-white line-clamp-2 text-sm md:text-base font-medium font-sans text-left">
-						{card.des}
+						<HtmlText
+							text={card.des}
+							color="white"
+							className="text-white [&_p]:text-white line-clamp-2"
+						/>
 					</motion.p>
 				</div>
 				<Image

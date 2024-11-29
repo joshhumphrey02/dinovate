@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import Image from '../shared/image';
 import Link from 'next/link';
 import { Button } from '../ui/button';
+import HtmlText from '../shared/html-text';
 
 interface WprkCardProps {
 	data: ProjectsType[0];
@@ -33,7 +34,8 @@ export default function WorkCard(props: WprkCardProps) {
 					)}>
 					<h1 className=" text-lg md:text-xl font-bold">{name}</h1>
 					<p className=" text-lg md:text-xl font-bold">{organization}</p>
-					<p className="pt-4 line-clamp-2 md:w-1/2">{description}</p>
+					{/* <p className="pt-4 line-clamp-2 md:w-1/2">{description}</p> */}
+					<HtmlText text={description} className="pt-4 line-clamp-2 md:w-1/2" />
 					<div className="pt-5">
 						<Link href={`/works/${id}`}>
 							<Button variant={'outline'} className=" bg-tertiary font-bold">

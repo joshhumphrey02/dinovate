@@ -17,7 +17,7 @@ const TextEditor = (props: TextEditorProps) => {
 		if (quill) {
 			quill.clipboard.dangerouslyPasteHTML(value);
 		}
-	}, [value, quill]);
+	}, []);
 	useEffect(() => {
 		if (quill) {
 			quill.on('text-change', () => {
