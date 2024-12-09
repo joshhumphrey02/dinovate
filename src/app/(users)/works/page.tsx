@@ -45,9 +45,18 @@ export default async function Works(props: Props) {
 				</div>
 				<WorkServices active={search || 'all'} cats={cats} />
 				<div className=" gap-20 flex flex-col px-4 md:px-10 md:max-w-[1350px] mx-auto">
-					{projects.map((p, i) => (
-						<WorkCard index={i} key={p.name} data={p} />
-					))}
+					{projects.length ? (
+						projects.map((p, i) => <WorkCard index={i} key={p.name} data={p} />)
+					) : (
+						<div className=" flex flex-col gap-3 items-center justify-center pt-10 md:pt-20">
+							<Img
+								src={empty}
+								alt="Empty"
+								className=" w-full h-40 md:w-80 md:h-80 object-cover"
+							/>
+							<p className=" text-xl font-medium">No project found!</p>
+						</div>
+					)}
 				</div>
 				<div className="px-4 md:px-10 md:max-w-[1350px] py-10 mx-auto grid gap-10">
 					<div>
@@ -160,15 +169,6 @@ export default async function Works(props: Props) {
 						</div>
 					</div>
 				</div>
-				{projects.length === 0 && (
-					<div className=" flex justify-center pt-10 md:pt-20">
-						<Img
-							src={empty}
-							alt="Empty"
-							className=" w-full h-40 md:w-80 md:h-80 object-cover"
-						/>
-					</div>
-				)}
 			</div>
 			<RequestForm open={!!contact} />
 			<Footer />

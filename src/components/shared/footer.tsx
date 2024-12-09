@@ -10,6 +10,7 @@ import {
 	MapPin,
 	Phone,
 	Twitter,
+	X,
 } from 'lucide-react';
 import { ReactNode } from 'react';
 import Link from 'next/link';
@@ -137,19 +138,19 @@ const footer: FooterTop = [
 		links: [
 			{
 				label: 'About',
-				href: '#',
+				href: '/about-us',
 			},
 			{
 				label: 'Services',
-				href: '#',
+				href: '//services',
 			},
 			{
 				label: 'Projects',
-				href: '#',
+				href: '/works',
 			},
 			{
 				label: 'Contact',
-				href: '#',
+				href: '?contact=true',
 			},
 		],
 	},
@@ -158,23 +159,27 @@ const footer: FooterTop = [
 		links: [
 			{
 				label: 'Media Production',
-				href: '#',
+				href: '/works?search=media-production',
 			},
 			{
 				label: 'Strategic Communications',
-				href: '#',
+				href: '/works?search=strategic-communication',
 			},
 			{
 				label: 'Design & Branding',
-				href: '#',
+				href: '/works?search=design-and-branding',
 			},
 			{
-				label: 'Avocacy Capacity Building',
-				href: '#',
+				label: 'Avocacy',
+				href: '/works?search=advocacy',
+			},
+			{
+				label: 'Capacity Building',
+				href: '/works?search=capacity-building',
 			},
 			{
 				label: 'Creative Space',
-				href: '#',
+				href: '/works?search=creative-studio-hub',
 			},
 		],
 	},
@@ -183,22 +188,22 @@ const footer: FooterTop = [
 		links: [
 			{
 				label: 'House A2 Plot 37 Kado District, Abuja',
-				href: '#',
+				href: '?contact=true',
 				icon: <MapPin className={cn('w-4 h-4 text-gray-400')} />,
 			},
 			{
 				label: '+234 8166357463',
-				href: '#',
+				href: '?contact=true',
 				icon: <Phone className={cn('w-4 h-4 text-gray-400')} />,
 			},
 			{
 				label: 'info@dinovate.com',
-				href: '#',
+				href: '?contact=true',
 				icon: <Mail className={cn('w-4 h-4 text-gray-400')} />,
 			},
 			{
 				label: '9am to 6pm',
-				href: '#',
+				href: '?contact=true',
 				icon: <Clock className={cn('w-4 h-4 text-gray-400')} />,
 			},
 		],
@@ -208,22 +213,22 @@ const footer: FooterTop = [
 const socials = [
 	{
 		label: 'Facebook',
-		href: '#',
+		href: 'https://www.facebook.com/Dinovate/',
 		icon: Facebook,
 	},
 	{
 		label: 'Instagram',
-		href: '#',
+		href: 'https://www.instagram.com/dinovatesolutions/',
 		icon: Instagram,
 	},
 	{
-		label: 'Twitter',
-		href: '#',
-		icon: Twitter,
+		label: 'X',
+		href: 'https://x.com/dinovate',
+		icon: X,
 	},
 	{
 		label: 'LinkedIn',
-		href: '#',
+		href: 'https://www.linkedin.com/company/dinovate-solutions',
 		icon: Linkedin,
 	},
 ];

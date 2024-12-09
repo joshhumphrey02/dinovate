@@ -176,7 +176,7 @@ export default function RequestForm({
 											</FormLabel>
 											<FormControl>
 												<Textarea
-													className="  px-2 md:px-0 rounded-none border border-black focus-visible:ring-0 focus-visible:ring-offset-0"
+													className="  px-2  rounded-none border border-black focus-visible:ring-0 focus-visible:ring-offset-0"
 													placeholder="Please enter your message"
 													{...field}
 												/>
