@@ -102,7 +102,7 @@ export default function Footer(props: Props) {
 							href="http://meltechgrp.com"
 							target="_blank"
 							rel="noopener noreferrer">
-							<p className="text-[9px]">Designed by Mel-Technologies</p>
+							<p className="text-[9px]">Designed by MEL-Technologies</p>
 						</a>
 					</div>
 				</div>
@@ -142,7 +142,7 @@ const footer: FooterTop = [
 			},
 			{
 				label: 'Services',
-				href: '//services',
+				href: '/services',
 			},
 			{
 				label: 'Projects',

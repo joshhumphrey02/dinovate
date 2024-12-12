@@ -4,12 +4,12 @@ import Image from '../shared/image';
 export default function AboutHero() {
 	return (
 		<div className=" grid sm:grid-cols-[45%,auto] gap-3">
-			<div className="flex flex-col gap-4 sm:gap-8">
+			<div className="flex h-[30rem] lg:h-[40rem] 2xl:h-[45rem] flex-col gap-4 sm:gap-8">
 				<Image
 					src={'office2.jpg'}
 					bucketName="images"
 					alt={'office'}
-					className="h-[30rem] xl:h-[40rem]"
+					className=""
 				/>
 				<LineIcon />
 				<div>

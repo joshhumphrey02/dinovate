@@ -146,7 +146,7 @@ async function Staff() {
 		{
 			name: 'Temidayo Ibitoye',
 			title: 'CEO and founder',
-			image: 'ceo-Dayo.jpg',
+			image: 'dayo.jpeg',
 			des: 'Temidayo Ibitoye is the CEO and founder of Dinovate Solutions. He leads the company in pioneering innovative communication strategies across Africa, empowering global development organizations to achieve sustainable impact. Renowned for his expertise in effective storytelling, visual communication, strategic branding, and knowledge management, Temidayo has spearheaded pivotal projects for major institutions including the United Nations, the European Union, USAID, the World Bank, and the Mastercard Foundation.',
 			social: [
 				{ icon: 'Facebook', link: 'https://www.facebook.com/dayo.ibitoye' },
@@ -159,10 +159,10 @@ async function Staff() {
 			],
 		},
 		{
-			name: 'Oluseyi Abdulmalik',
-			title: 'Lead, Strategic Communications',
-			image: 'Oluseyi-Abdulmalik.jpg',
-			des: "Oluseyi Abdulmalik leads Strategic Communications at Dinovate Solutions. She brings over 15 years of experience in media and strategic communications across diverse sectors, enhancing the company's strategic initiatives and global communications efforts.",
+			name: 'Christine Akume-David',
+			title: 'Communications Specialist',
+			image: 'christine.jpeg',
+			des: 'Christine is the communications Specialist at Dinovate. With an extensive background in communication, filmmaking and management, she brings a distinctive skill set that enchances the Dinovate team’s pivotal goals. Executing communication and innovative strategies, and overseeing external and internal communication.',
 			social: [
 				{ icon: 'Facebook', link: '#' },
 				{ icon: 'Twitter', link: '#' },
@@ -171,10 +171,10 @@ async function Staff() {
 			],
 		},
 		{
-			name: 'Farid Suleiman',
+			name: 'Farid Sulieman',
 			title: 'Project Officer',
-			image: 'Fareed-Suleiman.jpeg',
-			des: 'Farid Suleiman spearheads projects as the Project Manager at Dinovate Solutions, guiding them from conception to delivery. With a proven track record in managing creative media projects, he has successfully led projects across multiple sectors. Farid Is dedicated to utilizing his expertise to drive meaningful social impact initiatives.',
+			image: 'farid.jpeg',
+			des: 'Farid is the Project Officer at Dinovate, coordinating the smooth execution of projects from planning to delivery. With a proven track record in coordinating creative media initiatives, he has successfully contributed to projects across multiple sectors. Farid is committed to leveraging his expertise to drive meaningful social impact initiatives.',
 			social: [
 				{ icon: 'Facebook', link: '#' },
 				{ icon: 'Twitter', link: '#' },
@@ -186,10 +186,10 @@ async function Staff() {
 			],
 		},
 		{
-			name: 'Azeez Badmus',
-			title: 'Lead Cinematographer',
-			image: 'Azeez-Badmus.jpeg',
-			des: 'Azeez Badmus is the lead cinematographer and video editor at Dinovate Solutions. He specializes in creating captivating visual content through his expertise in animation, video editing, videography, and motion graphics. Prior to joining Dinovate, Azeez has worked with renowned brands such as Binance, Mixagrip Woods (Ghana), Power Plug, and Kunle Afolayan Production, showcasing his versatile skill set and creative vision.',
+			name: 'Miracle',
+			title: 'Social Media Manager',
+			image: 'miracle.jpeg',
+			des: 'Miracle is a dynamic Social Media Manager and Content Creator at Dinovate. With extensive experience in social media management and content creation, she develops and implements engaging content strategies that drive brand visibility, boost engagement, and foster meaningful connections. Additionally, Princess brings expertise in campaign analysis, content calendar planning, and team collaboration.',
 			social: [
 				{ icon: 'Facebook', link: '#' },
 				{ icon: 'Twitter', link: '#' },
@@ -198,10 +198,10 @@ async function Staff() {
 			],
 		},
 		{
-			name: 'Blaise Chisom Akwuobi',
-			title: 'Video Editor',
-			image: 'Chisom-1.png',
-			des: 'Blaise Chisom Akwuobi is a video editor and cinematographer at Dinovate Solutions. As a versatile cinematographer and 3D enthusiast. he is known for crafting compelling narratives. He has a keen eye for detail, transforming raw footage into captivating stories and pushing the boundaries of visual storytelling. He has created impactful content for brands like Monster Energy, Martell, CBN, and the Nigerian Navy.',
+			name: 'Grace Omale',
+			title: 'Cinematographer & Editor',
+			image: 'grace.jpeg',
+			des: 'A skilled professional with expertise in cinematography, editing, and visual direction, Grace brings a refined touch to every project, producing visually compelling content that drives impactful storytelling at Dinovate.',
 			social: [
 				{ icon: 'Facebook', link: '#' },
 				{ icon: 'Twitter', link: '#' },
@@ -210,10 +210,12 @@ async function Staff() {
 			],
 		},
 		{
-			name: 'Adetutu Lawson',
-			title: 'Business Development Officer',
-			image: 'Adetutu-.jpeg',
-			des: 'Adetutu is the business Development Manager at Dinovate Solutions. She has a background in business administration and also an international business analysis degree. At Dinovate, she has been involved with managing various projects, creating solutions to problems and also planning for the future.',
+			name: 'Emmanuella',
+			title: 'Communications Assistant',
+			image: 'emmanuella.jpeg',
+			des: `Emmanuella is a detail-oriented Communications Assistant at Dinovate. She helps with curating and coordinating content for various channels. With a background in International Studies, Emmanuella brings a unique perspective to her work and supports internal communication efforts, developing valuable experience in communications. 
+
+In addition to her communications role, Ella is also a skilled photographer with extensive experience in capturing high-quality images.`,
 			social: [
 				{ icon: 'Facebook', link: '#' },
 				{ icon: 'Twitter', link: '#' },
@@ -234,10 +236,10 @@ async function Staff() {
 			],
 		},
 		{
-			name: 'Dolapo Bamidele',
-			title: 'Social Media Manager',
-			image: 'Dolapo.jpg',
-			des: "Dolapo Bamidele, Dinovate Solutions' Social Media Manager, leverages her community management and brand voice expertise to create a compelling online presence. Her SEO knowledge and platform expertise yield engaging content that boosts our brand growth.",
+			name: 'Adetutu Lawson',
+			title: 'Administrative Asst.',
+			image: 'lawson.jpg',
+			des: 'Dedicated and results-driven Administrative Assistant with a background in Business Administration and International Business Analysis, Adetutu provides exceptional team support. She supports record keeping, data entry, procurement, and other administrative functions, ensuring seamless efficiency and productivity.',
 			social: [
 				{ icon: 'Facebook', link: '#' },
 				{ icon: 'Twitter', link: '#' },
@@ -246,10 +248,34 @@ async function Staff() {
 			],
 		},
 		{
-			name: 'Christine Akume-David',
-			title: 'Communication Specialist',
-			image: 'Christine-Akume-.jpeg',
-			des: 'Christine Akume-David is the communication Specialist at Dinovate Solutions, With almost a decade of diverse communication and leadership experience, she brings a distinctive skill set to the Dinovate team. Drawing from her background in media, filmmaking, and entrepreneurship. She excels in shaping compelling stories and informative content, leveraging her expertise in creative writing, copywriting, and business writing to ensure clarity and impact.',
+			name: 'Bella',
+			title: 'Administrative Receptionist',
+			image: 'bella.jpeg',
+			des: 'Bella serves as the first point of contact for visitors and callers, providing top-notch client service and support. As Administrative Receptionist, she expertly manages front desk functions, keeps track of bookings, performs data entry, and coordinates schedules to ensure seamless day-to-day activities and warm hospitality.',
+			social: [
+				{ icon: 'Facebook', link: '#' },
+				{ icon: 'Twitter', link: '#' },
+				{ icon: 'Linkedin', link: '#' },
+				{ icon: 'Instagram', link: '#' },
+			],
+		},
+		{
+			name: 'Victor',
+			title: 'Graphics Designer',
+			image: 'victor.jpeg',
+			des: 'Victor is a detail-oriented Graphics Designer who assists in creating engaging visual content for various projects. As he continues to develop his design skills, Victor brings a fresh perspective to his work, supporting our creative efforts and gaining valuable experience in graphic design.',
+			social: [
+				{ icon: 'Facebook', link: '#' },
+				{ icon: 'Twitter', link: '#' },
+				{ icon: 'Linkedin', link: '#' },
+				{ icon: 'Instagram', link: '#' },
+			],
+		},
+		{
+			name: 'Favour',
+			title: 'Social Media Assistant',
+			image: 'favour.jpeg',
+			des: 'Favour is an enthusiastic Social Media Assistant and Content Creator at Dinovate. He provides exceptional support in content creation and social media management. Favour is highly organized, efficient, and eager to continuously evolve as he gains valuable experience in social media management.',
 			social: [
 				{ icon: 'Facebook', link: '#' },
 				{ icon: 'Twitter', link: '#' },
@@ -282,8 +308,8 @@ async function Staff() {
 
 async function upload() {
 	try {
-		await main();
-		await Staff();
+		// await main();
+		// await Staff();
 	} catch (e) {
 		console.error(e);
 		await prisma.$disconnect();

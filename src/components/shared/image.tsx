@@ -30,7 +30,7 @@ const Image = ({
 		() => (
 			<div
 				className={cn(
-					'w-full overflow-hidden group transition duration-300 relative h-full object-cover',
+					'w-full overflow-hidden group transition bg-gray-300 duration-300 relative h-full object-cover',
 					!src && 'blur-sm',
 					containerClassName
 				)}>

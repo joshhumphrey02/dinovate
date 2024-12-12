@@ -71,7 +71,7 @@ export default function ServiceMedia() {
 								</div>
 								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
 									<Image
-										src={'iwmi1.jpeg'}
+										src={'imwi1.jpeg'}
 										bucketName="images"
 										alt={'documentries'}
 									/>
