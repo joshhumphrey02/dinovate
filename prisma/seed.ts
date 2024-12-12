@@ -309,7 +309,7 @@ In addition to her communications role, Ella is also a skilled photographer with
 async function upload() {
 	try {
 		// await main();
-		// await Staff();
+		await Staff();
 	} catch (e) {
 		console.error(e);
 		await prisma.$disconnect();

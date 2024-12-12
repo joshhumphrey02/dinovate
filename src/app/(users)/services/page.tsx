@@ -47,7 +47,7 @@ export default async function Services(props: Props) {
 									<div className=" relative basis-[31%]">
 										<div className="flex flex-col gap-1">
 											<div className="w-full h-[21rem] sm:h-[19rem] xl:h-[24rem]">
-												{t.image && (
+												{t?.image && (
 													<Image
 														src={t.image.url}
 														bucketName="images"

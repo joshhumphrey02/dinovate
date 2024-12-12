@@ -100,7 +100,7 @@ const Sections = () => {
 						</p>
 					</div>
 				</div>
-				<div className="grid grid-cols-2 sm:grid-cols-3 gap-6 w-[70%] mx-auto">
+				<div className="flex overflow-auto max-w-sm md:max-w-full gap-6 w-[70%] mx-auto">
 					{partners.map((item, i) => (
 						<div ref={addToRefs} key={item}>
 							<img

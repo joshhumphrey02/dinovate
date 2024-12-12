@@ -57,12 +57,12 @@ const Impact = () => {
 								className="mb-4"
 							/>
 							<h2 className="text-2xl sm:text-[2.2rem] leading-[1.2] text-center font-medium text-amber-500 mb-4">
-								<Link href={'#'} className="flex flex-col gap-y-3">
+								<Link href={i.link} className="flex flex-col gap-y-3">
 									<span className=" uppercase font-oswald">{i.title}</span>
 									<ArrowIcon />
 								</Link>
 							</h2>
-							<p className="text-center line-clamp-4 text-md leading-relaxed text-gray-500">
+							<p className="text-center text-md leading-relaxed text-gray-500">
 								{i.des}
 							</p>
 						</CardContent>
@@ -77,19 +77,22 @@ export default Impact;
 
 const data = [
 	{
-		title: 'Creative Problem-Solver',
+		title: 'Creative Problem Solvers',
 		des: `Our team is made up of passionate creatives and strategic thinkers who believe in using our talents for good. We collaborate with organizations, and communities to uncover the stories that need to be told. At Dinovate, every project is a partnership. We bring our expertise in communications, while you bring your deep knowledge of your cause. Together, we achieve outcomes that make a difference.
 `,
 		image: '/images/strategy.webp',
+		link: '/about-us',
 	},
 	{
 		title: 'Storytelling That Moves People',
 		des: `We know that stories shape the world. That’s why we help organizations and communities tell their stories in a way that resonates, inspires, and drives action. Changing the world starts with finding the right story—and telling it well.`,
 		image: '/images/campaign.webp',
+		link: '/about-us',
 	},
 	{
 		title: 'Outcomes over Outputs',
 		des: `We believe in driving change, not just creating noise. Our approach is outcome-driven. Whether through multimedia campaigns, documentaries, advocacy, branding, or capacity building, we focus on results that matter to you and your audience. Our tools and tactics are adaptable and evolve with each project to achieve maximum impact.`,
 		image: '/images/brand.webp',
+		link: '/about-us',
 	},
 ];

@@ -7,6 +7,7 @@ model Staff {
   socials     Social[]
   imageId     String?  @unique
   image       Image?   @relation(fields: [imageId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
 }
 
 enum Role {

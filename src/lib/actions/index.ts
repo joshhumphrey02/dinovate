@@ -35,8 +35,11 @@ export const getProfileData = async () => {
 				description: true,
 				title: true,
 			},
+			// orderBy: {
+			// 	createdAt: 'desc',
+			// },
 		});
-		return nav ? nav : [];
+		return nav ? nav.reverse() : [];
 	} catch (error) {
 		// console.log(error);
 		return [];

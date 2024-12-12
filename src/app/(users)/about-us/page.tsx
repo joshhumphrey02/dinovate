@@ -1,3 +1,4 @@
+import Group from '@/components/about/group';
 import AboutHero from '@/components/about/hero';
 import Partners from '@/components/about/partners';
 import Profile from '@/components/about/profile';
@@ -19,6 +20,7 @@ export default async function AboutUs(props: Props) {
 			<div className=" px-4 space-y-8 sm:space-y-16 py-8 sm:py-[8rem] sm:w-[70%] sm:mx-auto max-w-[1350px]">
 				<AboutHero />
 				<Partners />
+				<Group />
 				<Profile data={profiles} />
 			</div>
 

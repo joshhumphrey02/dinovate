@@ -31,17 +31,17 @@ export default function ServiceHero() {
 			</div>
 			<div>
 				<div className="grid md:grid-cols-3 gap-6">
-					<div className=" w-full max-w-sm md:mt-20 overflow-hidden rounded-2xl h-40 md:h-96">
+					<div className=" w-full max-w-sm  overflow-hidden rounded-2xl h-40 md:h-96">
 						<Image
-							src={'iwmi10.jpeg'}
+							src={'borderland1.jpg'}
 							bucketName="images"
 							alt={'Feature Images'}
 							scale={true}
 						/>
 					</div>
-					<div className=" w-full md:mt-40 max-w-sm overflow-hidden rounded-2xl h-40 md:h-96">
+					<div className=" w-full md:mt-60 max-w-sm overflow-hidden rounded-2xl h-40 md:h-96">
 						<Image
-							src={'office.jpg'}
+							src={'borderland2.jpg'}
 							bucketName="images"
 							alt={'Feature Images'}
 							scale={true}
@@ -49,7 +49,23 @@ export default function ServiceHero() {
 					</div>
 					<div className=" w-full max-w-sm overflow-hidden rounded-2xl h-40 md:h-96">
 						<Image
-							src={'feature3.jpg'}
+							src={'borderland3.jpg'}
+							bucketName="images"
+							alt={'Feature Images'}
+							scale={true}
+						/>
+					</div>
+					<div className=" w-full max-w-sm md:-mt-28 overflow-hidden rounded-2xl h-40 md:h-96">
+						<Image
+							src={'borderland4.jpg'}
+							bucketName="images"
+							alt={'Feature Images'}
+							scale={true}
+						/>
+					</div>
+					<div className=" w-full md:-mt-28 md:col-start-3 max-w-sm overflow-hidden rounded-2xl h-40 md:h-96">
+						<Image
+							src={'borderland5.jpg'}
 							bucketName="images"
 							alt={'Feature Images'}
 							scale={true}

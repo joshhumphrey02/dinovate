@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from '../shared/image';
+import BorderFlow from '../shared/border-flow';
 
 export default function ServiceMedia() {
 	return (
@@ -17,10 +18,8 @@ export default function ServiceMedia() {
 				</p>
 				<div className=" pt-8 space-y-8">
 					<div className="flex flex-col gap-2">
-						<Link className=" hover:underline" href={'/works'}>
-							<h4 className="text-xl md:text-2xl font-normal font-oswald">
-								Documentaries and Short Films
-							</h4>
+						<Link href={'/works'}>
+							<BorderFlow name="Documentaries and Short Films" />
 						</Link>
 						<p className=" md:w-[80%]">
 							Powerful storytelling through documentaries that highlight social
@@ -46,35 +45,59 @@ export default function ServiceMedia() {
 						</div>
 					</div>
 					<div className="flex flex-col gap-2">
-						<h4 className="text-xl md:text-2xl font-normal font-oswald">
-							Photography
-						</h4>
+						<BorderFlow name="Photography" />
 						<p className=" md:w-[80%]">
 							Capturing moments that tell a story, whether it’s for advocacy
 							campaigns, documentaries or brand narratives.
 						</p>
-						<div>
-							<div className="grid md:grid-cols-3 gap-6">
-								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
-									<Image
-										src={'office6.jpg'}
-										bucketName="images"
-										alt={'documentries'}
-									/>
+						<div className="space-y-4">
+							<div className=" flex flex-col gap-2">
+								<h2 className="  text-base md:text-xl font-oswald">
+									Documentary Photography
+								</h2>
+								<div className="grid md:grid-cols-3 gap-6">
+									<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
+										<Image
+											src={'office6.jpg'}
+											bucketName="images"
+											alt={'documentries'}
+										/>
+									</div>
+									<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
+										<Image
+											src={'project5.jpg'}
+											bucketName="images"
+											alt={'documentries'}
+										/>
+									</div>
+									<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
+										<Image
+											src={'imwi1.jpeg'}
+											bucketName="images"
+											alt={'documentries'}
+										/>
+									</div>
 								</div>
-								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
-									<Image
-										src={'project5.jpg'}
-										bucketName="images"
-										alt={'documentries'}
-									/>
-								</div>
-								<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
-									<Image
-										src={'imwi1.jpeg'}
-										bucketName="images"
-										alt={'documentries'}
-									/>
+							</div>
+							<div className=" flex flex-col gap-2">
+								<h2 className="  text-base md:text-xl font-oswald">
+									Studio Photography
+								</h2>
+								<div className="grid md:grid-cols-3 gap-6">
+									<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
+										<Image
+											src={'studio4.jpg'}
+											bucketName="images"
+											alt={'documentries'}
+										/>
+									</div>
+									<div className=" w-full max-w-sm overflow-hidden h-48 md:h-80">
+										<Image
+											src={'studio5.jpg'}
+											bucketName="images"
+											alt={'documentries'}
+										/>
+									</div>
 								</div>
 							</div>
 						</div>
