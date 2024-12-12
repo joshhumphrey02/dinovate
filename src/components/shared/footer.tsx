@@ -98,12 +98,12 @@ export default function Footer(props: Props) {
 							Dinovate Solutions
 						</p>
 						<p className="text-xs">Tel: +234 8166357463</p>
-						<a
+						{/* <a
 							href="http://meltechgrp.com"
 							target="_blank"
 							rel="noopener noreferrer">
 							<p className="text-[9px]">Designed by MEL-Technologies</p>
-						</a>
+						</a> */}
 					</div>
 				</div>
 			</div>
