@@ -98,10 +98,7 @@ export default async function Works(props: Props) {
 								quality printing are essential for effective communication.
 							</p>
 						</div>
-						<div className="grid md:grid-cols-2 gap-6">
-							<div className=" w-full h-[20rem] md:h-[30rem] ">
-								<Image src={'project1.jpg'} bucketName="images" alt="banner" />
-							</div>
+						<div className="grid gap-6">
 							<div className=" space-y-6">
 								<h3 className="text-xl md:text-2xl text-tertiary ">
 									PIND Annual Report
@@ -116,8 +113,34 @@ export default async function Works(props: Props) {
 									techniques also ensured a vibrant, professional finish.
 								</p>
 							</div>
+							<div className="grid md:grid-cols-3 gap-4">
+								<div className=" w-full  overflow-hidden rounded-2xl h-40 md:h-96">
+									<Image
+										src={'pind1.png'}
+										bucketName="images"
+										alt={'Feature Images'}
+										scale={true}
+									/>
+								</div>
+								<div className=" w-full md:mt-20 overflow-hidden rounded-2xl h-40 md:h-96">
+									<Image
+										src={'pind2.png'}
+										bucketName="images"
+										alt={'Feature Images'}
+										scale={true}
+									/>
+								</div>
+								<div className=" w-full overflow-hidden rounded-2xl h-40 md:h-96">
+									<Image
+										src={'pind3.png'}
+										bucketName="images"
+										alt={'Feature Images'}
+										scale={true}
+									/>
+								</div>
+							</div>
 						</div>
-						<div className="grid md:grid-cols-2 gap-6">
+						<div className="grid gap-6">
 							<div className=" space-y-6">
 								<h3 className="text-xl md:text-2xl text-tertiary ">
 									ABC Annual Report
@@ -131,14 +154,35 @@ export default async function Works(props: Props) {
 									clarity. We ensured a polished and professional final product.
 								</p>
 							</div>
-							<div className=" w-full h-[20rem] md:h-[30rem] ">
-								<Image src={'project4.jpg'} bucketName="images" alt="banner" />
+
+							<div className="grid md:grid-cols-3 gap-4">
+								<div className=" w-full md:mt-20 overflow-hidden rounded-2xl h-40 md:h-96">
+									<Image
+										src={'undp1.png'}
+										bucketName="images"
+										alt={'Feature Images'}
+										scale={true}
+									/>
+								</div>
+								<div className=" w-full overflow-hidden rounded-2xl h-40 md:h-96">
+									<Image
+										src={'undp2.png'}
+										bucketName="images"
+										alt={'Feature Images'}
+										scale={true}
+									/>
+								</div>
+								<div className=" w-full md:mt-20 overflow-hidden rounded-2xl h-40 md:h-96">
+									<Image
+										src={'undp3.png'}
+										bucketName="images"
+										alt={'Feature Images'}
+										scale={true}
+									/>
+								</div>
 							</div>
 						</div>
-						<div className="grid md:grid-cols-2 gap-6">
-							<div className=" w-full h-[20rem] md:h-[30rem] ">
-								<Image src={'project3.jpg'} bucketName="images" alt="banner" />
-							</div>
+						<div className="grid gap-6">
 							<div className=" space-y-6">
 								<h3 className="text-xl md:text-2xl text-tertiary ">
 									WaterAid: From Briefs to Action - Design that Drives Impact
@@ -165,6 +209,33 @@ export default async function Works(props: Props) {
 									and advocate for a future where clean water is accessible to
 									everyone
 								</p>
+							</div>
+
+							<div className="grid md:grid-cols-3 gap-4">
+								<div className=" w-full  overflow-hidden rounded-2xl h-40 md:h-96">
+									<Image
+										src={'water1.png'}
+										bucketName="images"
+										alt={'Feature Images'}
+										scale={true}
+									/>
+								</div>
+								<div className=" w-full md:mt-20 overflow-hidden rounded-2xl h-40 md:h-96">
+									<Image
+										src={'water2.png'}
+										bucketName="images"
+										alt={'Feature Images'}
+										scale={true}
+									/>
+								</div>
+								<div className=" w-full md:mt-40 overflow-hidden rounded-2xl h-40 md:h-96">
+									<Image
+										src={'water3.png'}
+										bucketName="images"
+										alt={'Feature Images'}
+										scale={true}
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
