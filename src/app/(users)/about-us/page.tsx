@@ -1,7 +1,9 @@
 import Group from '@/components/about/group';
 import AboutHero from '@/components/about/hero';
+import Mission from '@/components/about/mission';
 import Partners from '@/components/about/partners';
 import Profile from '@/components/about/profile';
+import Values from '@/components/about/values';
 import Footer from '@/components/shared/footer';
 import RequestForm from '@/components/shared/request-form';
 import { getProfileData } from '@/lib/actions';
@@ -22,6 +24,8 @@ export default async function AboutUs(props: Props) {
 				<Partners />
 				<Group />
 				<Profile data={profiles} />
+				<Mission />
+				<Values />
 			</div>
 
 			<Footer isDark={true} />

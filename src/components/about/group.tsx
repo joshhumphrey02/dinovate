@@ -36,7 +36,7 @@ export default function Group() {
 		<div className="grid md:grid-cols-3 gap-6 pb-20">
 			<div
 				ref={addToRefs}
-				className=" w-full max-w-sm md:mt-40  overflow-hidden rounded-2xl h-40 md:h-96">
+				className=" w-full max-w-sm   overflow-hidden rounded-2xl h-40 md:h-96">
 				<Image
 					src={'group1.jpg'}
 					bucketName="images"
@@ -46,7 +46,7 @@ export default function Group() {
 			</div>
 			<div
 				ref={addToRefs}
-				className=" w-full md:mt-20 max-w-sm overflow-hidden rounded-2xl h-40 md:h-96">
+				className=" w-full  max-w-sm overflow-hidden rounded-2xl h-40 md:h-96">
 				<Image
 					src={'group2.jpg'}
 					bucketName="images"
@@ -66,7 +66,7 @@ export default function Group() {
 			</div>
 			<div
 				ref={addToRefs}
-				className=" w-full max-w-sm md:mt-28 overflow-hidden rounded-2xl h-40 md:h-96">
+				className=" w-full max-w-sm overflow-hidden rounded-2xl h-40 md:h-96">
 				<Image
 					src={'group4.jpg'}
 					bucketName="images"
@@ -86,7 +86,7 @@ export default function Group() {
 			</div>
 			<div
 				ref={addToRefs}
-				className=" w-full md:-mt-28 max-w-sm overflow-hidden rounded-2xl h-40 md:h-96">
+				className=" w-full max-w-sm overflow-hidden rounded-2xl h-40 md:h-96">
 				<Image
 					src={'group6.jpg'}
 					bucketName="images"
