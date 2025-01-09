@@ -1,14 +1,13 @@
 import Footer from '@/components/shared/footer';
 import RequestForm from '@/components/shared/request-form';
-import WorkServices from '@/components/works/services';
-import WorkCard from '@/components/works/workCard';
 import { getProCats, getVideos } from '@/lib/actions';
 import { getProjects } from '@/lib/actions/project-actions';
 import empty from '@/assets/8961448_3973477.svg';
 import Img from 'next/image';
-import Line2 from '@/components/Icons/line2';
-import Image from '@/components/shared/image';
-import LineIcon from '@/components/Icons/line';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import ProjectsCards from '@/components/works/projects';
+import DocumentCard from '@/components/works/document';
+import DesignCard from '@/components/works/design';
 
 interface Props {
 	searchParams: Promise<{
@@ -31,218 +30,184 @@ export default async function Works(props: Props) {
 	const videos = await getVideos();
 	return (
 		<div>
-			<div className=" flex flex-col pb-20 justify-center items-center gap-20 pt-24">
-				<div className=" space-y-8">
-					<h1 className=" text-4xl md:text-[7rem] md:leading-[9rem] font-normal font-oswald text-tertiary text-center">
-						IGNITING CHANGE WITH <br /> STRATEGIC COMMUNICATIONS
-					</h1>
-					<div className="space-y-2 px-4 md:px-20">
-						<p className="text-center ">
-							They say actions speak louder than words, so let our work show you
-							the impact we create.
-						</p>
-					</div>
-				</div>
-				<WorkServices active={search || 'all'} cats={cats} />
-				<div className=" gap-20 flex flex-col px-4 md:px-10 md:max-w-[1350px] mx-auto">
-					{projects.length ? (
-						projects.map((p, i) => <WorkCard index={i} key={p.name} data={p} />)
-					) : (
-						<div className=" flex flex-col gap-3 items-center justify-center pt-10 md:pt-20">
-							<Img
-								src={empty}
-								alt="Empty"
-								className=" w-full h-40 md:w-80 md:h-80 object-cover"
+			<div className=" flex flex-col gap-20 sm:py-[8rem] sm:w-[70%] sm:mx-auto max-w-[1350px]">
+				<Tabs defaultValue="projects" className="w-full">
+					<TabsList className="grid w-full h-24 grid-cols-4">
+						<TabsTrigger
+							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r md:text-xl font-bold flex items-center gap-2 "
+							value="projects">
+							<img
+								src="/icons/project.png"
+								alt="projects"
+								className="w-12 h-12 object-cover"
 							/>
-							<p className=" text-xl font-medium">No project found!</p>
-						</div>
-					)}
-				</div>
-				<div className="px-4 md:px-10 md:max-w-[1350px] py-10 mx-auto grid gap-10">
-					<div>
-						<h2 className="text-2xl pb-4 md:text-[4rem] font-normal font-oswald ">
+							Projects
+						</TabsTrigger>
+						<TabsTrigger
+							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r md:text-xl font-bold flex items-center gap-2 "
+							value="documentaries">
+							<img
+								src="/icons/paper.png"
+								alt="projects"
+								className="w-12 h-12 object-cover"
+							/>
 							Documentaries
-						</h2>
-						<div className=" relative py-3">
-							<LineIcon />
-						</div>
-					</div>
-					<div className="flex flex-wrap gap-4 relative">
-						{videos.map((videoItem) => (
-							<div key={videoItem.url} className="grid gap-1">
-								<div className="relative w-[400px] h-[225px] overflow-hidden">
-									<iframe
-										width="400"
-										height="225"
-										src={videoItem.url}
-										className="absolute left-0 top-0 w-full h-full"
-										title="YouTube video player"
-										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-										allowFullScreen></iframe>
-								</div>
-							</div>
-						))}
-					</div>
-					<div className=" flex flex-col gap-6">
-						<div className="flex flex-col gap-1">
-							<h2 className="text-2xl md:text-[4rem] pb-6 font-normal font-oswald ">
-								Designs
-							</h2>
-							<div className=" relative py-3">
-								<LineIcon />
-							</div>
-						</div>
-						<div>
-							<p>
-								At Dinovate Solutions, we believe that exceptional design and
-								quality printing are essential for effective communication.
-							</p>
-						</div>
-						<div className="grid gap-6">
-							<div className=" space-y-6">
-								<h3 className="text-xl md:text-2xl text-tertiary ">
-									PIND Annual Report
-								</h3>
-								<p>
-									The Partnership Initiatives in the Niger Delta (PIND) promotes
-									peace and sustainable development in the Niger Delta region.
-									For their annual report, PIND needed a design that captured
-									their achievements and commitment to positive change. Through
-									creative Design, we created an engaging design highlighting
-									PIND’s key projects and impact stories. Our top-tier printing
-									techniques also ensured a vibrant, professional finish.
-								</p>
-							</div>
-							<div className="grid md:grid-cols-3 gap-4">
-								<div className=" w-full  overflow-hidden rounded-2xl h-40 md:h-96">
-									<Image
-										src={'pind1.png'}
-										bucketName="images"
-										alt={'Feature Images'}
-										scale={true}
+						</TabsTrigger>
+						<TabsTrigger
+							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r md:text-xl font-bold flex items-center gap-2 "
+							value="designs">
+							<img
+								src="/icons/curve.png"
+								alt="projects"
+								className="w-12 h-12 object-cover"
+							/>
+							Designs
+						</TabsTrigger>
+						<TabsTrigger
+							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg md:text-xl font-bold flex items-center gap-2 "
+							value="photography">
+							<img
+								src="/icons/photography.png"
+								alt="projects"
+								className="w-12 h-12 object-cover"
+							/>
+							Photography
+						</TabsTrigger>
+					</TabsList>
+					<TabsContent className=" px-2" value="projects">
+						<ProjectsCards data={projects} search={search} cats={cats} />
+					</TabsContent>
+					<TabsContent className=" px-2" value="documentaries">
+						<div className=" grid md:grid-cols-3 gap-4 pt-4">
+							{videos.length ? (
+								videos.map((p, i) => (
+									<DocumentCard index={i} key={p.url} data={p} />
+								))
+							) : (
+								<div className=" w-full col-span-4 flex flex-col gap-3 items-center justify-center pt-10 md:pt-20">
+									<Img
+										src={empty}
+										alt="Empty"
+										className="  h-40 md:w-80 md:h-80 object-cover"
 									/>
+									<p className=" text-xl font-medium">No data found!</p>
 								</div>
-								<div className=" w-full md:mt-20 overflow-hidden rounded-2xl h-40 md:h-96">
-									<Image
-										src={'pind2.png'}
-										bucketName="images"
-										alt={'Feature Images'}
-										scale={true}
+							)}
+						</div>
+					</TabsContent>
+					<TabsContent className=" px-2" value="designs">
+						<div className=" grid md:grid-cols-3 gap-4 pt-4">
+							{designs.length ? (
+								designs.map((p, i) => (
+									<DesignCard index={i} key={p.title} data={p} />
+								))
+							) : (
+								<div className=" w-full col-span-4 flex flex-col gap-3 items-center justify-center pt-10 md:pt-20">
+									<Img
+										src={empty}
+										alt="Empty"
+										className="  h-40 md:w-80 md:h-80 object-cover"
 									/>
+									<p className=" text-xl font-medium">No data found!</p>
 								</div>
-								<div className=" w-full overflow-hidden rounded-2xl h-40 md:h-96">
-									<Image
-										src={'pind3.png'}
-										bucketName="images"
-										alt={'Feature Images'}
-										scale={true}
-									/>
-								</div>
+							)}
+						</div>
+					</TabsContent>
+					<TabsContent className=" px-2" value="photography">
+						<div className=" grid md:grid-cols-3 gap-4 pt-4">
+							<div className=" w-full col-span-4 flex flex-col gap-3 items-center justify-center pt-10 md:pt-20">
+								<Img
+									src={empty}
+									alt="Empty"
+									className="  h-40 md:w-80 md:h-80 object-cover"
+								/>
+								<p className=" text-xl font-medium">No data found!</p>
 							</div>
 						</div>
-						<div className="grid gap-6">
-							<div className=" space-y-6">
-								<h3 className="text-xl md:text-2xl text-tertiary ">
-									ABC Annual Report
-								</h3>
-								<p>
-									The African Borderlands Centre (ABC) supports communities and
-									fosters development in borderland regions across Africa. Their
-									annual report aimed to effectively communicate successes and
-									future plans. In creating this engaging design, we developed a
-									clean and modern design with infographics and visuals for
-									clarity. We ensured a polished and professional final product.
-								</p>
-							</div>
-
-							<div className="grid md:grid-cols-3 gap-4">
-								<div className=" w-full md:mt-20 overflow-hidden rounded-2xl h-40 md:h-96">
-									<Image
-										src={'undp1.png'}
-										bucketName="images"
-										alt={'Feature Images'}
-										scale={true}
-									/>
-								</div>
-								<div className=" w-full overflow-hidden rounded-2xl h-40 md:h-96">
-									<Image
-										src={'undp2.png'}
-										bucketName="images"
-										alt={'Feature Images'}
-										scale={true}
-									/>
-								</div>
-								<div className=" w-full md:mt-20 overflow-hidden rounded-2xl h-40 md:h-96">
-									<Image
-										src={'undp3.png'}
-										bucketName="images"
-										alt={'Feature Images'}
-										scale={true}
-									/>
-								</div>
-							</div>
-						</div>
-						<div className="grid gap-6">
-							<div className=" space-y-6">
-								<h3 className="text-xl md:text-2xl text-tertiary ">
-									WaterAid: From Briefs to Action - Design that Drives Impact
-								</h3>
-								<p>
-									Our collaboration with WaterAid underscores the power of
-									strategic communication and design in achieving impactful
-									change. Providing a range of design and printing services to
-									support WaterAid's mission.
-								</p>
-								<p>
-									We have crafted compelling project briefs that clearly
-									outlined objectives and strategies for enhancing water and
-									sanitation access in Abuja. Our policy documents presented
-									robust cases for action, backed by evidence and expert
-									insights.
-								</p>
-								<p>
-									Our partnership with WaterAid exemplifies the synergy between
-									strategic communication and design. Together, we contribute to
-									achieving Sustainable Development Goal 6: Clean Water and
-									Sanitation for All. Through effective design, we raise
-									awareness on critical water security issues, mobilize support,
-									and advocate for a future where clean water is accessible to
-									everyone
-								</p>
-							</div>
-
-							<div className="grid md:grid-cols-3 gap-4">
-								<div className=" w-full  overflow-hidden rounded-2xl h-40 md:h-96">
-									<Image
-										src={'water1.png'}
-										bucketName="images"
-										alt={'Feature Images'}
-										scale={true}
-									/>
-								</div>
-								<div className=" w-full md:mt-20 overflow-hidden rounded-2xl h-40 md:h-96">
-									<Image
-										src={'water2.png'}
-										bucketName="images"
-										alt={'Feature Images'}
-										scale={true}
-									/>
-								</div>
-								<div className=" w-full md:mt-40 overflow-hidden rounded-2xl h-40 md:h-96">
-									<Image
-										src={'water3.png'}
-										bucketName="images"
-										alt={'Feature Images'}
-										scale={true}
-									/>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+					</TabsContent>
+				</Tabs>
 			</div>
 			<RequestForm open={!!contact} />
 			<Footer />
 		</div>
 	);
 }
+
+const designs = [
+	{
+		title: 'WaterAid: From Briefs to Action - Design that Drives Impact',
+		des: `Our collaboration with WaterAid underscores the power of
+									strategic communication and design in achieving impactful
+									change. Providing a range of design and printing services to
+									support WaterAid's mission.
+									We have crafted compelling project briefs that clearly
+									outlined objectives and strategies for enhancing water and
+									sanitation access in Abuja. Our policy documents presented
+									robust cases for action, backed by evidence and expert
+									insights.
+									Our partnership with WaterAid exemplifies the synergy between
+									strategic communication and design. Together, we contribute to
+									achieving Sustainable Development Goal 6: Clean Water and
+									Sanitation for All. Through effective design, we raise
+									awareness on critical water security issues, mobilize support,
+									and advocate for a future where clean water is accessible to
+									everyone`,
+		images: [
+			{
+				id: '34567',
+				url: 'water1.png',
+			},
+			{
+				id: '3456227',
+				url: 'water2.png',
+			},
+			{
+				id: '7894563',
+				url: 'water3.png',
+			},
+		],
+	},
+	{
+		title: 'ABC Annual Report',
+		des: `The African Borderlands Centre (ABC) supports communities and
+                  fosters development in borderland regions across Africa. Their
+                  annual report aimed to effectively communicate successes and
+                  future plans. In creating this engaging design, we developed a
+                  clean and modern design with infographics and visuals for
+                  clarity. We ensured a polished and professional final product.`,
+		images: [
+			{
+				id: '34567',
+				url: 'undp1.png',
+			},
+			{
+				id: '3456227',
+				url: 'undp2.png',
+			},
+			{
+				id: '7894563',
+				url: 'undp3.png',
+			},
+		],
+	},
+	{
+		title: 'PIND Annual Report',
+		des: `PIND needed a design that captured their achievements and commitment to positive change. Through
+                  creative Design, we created an engaging design highlighting PIND’s key projects and impact stories. Our top-tier printing
+                  techniques also ensured a vibrant, professional finish.`,
+		images: [
+			{
+				id: '34567',
+				url: 'pind1.png',
+			},
+			{
+				id: '3456227',
+				url: 'pind2.png',
+			},
+			{
+				id: '7894563',
+				url: 'pind3.png',
+			},
+		],
+	},
+];

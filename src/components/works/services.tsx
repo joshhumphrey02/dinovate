@@ -16,7 +16,7 @@ interface Props {
 export default function WorkServices({ active, cats }: Props) {
 	const router = useRouter();
 	return (
-		<div className=" w-full md:w-1/2 px-4 mx-auto">
+		<div className=" w-full md:w-[70%] px-4 mx-auto">
 			<div className="flex flex-wrap justify-center gap-4 pt-20">
 				<Badge
 					variant={'outline'}

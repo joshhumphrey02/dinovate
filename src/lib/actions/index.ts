@@ -11,35 +11,38 @@ export interface ActionResponse<T> {
 
 export const getProCats = async () => {
 	try {
-		const proCats = await prisma.projectCategory.findMany({});
-		if (proCats) return proCats;
-		return [];
+		const proCats = await prisma.projectCategory.findMany({}).catch(() => []);
+		return proCats;
 	} catch (error) {
 		console.log(error);
 		return [];
 	}
 };
 
+export type Cats = Awaited<ReturnType<typeof getProCats>>;
+
 export const getProfileData = async () => {
 	try {
-		const nav = await prisma.staff.findMany({
-			select: {
-				id: true,
-				fullName: true,
-				image: {
-					select: {
-						url: true,
+		const nav = await prisma.staff
+			.findMany({
+				select: {
+					id: true,
+					fullName: true,
+					image: {
+						select: {
+							url: true,
+						},
 					},
+					role: true,
+					description: true,
+					title: true,
 				},
-				role: true,
-				description: true,
-				title: true,
-			},
-			// orderBy: {
-			// 	createdAt: 'desc',
-			// },
-		});
-		return nav ? nav.reverse() : [];
+				// orderBy: {
+				// 	createdAt: 'desc',
+				// },
+			})
+			.catch(() => []);
+		return nav.reverse();
 	} catch (error) {
 		// console.log(error);
 		return [];
@@ -82,20 +85,23 @@ interface VProps {
 }
 
 export async function getVideos() {
-	// const { take } = props;
 	try {
-		const videos = await prisma.video.findMany({
-			select: {
-				id: true,
-				url: true,
-				createdAt: true,
-			},
-			orderBy: { createdAt: 'desc' },
-			take: 6,
-		});
-		return videos || [];
+		const videos = await prisma.video
+			.findMany({
+				select: {
+					id: true,
+					url: true,
+					createdAt: true,
+				},
+				orderBy: { createdAt: 'desc' },
+				take: 6,
+			})
+			.catch(() => []);
+		return videos;
 	} catch (error) {
 		console.log(error);
 		return [];
 	}
 }
+
+export type Videos = Awaited<ReturnType<typeof getVideos>>;

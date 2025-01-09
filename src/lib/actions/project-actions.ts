@@ -17,32 +17,34 @@ export async function getProjects(args: {
 	try {
 		const { take, skip, orderBy, search } = args;
 		const searchKey = search && search !== 'all' ? search : null;
-		const projects = await prisma.project.findMany({
-			...(args.cursor && { cursor: { id: args.cursor } }),
-			...(searchKey && {
-				where: {
+		const projects = await prisma.project
+			.findMany({
+				...(args.cursor && { cursor: { id: args.cursor } }),
+				...(searchKey && {
+					where: {
+						category: {
+							slug: searchKey,
+						},
+					},
+				}),
+				take,
+				orderBy,
+				include: {
 					category: {
-						slug: searchKey,
+						select: {
+							name: true,
+							slug: true,
+						},
+					},
+					images: {
+						select: {
+							url: true,
+						},
+						take: 1,
 					},
 				},
-			}),
-			take,
-			orderBy,
-			include: {
-				category: {
-					select: {
-						name: true,
-						slug: true,
-					},
-				},
-				images: {
-					select: {
-						url: true,
-					},
-					take: 1,
-				},
-			},
-		});
+			})
+			.catch(() => []);
 		return projects;
 	} catch (error) {
 		console.error(error);
