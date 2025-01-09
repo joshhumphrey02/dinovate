@@ -32,9 +32,9 @@ export default async function Works(props: Props) {
 		<div>
 			<div className=" flex flex-col gap-20 sm:py-[8rem] sm:w-[70%] sm:mx-auto max-w-[1350px]">
 				<Tabs defaultValue="projects" className="w-full">
-					<TabsList className="grid w-full h-24 grid-cols-4">
+					<TabsList className="grid bg-gray-300 text-black w-full h-24 grid-cols-4">
 						<TabsTrigger
-							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r md:text-xl font-bold flex items-center gap-2 "
+							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r border-gray-500 md:text-xl font-bold flex items-center gap-2 "
 							value="projects">
 							<img
 								src="/icons/project.png"
@@ -44,7 +44,7 @@ export default async function Works(props: Props) {
 							Projects
 						</TabsTrigger>
 						<TabsTrigger
-							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r md:text-xl font-bold flex items-center gap-2 "
+							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r border-gray-500 md:text-xl font-bold flex items-center gap-2 "
 							value="documentaries">
 							<img
 								src="/icons/paper.png"
@@ -54,7 +54,7 @@ export default async function Works(props: Props) {
 							Documentaries
 						</TabsTrigger>
 						<TabsTrigger
-							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r md:text-xl font-bold flex items-center gap-2 "
+							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r border-gray-500 md:text-xl font-bold flex items-center gap-2 "
 							value="designs">
 							<img
 								src="/icons/curve.png"
