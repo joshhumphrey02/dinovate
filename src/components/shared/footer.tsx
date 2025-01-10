@@ -158,28 +158,20 @@ const footer: FooterTop = [
 		title: 'SUB-BRANDS',
 		links: [
 			{
-				label: 'Media Production',
-				href: '/works?search=media-production',
+				label: 'Dinovate Studios',
+				href: '#',
 			},
 			{
-				label: 'Strategic Communications',
-				href: '/works?search=strategic-communication',
+				label: 'Dinovate Films',
+				href: '#',
 			},
 			{
-				label: 'Design & Branding',
-				href: '/works?search=design-and-branding',
+				label: 'Dinovate Academy',
+				href: '#',
 			},
 			{
-				label: 'Avocacy',
-				href: '/works?search=advocacy',
-			},
-			{
-				label: 'Capacity Building',
-				href: '/works?search=capacity-building',
-			},
-			{
-				label: 'Creative Space',
-				href: '/works?search=creative-studio-hub',
+				label: 'Dinovate Tech',
+				href: '#',
 			},
 		],
 	},

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { cn } from '@/lib/utils';
+import { InfiniteMovingLogos } from '../ui/infinite-moving-logos';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -100,20 +101,11 @@ const Sections = () => {
 						</p>
 					</div>
 				</div>
-				<div className="flex overflow-auto max-w-sm md:max-w-full gap-6 w-[70%] mx-auto">
-					{partners.map((item, i) => (
-						<div ref={addToRefs} key={item}>
-							<img
-								src={`/partners/${item}`}
-								alt={item}
-								className={cn(
-									'w-[100px] sm:w-[180px] bg-transparent object-cover mx-auto',
-									i === 0 && 'w-[150px] h-[50px] md:h-[100px]'
-								)}
-							/>
-						</div>
-					))}
-				</div>
+				<InfiniteMovingLogos
+					items={partners.filter((i) => !!i).map((i) => ({ url: i }))}
+					direction="left"
+					speed="slow"
+				/>
 			</div>
 		</div>
 	);

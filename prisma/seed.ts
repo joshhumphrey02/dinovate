@@ -40,21 +40,17 @@ async function main() {
 			name: 'The IWMI PhotoVoice Research Project',
 			organization: 'International Water Management Institute (IWMI)',
 			description:
-				'At Dinovate Solutions, we are committed to showcasing the profound impact of the International Water Management Institute (IWMI) in addressing water security challenges faced by communities in Adamawa State, Nigeria. The IWMI project has played a pivotal role in highlighting the stark realities faced by these communities grappling with severe water scarcity due to socio-economic and environmental factors. This initiative has empowered community members to voice their experiences, fostering greater global awareness and advocacy. The research, conducted in four different communities in Adamawa State, Nigeria, sheds light on the challenges of accessing clean water and sanitation facilities amid displacement. Collaborating with Dinovate, IWMI facilitated workshops where community members used cameras and media tools to capture compelling images that depict both the challenges and resilience in their daily lives. This project empowered community members to become their own narrators, using cameras to document their water journeys and harsh water realities. The photos serve as poignant reminders of the ongoing struggle and the aspirations for a better future.',
+				"At Dinovate Solutions, we are committed to showcasing the profound impact of the International Water Management Institute (IWMI) in addressing water security challenges faced by communities in Adamawa State, Nigeria. The IWMI project has played a pivotal role in highlighting the stark realities faced by these communities grappling with severe water scarcity due to socio-economic and environmental factors. This initiative has empowered community members to voice their experiences, fostering greater global awareness and advocacy. The research, conducted in four different communities in Adamawa State, Nigeria, sheds light on the challenges of accessing clean water and sanitation facilities amid displacement. Collaborating with Dinovate, IWMI facilitated workshops where community members used cameras and media tools to capture compelling images that depict both the challenges and resilience in their daily lives. This project empowered community members to become their own narrators, using cameras to document their water journeys and harsh water realities. The photos serve as poignant reminders of the ongoing struggle and the aspirations for a better future. Building on the success of the Photovoice Research Project in Adamawa State, Dinovate Solutions elevated the IWMI Photovoice Project in its second phase by creating two impactful storytelling mediums: a three-episode podcast series and a visually compelling photo essay book. These initiatives amplified the voices of fragile and conflict-affected communities, bringing their stories to a broader audience. The podcast series, recorded at Dinovate’s state-of-the-art studio, featured members of the community and an IWMI representative. Through heartfelt conversations, the episodes highlighted personal experiences, challenges, and resilience while weaving in expert perspectives. Complementing this, the photo essay book showcased powerful images captured by community participants, enriched with concise narratives and case studies. Designed for advocacy, the book provided a visually engaging and accessible tool to inspire empathy, awareness, and action among stakeholders and policymakers. Both mediums served as platforms for storytelling and advocacy, reinforcing the project's mission to shed light on water system vulnerabilities in Adamawa State.",
 
-			images: ['imwi1.jpeg', 'imwi2.jpeg', 'imwi3.jpeg'],
+			images: [
+				'imwi1.jpeg',
+				'imwi2.jpeg',
+				'imwi3.jpeg',
+				'iwmi4.jpeg',
+				'iwmi5.jpeg',
+				'iwmi6.jpeg',
+			],
 			category: 'Media Production',
-			links: [],
-			video: [],
-			benefits: [],
-		},
-		{
-			name: 'Phase II- IWMI Photovoice Project',
-			organization: 'International Water Management Institute (IWMI)',
-			description:
-				"Building on the success of the Photovoice Research Project in Adamawa State, Dinovate Solutions elevated the IWMI Photovoice Project in its second phase by creating two impactful storytelling mediums: a three-episode podcast series and a visually compelling photo essay book. These initiatives amplified the voices of fragile and conflict-affected communities, bringing their stories to a broader audience. The podcast series, recorded at Dinovate’s state-of-the-art studio, featured members of the community and an IWMI representative. Through heartfelt conversations, the episodes highlighted personal experiences, challenges, and resilience while weaving in expert perspectives. Complementing this, the photo essay book showcased powerful images captured by community participants, enriched with concise narratives and case studies. Designed for advocacy, the book provided a visually engaging and accessible tool to inspire empathy, awareness, and action among stakeholders and policymakers. Both mediums served as platforms for storytelling and advocacy, reinforcing the project's mission to shed light on water system vulnerabilities in Adamawa State.",
-			category: 'Media Production',
-			images: ['iwmi4.jpeg', 'iwmi5.jpeg', 'iwmi6.jpeg'],
 			links: [],
 			video: [],
 			benefits: [],
@@ -71,7 +67,7 @@ async function main() {
 			images: ['project1.jpg', 'project2.jpg', 'project4.jpg'],
 		},
 		{
-			name: 'Redesign and Graphical Illustration of the National Standing Order',
+			name: 'Improving Healthcare management in Nigeria',
 			organization: 'Banyan Global',
 			description:
 				'Elevating Community Health Practices with Dinovate Solutions. Community Health Practitioners (CHPs) play a critical role in rural healthcare, serving as the first point of contact for millions. To bolster their work, the Community Health Practitioners’ Registration Board of Nigeria, in partnership with Banyan Global and the USAID Health Workforce Management Activity, introduced the 2024 revised National Standing Orders. Dinovate Solutions was proud to enhance this essential guide by integrating visually engaging aids that simplify complex medical procedures and conditions. These illustrations not only improve understanding but also promote the practical application of life-saving protocols, ensuring CHPs can deliver high-quality care effectively.',
