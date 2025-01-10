@@ -94,7 +94,6 @@ export async function getVideos() {
 					createdAt: true,
 				},
 				orderBy: { createdAt: 'desc' },
-				take: 6,
 			})
 			.catch(() => []);
 		return videos;
