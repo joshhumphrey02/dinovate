@@ -82,12 +82,10 @@ export function DesignDetails(props: DesignDetailsProps) {
 					View Project
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="sm:max-w-screen-xl">
-				<DialogHeader>
-					<DialogTitle></DialogTitle>
-				</DialogHeader>
-				<div className="grid md:grid-cols-[60%,auto] gap-4 py-4">
-					<div>
+			<DialogContent className="sm:max-w-screen-xl p-0 py-0 gap-0">
+				<DialogTitle className=" p-0"></DialogTitle>
+				<div className="grid md:grid-cols-[55%,auto] h-[70dvh] md:h-[70vh] gap-4">
+					<div className=" w-full h-full">
 						<Carousel
 							plugins={[
 								Autoplay({
@@ -98,7 +96,7 @@ export function DesignDetails(props: DesignDetailsProps) {
 							<CarouselContent>
 								{Array.from({ length: images.length }).map((_, index) => (
 									<CarouselItem key={index}>
-										<div className="p-1 h-[30rem] md:h-[40rem]">
+										<div className=" h-[70dvh] md:h-[70vh]">
 											<Image
 												src={images[index]?.url}
 												bucketName="images"
@@ -114,9 +112,15 @@ export function DesignDetails(props: DesignDetailsProps) {
 						</Carousel>
 					</div>
 
-					<div className={cn('space-y-2 flex-1 flex flex-col justify-start')}>
+					<div
+						className={cn('gap-4 flex-1 p-4 py-8 flex flex-col overflow-auto')}>
 						<h1 className=" text-xl md:text-2xl font-bold">{title}</h1>
-						<HtmlText text={des} className=" text-sm" />
+						<div>
+							<h3 className=" text-lg font-extrabold text-black">
+								Description
+							</h3>
+							<HtmlText text={des} className=" text-sm" />
+						</div>
 					</div>
 				</div>
 			</DialogContent>

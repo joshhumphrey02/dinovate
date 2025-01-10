@@ -29,7 +29,13 @@ export async function getProjects(args: {
 				}),
 				take,
 				orderBy,
-				include: {
+				select: {
+					id: true,
+					name: true,
+					description: true,
+					createdAt: true,
+					updatedAt: true,
+					organization: true,
 					category: {
 						select: {
 							name: true,
@@ -40,7 +46,12 @@ export async function getProjects(args: {
 						select: {
 							url: true,
 						},
-						take: 1,
+					},
+					videos: {
+						select: {
+							url: true,
+							id: true,
+						},
 					},
 				},
 			})
