@@ -84,7 +84,7 @@ export function DesignDetails(props: DesignDetailsProps) {
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-screen-xl p-0 py-0 gap-0">
 				<DialogTitle className=" p-0"></DialogTitle>
-				<div className="grid md:grid-cols-[55%,auto] h-[70dvh] md:h-[70vh] gap-4">
+				<div className="grid md:grid-cols-[55%,auto] overflow-auto md:overflow-hidden h-dvh md:h-[70vh] gap-4">
 					<div className=" w-full h-full">
 						<Carousel
 							plugins={[
@@ -96,7 +96,7 @@ export function DesignDetails(props: DesignDetailsProps) {
 							<CarouselContent>
 								{Array.from({ length: images.length }).map((_, index) => (
 									<CarouselItem key={index}>
-										<div className=" h-[70dvh] md:h-[70vh]">
+										<div className=" h-[50dvh] md:h-[70vh]">
 											<Image
 												src={images[index]?.url}
 												bucketName="images"
@@ -107,13 +107,15 @@ export function DesignDetails(props: DesignDetailsProps) {
 									</CarouselItem>
 								))}
 							</CarouselContent>
-							<CarouselPrevious className=" left-10 h-12 w-12" />
-							<CarouselNext className=" right-10 h-12 w-12" />
+							<CarouselPrevious className=" left-5 md:left-10 h-6 md:h-12 w-6 md:w-12" />
+							<CarouselNext className=" right-5 md:right-10 h-6 md:h-12 w-6 md:w-12" />
 						</Carousel>
 					</div>
 
 					<div
-						className={cn('gap-4 flex-1 p-4 py-8 flex flex-col overflow-auto')}>
+						className={cn(
+							'gap-4 flex-1 p-4 py-8 flex flex-col md:overflow-auto'
+						)}>
 						<h1 className=" text-xl md:text-2xl font-bold">{title}</h1>
 						<div>
 							<h3 className=" text-lg font-extrabold text-black">

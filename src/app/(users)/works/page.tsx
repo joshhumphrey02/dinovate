@@ -30,18 +30,18 @@ export default async function Works(props: Props) {
 	const videos = await getVideos();
 	return (
 		<div>
-			<div className=" flex flex-col gap-20 sm:py-[8rem] sm:w-[70%] sm:mx-auto max-w-[1350px]">
-				<Tabs defaultValue="projects" className="w-full">
-					<TabsList className="grid bg-gray-300 text-black w-full h-24 grid-cols-4">
+			<div className=" flex flex-col gap-20 py-[5rem] md:py-[8rem] sm:w-[70%] sm:mx-auto max-w-[1350px]">
+				<Tabs defaultValue="projects" className="w-full px-4 md:px-0">
+					<TabsList className="grid bg-gray-300  text-black w-full h-16 md:h-24 grid-cols-4">
 						<TabsTrigger
 							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r border-gray-500 md:text-xl font-bold flex items-center gap-2 "
 							value="projects">
 							<img
 								src="/icons/project.png"
 								alt="projects"
-								className="w-12 h-12 object-cover"
+								className="w-8 md:w-12 h-8 md:h-12 object-cover"
 							/>
-							Projects
+							<span className=" hidden md:flex">Projects</span>
 						</TabsTrigger>
 						<TabsTrigger
 							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r border-gray-500 md:text-xl font-bold flex items-center gap-2 "
@@ -49,9 +49,9 @@ export default async function Works(props: Props) {
 							<img
 								src="/icons/paper.png"
 								alt="projects"
-								className="w-12 h-12 object-cover"
+								className="w-8 md:w-12 h-8 md:h-12 object-cover"
 							/>
-							Documentaries
+							<span className=" hidden md:flex">Documentaries</span>
 						</TabsTrigger>
 						<TabsTrigger
 							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg border-r border-gray-500 md:text-xl font-bold flex items-center gap-2 "
@@ -59,9 +59,9 @@ export default async function Works(props: Props) {
 							<img
 								src="/icons/curve.png"
 								alt="projects"
-								className="w-12 h-12 object-cover"
+								className="w-8 md:w-12 h-8 md:h-12 object-cover"
 							/>
-							Designs
+							<span className=" hidden md:flex">Designs</span>
 						</TabsTrigger>
 						<TabsTrigger
 							className=" h-full data-[state=active]:bg-tertiary data-[state=active]:text-white text-lg md:text-xl font-bold flex items-center gap-2 "
@@ -69,9 +69,9 @@ export default async function Works(props: Props) {
 							<img
 								src="/icons/photography.png"
 								alt="projects"
-								className="w-12 h-12 object-cover"
+								className="w-8 md:w-12 h-8 md:h-12 object-cover"
 							/>
-							Photography
+							<span className=" hidden md:flex">Photography</span>
 						</TabsTrigger>
 					</TabsList>
 					<TabsContent className=" px-2" value="projects">

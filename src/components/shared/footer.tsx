@@ -35,7 +35,7 @@ export default function Footer(props: Props) {
 		smooth: 'easeInOutQuad',
 	};
 	return (
-		<footer className="space-y-8 relative py-12">
+		<footer className="space-y-8 border-t-2 relative py-12">
 			<div className=" px-4 sm:px-[8rem] mx-auto space-y-8 max-w-[1350px]">
 				<div className="grid sm:grid-cols-4 gap-6">
 					{footer.map((item) => (

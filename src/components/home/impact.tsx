@@ -56,7 +56,7 @@ const Impact = () => {
 								src={i.image}
 								className="mb-4"
 							/>
-							<h2 className="text-2xl sm:text-[2.2rem] leading-[1.2] text-center font-medium text-amber-500 mb-4">
+							<h2 className="text-2xl sm:text-[2.2rem] leading-[1.2] text-center font-medium text-blue-500 mb-4">
 								<Link href={i.link} className="flex flex-col gap-y-3">
 									<span className=" uppercase font-oswald">{i.title}</span>
 									<ArrowIcon />
@@ -84,7 +84,7 @@ const data = [
 		link: '/about-us',
 	},
 	{
-		title: 'Storytelling That Moves People',
+		title: 'Storytelling  gyufguygjyghjgjgjgh That Moves People',
 		des: `We know that stories shape the world. That’s why we help organizations and communities tell their stories in a way that resonates, inspires, and drives action. Changing the world starts with finding the right story—and telling it well.`,
 		image: '/images/campaign.webp',
 		link: '/about-us',
